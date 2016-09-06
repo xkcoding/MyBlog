@@ -73,7 +73,7 @@ deploy:
   branch: master
 
 #backup
-backup:
-    type: git
-    repository:
-       github: https://github.com/xkcoding/MyBlog.git,master
+#backup:
+#    type: git
+#    repository:
+#       github: https://github.com/xkcoding/MyBlog.git,master
