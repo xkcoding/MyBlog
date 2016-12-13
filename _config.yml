@@ -18,6 +18,13 @@ feed:
   hub:
   content:
 
+#search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://cd.xkcoding.com/
@@ -77,8 +84,9 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/xkcoding/xkcoding.github.io.git
-  branch: master
+  repo:
+	  github: https://github.com/xkcoding/xkcoding.github.io.git,master
+	  coding: https://git.coding.net/xkcoding/xkcoding.git,master
 
 #backup
 #backup:
