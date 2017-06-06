@@ -1,3 +1,4 @@
 /.deploy_git
 /public
-
+.DS_Store
+/node_modules
