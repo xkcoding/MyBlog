@@ -25,6 +25,13 @@ search:
   format: html
   limit: 10000
 
+algolia:
+  applicationID: 'IZ674ZFFAQ'
+  apiKey: '3e793989390e526ef46faf9cfa745307'
+  adminApiKey: '98c0c615a4417fbcd435ecd7308fada8'
+  indexName: 'coding_diary'
+  chunkSize: 5000
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://cd.xkcoding.com/
