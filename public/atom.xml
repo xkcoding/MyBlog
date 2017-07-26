@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>CodingDiary</title>
+  <subtitle>代码日记</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://xkcoding.com/"/>
+  <updated>2017-07-20T01:40:39.000Z</updated>
+  <id>http://xkcoding.com/</id>
+  
+  <author>
+    <name>xkcoding</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring-boot整合mybatis的时候使用logback打印日志</title>
+    <link href="http://xkcoding.com/2017/07/19/spring-boot-mybatis-logback.html"/>
+    <id>http://xkcoding.com/2017/07/19/spring-boot-mybatis-logback.html</id>
+    <published>2017-07-19T03:44:55.000Z</published>
+    <updated>2017-07-20T01:40:39.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近在学习 &lt;code&gt;spring boot&lt;/code&gt; ，日志用的是 &lt;code&gt;logback&lt;/code&gt; ，至于为什么没有选常用的 &lt;code&gt;log4j&lt;/code&gt; ，因为 &lt;code&gt;logback&lt;/code&gt; 是 &lt;code&gt;spring boot&lt;/code&gt; 官方推荐的日志系统。但是在整合 &lt;code&gt;Mybatis&lt;/code&gt; 的时候一直打印不了 &lt;code&gt;SQL&lt;/code&gt; 语句，查阅多方资料，终于解决了~&lt;br&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="spring boot" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/spring-boot/"/>
+    
+    
+      <category term="spring boot" scheme="http://xkcoding.com/tags/spring-boot/"/>
+    
+      <category term="mybatis" scheme="http://xkcoding.com/tags/mybatis/"/>
+    
+      <category term="日志" scheme="http://xkcoding.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows10 系统下载与激活</title>
+    <link href="http://xkcoding.com/2017/07/18/win10-download.html"/>
+    <id>http://xkcoding.com/2017/07/18/win10-download.html</id>
+    <published>2017-07-18T01:57:35.000Z</published>
+    <updated>2017-07-18T02:31:43.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;windows 是目前我们用的最多一个系统，win10 现在也优化的越来越好，今天大姐的电脑有点问题，担心太蠢，不会下载和激活系统，所以整理并记录一下如何下载并激活 win10 系统，以供查阅。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="系统" scheme="http://xkcoding.com/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="win10" scheme="http://xkcoding.com/tags/win10/"/>
+    
+      <category term="系统" scheme="http://xkcoding.com/tags/%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HashMap 的 JDK 源码探索</title>
+    <link href="http://xkcoding.com/2017/07/12/jdk-map-source-explore.html"/>
+    <id>http://xkcoding.com/2017/07/12/jdk-map-source-explore.html</id>
+    <published>2017-07-12T03:26:43.000Z</published>
+    <updated>2017-07-12T03:42:53.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;缘由：今天好友拿着下面的代码，问我为什么Map.Entry 这个接口没有实现 getKey() 和 getValue() 方法，却可以使用，由此，开启了一番查阅 JDK 源码的旅途….&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="java" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/java/"/>
+    
+    
+      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
+    
+      <category term="JDK HashMap 源码探索" scheme="http://xkcoding.com/tags/JDK-HashMap-%E6%BA%90%E7%A0%81%E6%8E%A2%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Oracle 11gR2 RAC的JDBC连接串</title>
+    <link href="http://xkcoding.com/2017/01/06/connect-oracle11g-rac-url.html"/>
+    <id>http://xkcoding.com/2017/01/06/connect-oracle11g-rac-url.html</id>
+    <published>2017-01-06T05:51:10.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;!--&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;--&gt;
+&lt;p&gt;今天tomcat启动时，连接oracle直接报错，出现ORA-12505的问题，最开始，我以为错误的原因是jdbc连接Oracle的连接串中的sid配置的不对，oracle不能解析连接串中的sid名字，所以拒绝了连接。在连接字串中写入正确的sid即可。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
+    
+    
+      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
+    
+      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>elasticsearch环境搭建及起步</title>
+    <link href="http://xkcoding.com/2016/12/13/elasticsearch-get-start.html"/>
+    <id>http://xkcoding.com/2016/12/13/elasticsearch-get-start.html</id>
+    <published>2016-12-13T09:12:39.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
+&lt;h2 id=&quot;ElasticSearch-概述&quot;&gt;&lt;a href=&quot;#ElasticSearch-概述&quot; class=&quot;headerlink&quot; title=&quot;ElasticSearch 概述&quot;&gt;&lt;/a&gt;ElasticSearch 概述&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;ElasticSearch是一个高可扩展的开源的全文搜索分析引擎。 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它允许你快速的存储、搜索和分析大量数据。ElasticSearch通常作为后端程序，为需要复杂查询的应用提供服务。&lt;/li&gt;
+&lt;li&gt;Elasticsearch是一个基于Lucene的开源分布式搜索引擎，具有分布式多用户能力。Elasticsearch是用java开发，提供Restful接口，能够达到实时搜索、高性能计算；同时Elasticsearch的横向扩展能力非常强，不需要重启服务，基本上达到了零配置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="elasticsearch" scheme="http://xkcoding.com/categories/elasticsearch/"/>
+    
+    
+      <category term="elasticsearch" scheme="http://xkcoding.com/tags/elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Lenovo System X3250 M5服务器安装CentOS6.4</title>
+    <link href="http://xkcoding.com/2016/08/31/server-install-centos6.html"/>
+    <id>http://xkcoding.com/2016/08/31/server-install-centos6.html</id>
+    <published>2016-08-31T02:46:09.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;&lt;br&gt;第一次真正接触服务器，公司要求安装linux系统，花了2天时间，因为该服务器比较复杂，以此文记录下安装过程中出现的问题。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://xkcoding.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实际项目中的代码规范</title>
+    <link href="http://xkcoding.com/2016/04/05/coding-standards.html"/>
+    <id>http://xkcoding.com/2016/04/05/coding-standards.html</id>
+    <published>2016-04-05T13:35:53.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;最近在准备软件杯的比赛项目，因为是担任的是项目组长，所以要求组员之间的项目代码必须要有规范，方便组员之间的团队合作，以及后期代码的维护。而且，我相信，如果我们代码规范能够做好的话，对于我们的开发水平也会提高多少。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
+    
+      <category term="eclipse" scheme="http://xkcoding.com/tags/eclipse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android中svn不需要进行版本控制的部分</title>
+    <link href="http://xkcoding.com/2016/04/03/android-svn-attention.html"/>
+    <id>http://xkcoding.com/2016/04/03/android-svn-attention.html</id>
+    <published>2016-04-03T05:07:36.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;SVN是Subversion的简称，是一个开放源代码的版本控制系统，说得简单一点SVN就是用于多个人共同开发同一个项目，共用资源的目的。但是SVN对于Android项目来说并不是所有文件都需要进行版本控制的。&lt;p&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;bin，gen 两个文件夹不用提交，因为这两个文件夹是自动生成的，如果提交可能会产生编译异常。&lt;/li&gt;
+&lt;li&gt;.settings也是自动生成，也不用提交。&lt;/li&gt;
+&lt;li&gt;.git文件夹也不需要提交，这是存放git的配置信息&lt;/li&gt;
+&lt;li&gt;.svn同.git一样，是存放svn的配置信息的，同样不需要提交&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
+    
+      <category term="svn" scheme="http://xkcoding.com/tags/svn/"/>
+    
+      <category term="eclipse" scheme="http://xkcoding.com/tags/eclipse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>蓝桥杯感想</title>
+    <link href="http://xkcoding.com/2016/03/28/lanqiao-exam.html"/>
+    <id>http://xkcoding.com/2016/03/28/lanqiao-exam.html</id>
+    <published>2016-03-28T15:08:33.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;今年是我第一次参加蓝桥杯。3月20号。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="http://xkcoding.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="http://xkcoding.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>android 在eclipse中把局部变量变成成员变量前自动加m</title>
+    <link href="http://xkcoding.com/2016/03/27/eclipse-tips-variable.html"/>
+    <id>http://xkcoding.com/2016/03/27/eclipse-tips-variable.html</id>
+    <published>2016-03-27T04:22:09.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;在开发过程中,开发规范很重要,这样有利于后期维护,而且如果离职后,新同事接收你项目时也方便阅读代码,比如我们命名一个成员变量,一般在都是m子母开头。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
+    
+      <category term="eclipse小技巧" scheme="http://xkcoding.com/tags/eclipse%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>volley开源框架的初体验</title>
+    <link href="http://xkcoding.com/2016/03/26/first-use-volley-demo.html"/>
+    <id>http://xkcoding.com/2016/03/26/first-use-volley-demo.html</id>
+    <published>2016-03-25T16:51:41.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;Http网络数据交互请求是极其重要并且使用很频繁的一个模块，也是最基本的网络编程所需要学习的。网络请求方式的效率和性能直接影响到APP的整体用户体验流畅性，所以学习并掌握一款好的Http请求框架对我们的网络开发非常重要。Http请求在移动网络编程中主要是Get和Post请求接口数据的使用。所以，在学习好基础的Http请求知识后，为了提升开发效率，选择学习使用一款好的Http网络请求框架变得非常的重要。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
+    
+    
+      <category term="volley" scheme="http://xkcoding.com/tags/volley/"/>
+    
+      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android 开源项目分类汇总</title>
+    <link href="http://xkcoding.com/2016/03/25/android-open-project.html"/>
+    <id>http://xkcoding.com/2016/03/25/android-open-project.html</id>
+    <published>2016-03-25T14:15:00.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;目前包括：&quot;&gt;&lt;a href=&quot;#目前包括：&quot; class=&quot;headerlink&quot; title=&quot;目前包括：&quot;&gt;&lt;/a&gt;目前包括：&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Android 开源项目第一篇——个性化控件(View)篇&lt;br&gt;&lt;em&gt;包括：ListView、ActionBar、Menu、ViewPager、Gallery、GridView、ImageView、ProgressBar、TextView、ScrollView、TimeView、TipView、FlipView、ColorPickView、GraphView、UI Style、其他&lt;/em&gt;  &lt;/li&gt;
+&lt;li&gt;Android 开源项目第二篇——工具库篇&lt;br&gt;&lt;em&gt;包括：依赖注入、图片缓存、网络请求、数据库 ORM 工具包、Android 公共库、高版本向低版本兼容库、多媒体、事件总线、传感器、安全、插件化、文件、其他&lt;/em&gt;  &lt;/li&gt;
+&lt;li&gt;Android 开源项目第三篇——优秀项目篇&lt;br&gt;&lt;em&gt;比较有意思的完整的 Android 项目&lt;/em&gt;  &lt;/li&gt;
+&lt;li&gt;Android 开源项目第四篇——开发及测试工具篇&lt;br&gt;&lt;em&gt;包括：开发效率工具、开发自测相关、测试工具、开发及编译环境、其他&lt;/em&gt;  &lt;/li&gt;
+&lt;li&gt;Android 开源项目第五篇——优秀个人和团体篇&lt;br&gt;&lt;em&gt;乐于分享并且有一些很不错的开源项目的个人和组织，包括 JakeWharton、Chris Banes、Koushik Dutta 等大牛&lt;/em&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
+    
+      <category term="开源项目汇总" scheme="http://xkcoding.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu-15.04安装jdk</title>
+    <link href="http://xkcoding.com/2016/03/24/ubuntu-15.04-install-jdk.html"/>
+    <id>http://xkcoding.com/2016/03/24/ubuntu-15.04-install-jdk.html</id>
+    <published>2016-03-23T16:00:46.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;最近在Linux上学习Python，而PyCharm需要java环境的支持，本文记录了在Ubuntu-15.04上安装jdk1.8版本的步骤与遇到的问题。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://xkcoding.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
+    
+      <category term="JDK" scheme="http://xkcoding.com/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>helloworld</title>
+    <link href="http://xkcoding.com/2016/03/21/helloworld.html"/>
+    <id>http://xkcoding.com/2016/03/21/helloworld.html</id>
+    <published>2016-03-21T15:58:59.000Z</published>
+    <updated>2017-06-06T14:08:27.000Z</updated>
+    
+    <summary type="html">
+    
+      Welcome to Hexo: This is your very first post.
+    
+    </summary>
+    
+      <category term="HelloWorld" scheme="http://xkcoding.com/categories/HelloWorld/"/>
+    
+    
+      <category term="Hexo" scheme="http://xkcoding.com/tags/Hexo/"/>
+    
+      <category term="HelloWorld" scheme="http://xkcoding.com/tags/HelloWorld/"/>
+    
+  </entry>
+  
+</feed>
