@@ -61,5 +61,6 @@ Try a better life , you deserve more !
 <hr>
 * [MailMe(邮件联系)](mailto:237497819@qq.com)
 * [QQ](http://wpa.qq.com/msgrd?v=3&uin=237497819&site=qq&menu=yes)
+* <a href="/resume.html" target="_blank">查看我的完整简历</a>
 
 与我一起，聆听这首 Beyond 的《海阔天空》，感受内心深处的触动 ~<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=347230&auto=0&height=66"></iframe>
