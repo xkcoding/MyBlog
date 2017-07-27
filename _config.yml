@@ -26,11 +26,16 @@ search:
   limit: 10000
 
 algolia:
-  applicationID: 'IZ674ZFFAQ'
-  apiKey: '3e793989390e526ef46faf9cfa745307'
-  adminApiKey: '98c0c615a4417fbcd435ecd7308fada8'
-  indexName: 'coding_diary'
+  applicationID: 'ZV4RFZVZ58'
+  apiKey: 'ad1e0a485cd7b9e16a583282fc2843c6'
+  adminApiKey: '20fee041cebabaa5e9ef6727a101eb4a'
+  indexName: 'xkcoding'
   chunkSize: 5000
+  fields:
+    - title
+    - slug
+    - path
+    - content:strip
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'

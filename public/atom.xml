@@ -47,11 +47,11 @@
     <link href="http://xkcoding.com/2017/07/18/win10-download.html"/>
     <id>http://xkcoding.com/2017/07/18/win10-download.html</id>
     <published>2017-07-18T01:57:35.000Z</published>
-    <updated>2017-07-18T02:31:43.000Z</updated>
+    <updated>2017-07-27T01:11:30.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;windows 是目前我们用的最多一个系统，win10 现在也优化的越来越好，今天大姐的电脑有点问题，担心太蠢，不会下载和激活系统，所以整理并记录一下如何下载并激活 win10 系统，以供查阅。&lt;br&gt;
+      &lt;p&gt;windows 是目前我们用的最多一个系统，win10 现在也优化的越来越好，今天大姐的电脑有点问题，担心太蠢，不会下载和激活系统，所以整理并记录一下如何下载并激活 win10 系统，以供查阅。&lt;br&gt;
     
     </summary>
     
@@ -120,12 +120,11 @@
     <link href="http://xkcoding.com/2016/12/13/elasticsearch-get-start.html"/>
     <id>http://xkcoding.com/2016/12/13/elasticsearch-get-start.html</id>
     <published>2016-12-13T09:12:39.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
+    <updated>2017-07-26T09:34:52.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
-&lt;h2 id=&quot;ElasticSearch-概述&quot;&gt;&lt;a href=&quot;#ElasticSearch-概述&quot; class=&quot;headerlink&quot; title=&quot;ElasticSearch 概述&quot;&gt;&lt;/a&gt;ElasticSearch 概述&lt;/h2&gt;&lt;blockquote&gt;
+      &lt;h2 id=&quot;ElasticSearch-概述&quot;&gt;&lt;a href=&quot;#ElasticSearch-概述&quot; class=&quot;headerlink&quot; title=&quot;ElasticSearch 概述&quot;&gt;&lt;/a&gt;ElasticSearch 概述&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;ElasticSearch是一个高可扩展的开源的全文搜索分析引擎。 &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;它允许你快速的存储、搜索和分析大量数据。ElasticSearch通常作为后端程序，为需要复杂查询的应用提供服务。&lt;/li&gt;
