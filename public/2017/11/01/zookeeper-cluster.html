@@ -1,0 +1,1306 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux,zookeeper," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="拖了一天一天又一天，终于在时隔3月之后，又迎来了一篇新博客。真的是懒癌晚期了。o(╯□╰)o  dubbo 框架需要将服务统一注册到一个注册中心，才能被远程调用。这里注册中心可以使用 zookeeper 或者 redis。  这里我们以 zookeeper 为例。zookeeper 可以单机版也就是 standalone模式运行，也可以使用集群方式运行。为了实现高可用，本例采用集群方式部署，需要保">
+<meta name="keywords" content="Linux,zookeeper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dubbo前置知识：zookeeper集群搭建">
+<meta property="og:url" content="http://xkcoding.com/2017/11/01/zookeeper-cluster.html">
+<meta property="og:site_name" content="CodingDiary">
+<meta property="og:description" content="拖了一天一天又一天，终于在时隔3月之后，又迎来了一篇新博客。真的是懒癌晚期了。o(╯□╰)o  dubbo 框架需要将服务统一注册到一个注册中心，才能被远程调用。这里注册中心可以使用 zookeeper 或者 redis。  这里我们以 zookeeper 为例。zookeeper 可以单机版也就是 standalone模式运行，也可以使用集群方式运行。为了实现高可用，本例采用集群方式部署，需要保">
+<meta property="og:updated_time" content="2017-11-02T08:44:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dubbo前置知识：zookeeper集群搭建">
+<meta name="twitter:description" content="拖了一天一天又一天，终于在时隔3月之后，又迎来了一篇新博客。真的是懒癌晚期了。o(╯□╰)o  dubbo 框架需要将服务统一注册到一个注册中心，才能被远程调用。这里注册中心可以使用 zookeeper 或者 redis。  这里我们以 zookeeper 为例。zookeeper 可以单机版也就是 standalone模式运行，也可以使用集群方式运行。为了实现高可用，本例采用集群方式部署，需要保">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'ZV4RFZVZ58',
+      apiKey: 'ad1e0a485cd7b9e16a583282fc2843c6',
+      indexName: 'xkcoding',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xkcoding.com/2017/11/01/zookeeper-cluster.html"/>
+
+
+
+
+
+  <title> dubbo前置知识：zookeeper集群搭建 | CodingDiary </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?521f6d48d3fa40ce529ba993fc1a46b4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=62574797";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CodingDiary</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">代码日记</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://xkcoding.com/2017/11/01/zookeeper-cluster.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xkcoding">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                dubbo前置知识：zookeeper集群搭建
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T13:55:10+08:00">
+                2017-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术相关/" itemprop="url" rel="index">
+                    <span itemprop="name">技术相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/01/zookeeper-cluster.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/01/zookeeper-cluster.html" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/01/zookeeper-cluster.html" class="leancloud_visitors" data-flag-title="dubbo前置知识：zookeeper集群搭建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,910 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  10 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>拖了一天一天又一天，终于在时隔3月之后，又迎来了一篇新博客。真的是懒癌晚期了。o(╯□╰)o</p>
+<blockquote>
+<p><code>dubbo</code> 框架需要将服务统一注册到一个注册中心，才能被远程调用。这里注册中心可以使用 <code>zookeeper</code> 或者 <code>redis</code>。</p>
+</blockquote>
+<p>这里我们以 <code>zookeeper</code> 为例。<code>zookeeper</code> 可以单机版也就是 standalone模式运行，也可以使用集群方式运行。为了实现高可用，本例采用集群方式部署，需要保证至少半数以上的机器存活，所以至少为3台机器。话不多说，让我们开始 <code>zookeeper</code> 集群的搭建吧：</p>
+<a id="more"></a>
+<ol>
+<li>官网下载 <code>zookeeper-3.4.10.tar.gz</code> ，将软件包分别放在三台 Linux 虚拟机的 <code>/software</code> 目录下。</li>
+<li><p>进入 <code>software</code> 目录下，解压软件包。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# cd /software                                                                                           </div><div class="line">[root@localhost software]# tar -zxvf zookeeper-3.4.10.tar.gz</div><div class="line">[root@localhost software]# ll                                                                                              </div><div class="line">total 34228                                                                                                                </div><div class="line">drwxr-xr-x. 10 1001 1001     4096 Mar 23  2017 zookeeper-3.4.10                                                            </div><div class="line">-rw-r--r--.  1 root root 35042811 Nov  1 14:58 zookeeper-3.4.10.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>解压后的文件夹名字包含了版本号，我们将其删除。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost software]# mv zookeeper-3.4.10 zookeeper                                                                   </div><div class="line">[root@localhost software]# ll                                                                                              </div><div class="line">total 34228                                                                                                                </div><div class="line">drwxr-xr-x. 10 1001 1001     4096 Mar 23  2017 zookeeper                                                                   </div><div class="line">-rw-r--r--.  1 root root 35042811 Nov  1 14:58 zookeeper-3.4.10.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>进入刚解压的 <code>zookeeper</code> 的目录中</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">[root@bogon software]# cd zookeeper/                                                                                       </div><div class="line">[root@bogon zookeeper]# ll                                                                                                 </div><div class="line">total 1580                                                                                                                 </div><div class="line">drwxr-xr-x.  2 1001 1001    4096 Mar 23  2017 bin                                                                          </div><div class="line">-rw-rw-r--.  1 1001 1001   84725 Mar 23  2017 build.xml                                                                    </div><div class="line">drwxr-xr-x.  2 1001 1001      74 Mar 23  2017 conf                                                                         </div><div class="line">drwxr-xr-x. 10 1001 1001    4096 Mar 23  2017 contrib                                                                      </div><div class="line">drwxr-xr-x.  2 1001 1001    4096 Mar 23  2017 dist-maven                                                                   </div><div class="line">drwxr-xr-x.  6 1001 1001    4096 Mar 23  2017 docs                                                                         </div><div class="line">-rw-rw-r--.  1 1001 1001    1709 Mar 23  2017 ivysettings.xml                                                              </div><div class="line">-rw-rw-r--.  1 1001 1001    5691 Mar 23  2017 ivy.xml                                                                      </div><div class="line">drwxr-xr-x.  4 1001 1001    4096 Mar 23  2017 lib                                                                          </div><div class="line">-rw-rw-r--.  1 1001 1001   11938 Mar 23  2017 LICENSE.txt                                                                  </div><div class="line">-rw-rw-r--.  1 1001 1001    3132 Mar 23  2017 NOTICE.txt                                                                   </div><div class="line">-rw-rw-r--.  1 1001 1001    1770 Mar 23  2017 README_packaging.txt                                                         </div><div class="line">-rw-rw-r--.  1 1001 1001    1585 Mar 23  2017 README.txt                                                                   </div><div class="line">drwxr-xr-x.  5 1001 1001      44 Mar 23  2017 recipes                                                                      </div><div class="line">drwxr-xr-x.  8 1001 1001    4096 Mar 23  2017 src                                                                          </div><div class="line">-rw-rw-r--.  1 1001 1001 1456729 Mar 23  2017 zookeeper-3.4.10.jar                                                         </div><div class="line">-rw-rw-r--.  1 1001 1001     819 Mar 23  2017 zookeeper-3.4.10.jar.asc                                                     </div><div class="line">-rw-rw-r--.  1 1001 1001      33 Mar 23  2017 zookeeper-3.4.10.jar.md5                                                     </div><div class="line">-rw-rw-r--.  1 1001 1001      41 Mar 23  2017 zookeeper-3.4.10.jar.sha1</div></pre></td></tr></table></figure>
+<p> 解释一下，几个常见目录里的内容：</p>
+<ul>
+<li><code>bin</code> 目录里存放的是一些可执行文件，基本以 <code>*.bat</code> 和 <code>*.sh</code> 结尾的文件。</li>
+<li><code>conf</code> 目录里存放的是项目（软件）运行时的一些配置文件。</li>
+<li><code>contrib</code> 目录存放的内容官方未提供的一些附加软件。</li>
+<li><code>dist-maven</code> 目录存放的是 <code>zookeeper</code> 使用 <code>maven</code> 编译之后的源码和 jar文件</li>
+<li><code>docs</code> 目录里存放的是一些文档</li>
+<li><code>lib</code> 目录里存放的是依赖库</li>
+<li><code>recipes</code> 目录下存放的是使用 <code>zookeeper</code> 实现的分布式锁、高并发、队列的一些方案</li>
+<li><code>src</code> 目录里存放的是源码文件</li>
+</ul>
+</li>
+<li><p>在 <code>conf</code> 文件夹里对 <code>zookeeper</code> 进行配置，将示例配置文件复制并改名</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[root@bogon software]# cd zookeeper/conf/                                                                                  </div><div class="line">[root@bogon conf]# ll                                                                                                      </div><div class="line">total 12                                                                                                                   </div><div class="line">-rw-rw-r--. 1 1001 1001  535 Mar 23  2017 configuration.xsl                                                                </div><div class="line">-rw-rw-r--. 1 1001 1001 2161 Mar 23  2017 log4j.properties                                                                 </div><div class="line">-rw-rw-r--. 1 1001 1001  922 Mar 23  2017 zoo_sample.cfg</div><div class="line">[root@bogon conf]# cp zoo_sample.cfg zoo.cfg                                                                               </div><div class="line">[root@bogon conf]# ll                                                                                                      </div><div class="line">total 16                                                                                                                   </div><div class="line">-rw-rw-r--. 1 1001 1001  535 Mar 23  2017 configuration.xsl                                                                </div><div class="line">-rw-rw-r--. 1 1001 1001 2161 Mar 23  2017 log4j.properties                                                                 </div><div class="line">-rw-r--r--. 1 root root  922 Nov  2 14:40 zoo.cfg                                                                          </div><div class="line">-rw-rw-r--. 1 1001 1001  922 Mar 23  2017 zoo_sample.cfg</div><div class="line">[root@bogon conf]# vim zoo.cfg</div></pre></td></tr></table></figure>
+<p> 然后在 <code>zoo.cfg</code> 里加上一些配置</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">tickTime=2000                                                                                                              </div><div class="line"><span class="comment"># The number of ticks that the initial                                                                                     </span></div><div class="line"><span class="comment"># synchronization phase can take                                                                                           </span></div><div class="line">initLimit=10                                                                                                               </div><div class="line"><span class="comment"># The number of ticks that can pass between                                                                                </span></div><div class="line"><span class="comment"># sending a request and getting an acknowledgement                                                                         </span></div><div class="line">syncLimit=5                                                                                                                </div><div class="line"><span class="comment"># the directory where the snapshot is stored.                                                                              </span></div><div class="line"><span class="comment"># do not use /tmp for storage, /tmp here is just                                                                           </span></div><div class="line"><span class="comment"># example sakes.                                                                                                           </span></div><div class="line">                                                                                                                           </div><div class="line"><span class="comment">################ 修改的地方1 ################                                                                              </span></div><div class="line"><span class="comment"># dataDir=/tmp/zookeeper</span></div><div class="line"><span class="comment"># 将原先的 dataDir 注释，并修改成自定义的路径                                                                              </span></div><div class="line">dataDir=/software/zookeeper/data                                                                                           </div><div class="line"></div><div class="line"><span class="comment"># the port at which the clients will connect                                                                               </span></div><div class="line">clientPort=2181                                                                                                            </div><div class="line"><span class="comment"># the maximum number of client connections.                                                                                </span></div><div class="line"><span class="comment"># increase this if you need to handle more clients                                                                         </span></div><div class="line"><span class="comment">#maxClientCnxns=60                                                                                                         </span></div><div class="line"><span class="comment">#                                                                                                                          </span></div><div class="line"><span class="comment"># Be sure to read the maintenance section of the                                                                           </span></div><div class="line"><span class="comment"># administrator guide before turning on autopurge.                                                                         </span></div><div class="line"><span class="comment">#                                                                                                                          </span></div><div class="line"><span class="comment"># http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance                                               </span></div><div class="line"><span class="comment">#                                                                                                                          </span></div><div class="line"><span class="comment"># The number of snapshots to retain in dataDir                                                                             </span></div><div class="line"><span class="comment">#autopurge.snapRetainCount=3                                                                                               </span></div><div class="line"><span class="comment"># Purge task interval in hours                                                                                             </span></div><div class="line"><span class="comment"># Set to "0" to disable auto purge feature                                                                                 </span></div><div class="line"><span class="comment">#autopurge.purgeInterval=1                                                                                                 </span></div><div class="line">                                                                                                                           </div><div class="line"><span class="comment">################ 修改的地方2 ################                                                                              </span></div><div class="line"><span class="comment"># 在文件的末尾加上                                                                                                         </span></div><div class="line">server.0=172.16.15.129:2888:3888                                                                                           </div><div class="line">server.1=172.16.15.130:2888:3888                                                                                           </div><div class="line">server.2=172.16.15.131:2888:3888</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建配置文件中的 <code>dataDir</code> 配置的目录</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[root@bogon conf]# cd ../                                                                                                  </div><div class="line">[root@bogon zookeeper]# mkdir data                                                                                         </div><div class="line">[root@bogon zookeeper]# ll                                                                                                 </div><div class="line">total 1580                                                                                                                 </div><div class="line">drwxr-xr-x.  2 1001 1001    4096 Mar 23  2017 bin                                                                          </div><div class="line">-rw-rw-r--.  1 1001 1001   84725 Mar 23  2017 build.xml                                                                    </div><div class="line">drwxr-xr-x.  2 1001 1001      88 Nov  2 14:57 conf                                                                         </div><div class="line">drwxr-xr-x. 10 1001 1001    4096 Mar 23  2017 contrib                                                                      </div><div class="line">drwxr-xr-x.  2 root root       6 Nov  2 14:58 data                                                                         </div><div class="line">drwxr-xr-x.  2 1001 1001    4096 Mar 23  2017 dist-maven                                                                   </div><div class="line">drwxr-xr-x.  6 1001 1001    4096 Mar 23  2017 docs                                                                         </div><div class="line">-rw-rw-r--.  1 1001 1001    1709 Mar 23  2017 ivysettings.xml                                                              </div><div class="line">-rw-rw-r--.  1 1001 1001    5691 Mar 23  2017 ivy.xml                                                                      </div><div class="line">drwxr-xr-x.  4 1001 1001    4096 Mar 23  2017 lib                                                                          </div><div class="line">-rw-rw-r--.  1 1001 1001   11938 Mar 23  2017 LICENSE.txt                                                                  </div><div class="line">-rw-rw-r--.  1 1001 1001    3132 Mar 23  2017 NOTICE.txt                                                                   </div><div class="line">-rw-rw-r--.  1 1001 1001    1770 Mar 23  2017 README_packaging.txt                                                         </div><div class="line">-rw-rw-r--.  1 1001 1001    1585 Mar 23  2017 README.txt                                                                   </div><div class="line">drwxr-xr-x.  5 1001 1001      44 Mar 23  2017 recipes                                                                      </div><div class="line">drwxr-xr-x.  8 1001 1001    4096 Mar 23  2017 src                                                                          </div><div class="line">-rw-rw-r--.  1 1001 1001 1456729 Mar 23  2017 zookeeper-3.4.10.jar                                                         </div><div class="line">-rw-rw-r--.  1 1001 1001     819 Mar 23  2017 zookeeper-3.4.10.jar.asc                                                     </div><div class="line">-rw-rw-r--.  1 1001 1001      33 Mar 23  2017 zookeeper-3.4.10.jar.md5                                                     </div><div class="line">-rw-rw-r--.  1 1001 1001      41 Mar 23  2017 zookeeper-3.4.10.jar.sha1</div></pre></td></tr></table></figure>
+<p> 在 <code>data</code> 目录中新建一个 <code>myid</code> 文件，这个文件中的内容存放配置文件中对应 IP 的 <code>serverId</code>。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@bogon zookeeper]# cd data                                                                                            </div><div class="line">[root@bogon data]# vim myid</div><div class="line">[root@bogon data]# cat myid                                                                                                </div><div class="line">0</div></pre></td></tr></table></figure>
+</li>
+<li><p>将 <code>zookeeper</code> 的目录配置在 Linux 系统的环境变量中</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@bogon data]# vim /etc/profile</div></pre></td></tr></table></figure>
+<p> 在文件末尾添加</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> ZOOKEEPER_HOME=/software/zookeeper</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$ZOOKEEPER_HOME</span>/bin:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
+<p> 然后让环境变量生效</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@bogon data]# source /etc/profile</div></pre></td></tr></table></figure>
+</li>
+<li><p>将另外两台虚拟机也按照 <code>2-7</code> 的步骤配置，注意第6步的 <code>myid</code> 文件里存放的内容，应该与 <code>zoo.cfg</code> 配置文件末尾的 <code>server.n=ip:2888:3888</code> 的 <code>n</code> 对应</p>
+</li>
+<li><p>配置完环境变量之后，我们就可以不需要到 <code>bin</code> 目录下，直接在任意目录下执行 zookeeper 中 bin 目录下的文件了。</p>
+<ul>
+<li><code>zkServer.sh status</code> ：查看 <code>zookeeper</code> 的状态</li>
+<li><code>zkServer.sh start</code> ：启动 <code>zookeeper</code></li>
+<li><code>zkServer.sh stop</code> ：关闭 <code>zookeeper</code></li>
+</ul>
+</li>
+<li><p>分别查看各个虚拟机的启动情况，以及启动后的状态。</p>
+<p>虚拟机1：(follower)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@bogon software]# zkServer.sh status                                                                                  </div><div class="line">ZooKeeper JMX enabled by default                                                                                           </div><div class="line">Using config: /software/zookeeper/bin/../conf/zoo.cfg                                                                      </div><div class="line">Error contacting service. It is probably not running.                                                                      </div><div class="line">[root@bogon software]# zkServer.sh start                                                                                   </div><div class="line">ZooKeeper JMX enabled by default                                                                                           </div><div class="line">Using config: /software/zookeeper/bin/../conf/zoo.cfg                                                                      </div><div class="line">Starting zookeeper ... STARTED                                                                                             </div><div class="line">[root@bogon software]# zkServer.sh status                                                                                  </div><div class="line">ZooKeeper JMX enabled by default                                                                                           </div><div class="line">Using config: /software/zookeeper/bin/../conf/zoo.cfg                                                                      </div><div class="line">Mode: follower</div></pre></td></tr></table></figure>
+<p>虚拟机2：(leader)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@bogon ~]# zkServer.sh status                                                                                         </div><div class="line">ZooKeeper JMX enabled by default                                                                                           </div><div class="line">Using config: /software/zookeeper/bin/../conf/zoo.cfg                                                                      </div><div class="line">Error contacting service. It is probably not running.                                                                      </div><div class="line">[root@bogon ~]# zkServer.sh start                                                                                          </div><div class="line">ZooKeeper JMX enabled by default                                                                                           </div><div class="line">Using config: /software/zookeeper/bin/../conf/zoo.cfg                                                                      </div><div class="line">Starting zookeeper ... STARTED                                                                                             </div><div class="line">[root@bogon ~]# zkServer.sh status                                                                                         </div><div class="line">ZooKeeper JMX enabled by default                                                                                           </div><div class="line">Using config: /software/zookeeper/bin/../conf/zoo.cfg                                                                      </div><div class="line">Mode: leader</div></pre></td></tr></table></figure>
+<p>虚拟机3：(follower)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@bogon ~]# zkServer.sh status                                                                                         </div><div class="line">ZooKeeper JMX enabled by default                                                                                           </div><div class="line">Using config: /software/zookeeper/bin/../conf/zoo.cfg                                                                      </div><div class="line">Error contacting service. It is probably not running.                                                                      </div><div class="line">[root@bogon ~]# zkServer.sh start                                                                                          </div><div class="line">ZooKeeper JMX enabled by default                                                                                           </div><div class="line">Using config: /software/zookeeper/bin/../conf/zoo.cfg                                                                      </div><div class="line">Starting zookeeper ... STARTED                                                                                             </div><div class="line">[root@bogon ~]# zkServer.sh status                                                                                         </div><div class="line">ZooKeeper JMX enabled by default                                                                                           </div><div class="line">Using config: /software/zookeeper/bin/../conf/zoo.cfg                                                                      </div><div class="line">Mode: follower</div></pre></td></tr></table></figure>
+</li>
+<li><p>至此，<code>zookeeper</code> 集群的简单搭建已经正式结束了。当然还有一些个性化（调优）的配置参数，请自行参照 <code>zookeeper</code> 的<a href="http://zookeeper.apache.org/doc/r3.4.10/zookeeperStarted.html" target="_blank" rel="external">官方文档</a> 在 <code>zoo.cfg</code> 中配置。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/resources/wechat-reward-image.png" alt="xkcoding WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/resources/alipay-reward-image.png" alt="xkcoding Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      xkcoding
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://xkcoding.com/2017/11/01/zookeeper-cluster.html" title="dubbo前置知识：zookeeper集群搭建">http://xkcoding.com/2017/11/01/zookeeper-cluster.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/zookeeper/" rel="tag"># zookeeper</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/31/mysql-start-error.html" rel="next" title="mysql启动报错问题">
+                <i class="fa fa-chevron-left"></i> mysql启动报错问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="xkcoding" />
+          <p class="site-author-name" itemprop="name">xkcoding</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xkcoding" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="tencent://message/?menu=yes&uin=237497819&websitename=im.qq.com" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  QQ
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3900066215/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/chen-yang-kai-62/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-delicious"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:237497819@qq.com" target="_blank" title="邮箱">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  邮箱
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/atom.xml" target="_blank" title="RSS">
+                  
+                    <i class="fa fa-fw fa-rss"></i>
+                  
+                  RSS
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              推荐阅读
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jfinal.com/" title="JFinal" target="_blank">JFinal</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ixuhan.cn/" title="hank之路" target="_blank">hank之路</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xkcoding</span>
+</div>
+
+<!--
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+-->
+
+<div class="theme-info">
+  <div class="powered-by">
+	<i class="fa fa-user-md"></i>
+	<span id="busuanzi_container_site_uv">
+	    访客数:<span id="busuanzi_value_site_uv"></span>
+	</span>
+  </div>
+  <div class="powered-by">
+  	<i class="fa fa-eye"></i>
+	<span id="busuanzi_container_site_pv">
+    	总访问量<span id="busuanzi_value_site_pv"></span>次
+	</span>
+  </div>
+  <span class="post-count">博客全站共35.7k字</span>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cyt3qTLqh';
+      var conf = '403b265f6c22d4b2e95a98903c0338be';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("igdqTfV9rbtm7WF3pmcBo0fM-gzGzoHsz", "qJ9XOC1VMiPdYow77o4YVWMN");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

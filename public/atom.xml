@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2017-07-20T01:40:39.000Z</updated>
+  <updated>2017-11-02T08:44:00.000Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,80 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dubbo前置知识：zookeeper集群搭建</title>
+    <link href="http://xkcoding.com/2017/11/01/zookeeper-cluster.html"/>
+    <id>http://xkcoding.com/2017/11/01/zookeeper-cluster.html</id>
+    <published>2017-11-01T05:55:10.000Z</published>
+    <updated>2017-11-02T08:44:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;拖了一天一天又一天，终于在时隔3月之后，又迎来了一篇新博客。真的是懒癌晚期了。o(╯□╰)o&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;dubbo&lt;/code&gt; 框架需要将服务统一注册到一个注册中心，才能被远程调用。这里注册中心可以使用 &lt;code&gt;zookeeper&lt;/code&gt; 或者 &lt;code&gt;redis&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里我们以 &lt;code&gt;zookeeper&lt;/code&gt; 为例。&lt;code&gt;zookeeper&lt;/code&gt; 可以单机版也就是 standalone模式运行，也可以使用集群方式运行。为了实现高可用，本例采用集群方式部署，需要保证至少半数以上的机器存活，所以至少为3台机器。话不多说，让我们开始 &lt;code&gt;zookeeper&lt;/code&gt; 集群的搭建吧：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+    
+      <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
+    
+      <category term="zookeeper" scheme="http://xkcoding.com/tags/zookeeper/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql启动报错问题</title>
+    <link href="http://xkcoding.com/2017/08/31/mysql-start-error.html"/>
+    <id>http://xkcoding.com/2017/08/31/mysql-start-error.html</id>
+    <published>2017-08-31T01:48:10.000Z</published>
+    <updated>2017-08-31T02:09:32.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天公司 windows 服务器 &lt;code&gt;MySQL&lt;/code&gt; 数据库启动异常，记录下原因。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="mysql" scheme="http://xkcoding.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>自定义阻塞队列</title>
+    <link href="http://xkcoding.com/2017/08/02/customize-blocked-queue.html"/>
+    <id>http://xkcoding.com/2017/08/02/customize-blocked-queue.html</id>
+    <published>2017-08-02T07:47:07.000Z</published>
+    <updated>2017-08-02T08:23:59.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天重温了下 java 多线程中的 &lt;code&gt;notify()&lt;/code&gt; 方法以及 &lt;code&gt;wait()&lt;/code&gt; 方法，一时兴起，决定通过这俩个方法，实现一个简易的自定义阻塞队列。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="java" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/java/"/>
+    
+    
+      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="多线程" scheme="http://xkcoding.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>spring-boot整合mybatis的时候使用logback打印日志</title>
@@ -109,9 +183,9 @@
       <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
     
     
-      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
-    
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
+    
+      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
     
   </entry>
   
@@ -209,9 +283,9 @@
     
       <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
     
-      <category term="svn" scheme="http://xkcoding.com/tags/svn/"/>
-    
       <category term="eclipse" scheme="http://xkcoding.com/tags/eclipse/"/>
+    
+      <category term="svn" scheme="http://xkcoding.com/tags/svn/"/>
     
   </entry>
   
@@ -273,9 +347,9 @@
       <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
     
     
-      <category term="volley" scheme="http://xkcoding.com/tags/volley/"/>
-    
       <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
+    
+      <category term="volley" scheme="http://xkcoding.com/tags/volley/"/>
     
   </entry>
   
