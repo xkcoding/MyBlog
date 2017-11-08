@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2017-11-02T08:44:00.000Z</updated>
+  <updated>2017-11-08T09:53:29.000Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dubbo前置知识：dubbo-admin 的安装</title>
+    <link href="http://xkcoding.com/2017/11/08/dubbo-admin-install.html"/>
+    <id>http://xkcoding.com/2017/11/08/dubbo-admin-install.html</id>
+    <published>2017-11-08T07:37:14.000Z</published>
+    <updated>2017-11-08T09:53:29.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;dubbo-admin&lt;/code&gt; 是 &lt;code&gt;dubbo&lt;/code&gt; 官方提供的一个的管控台程序，可以对 &lt;code&gt;dubbo&lt;/code&gt; 服务进行&lt;strong&gt;监控&lt;/strong&gt;，还可以对其进行&lt;strong&gt;权重分配&lt;/strong&gt;、&lt;strong&gt;负载均衡策略&lt;/strong&gt;等的调优操作，简而言之，我们可以通过 &lt;code&gt;dubbo-admin&lt;/code&gt;，对我们的 &lt;code&gt;dubbo&lt;/code&gt; 服务进行服务治理及服务监控。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+    
+      <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
+    
+  </entry>
   
   <entry>
     <title>dubbo前置知识：zookeeper集群搭建</title>
@@ -183,9 +205,9 @@
       <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
     
     
-      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
-    
       <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
+    
+      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
     
   </entry>
   
@@ -283,9 +305,9 @@
     
       <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
     
-      <category term="eclipse" scheme="http://xkcoding.com/tags/eclipse/"/>
-    
       <category term="svn" scheme="http://xkcoding.com/tags/svn/"/>
+    
+      <category term="eclipse" scheme="http://xkcoding.com/tags/eclipse/"/>
     
   </entry>
   
@@ -347,9 +369,9 @@
       <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
-    
       <category term="volley" scheme="http://xkcoding.com/tags/volley/"/>
+    
+      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
     
   </entry>
   
