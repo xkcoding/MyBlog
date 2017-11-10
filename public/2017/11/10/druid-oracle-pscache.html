@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Coding Diary, xkcoding" />
+  <meta name="keywords" content="oracle," />
 
 
 
@@ -105,15 +105,17 @@
 
 
 
-<meta name="description" content="xkcoding的代码成长日记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CodingDiary">
-<meta property="og:url" content="http://xkcoding.com/tags/mybatis/index.html">
+<meta name="description" content="问题最近，公司的 web 应用，查询数据有些慢，数据库使用的是 oracle，连接池采用了阿里巴巴温少开源的 Druid 连接池，于是开始寻找解决办法。">
+<meta name="keywords" content="oracle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Druid 加速 oracle 的查询">
+<meta property="og:url" content="http://xkcoding.com/2017/11/10/druid-oracle-pscache.html">
 <meta property="og:site_name" content="CodingDiary">
-<meta property="og:description" content="xkcoding的代码成长日记">
+<meta property="og:description" content="问题最近，公司的 web 应用，查询数据有些慢，数据库使用的是 oracle，连接池采用了阿里巴巴温少开源的 Druid 连接池，于是开始寻找解决办法。">
+<meta property="og:updated_time" content="2017-11-10T01:30:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CodingDiary">
-<meta name="twitter:description" content="xkcoding的代码成长日记">
+<meta name="twitter:title" content="使用 Druid 加速 oracle 的查询">
+<meta name="twitter:description" content="问题最近，公司的 web 应用，查询数据有些慢，数据库使用的是 oracle，连接池采用了阿里巴巴温少开源的 Druid 连接池，于是开始寻找解决办法。">
 
 
 
@@ -141,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="http://xkcoding.com/tags/mybatis/"/>
+  <link rel="canonical" href="http://xkcoding.com/2017/11/10/druid-oracle-pscache.html"/>
 
 
 
 
 
-  <title> 标签: mybatis | CodingDiary </title>
+  <title> 使用 Druid 加速 oracle 的查询 | CodingDiary </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -191,7 +193,7 @@
     
   
 
-  <div class="container sidebar-position-right  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -329,46 +331,296 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        mybatis
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://xkcoding.com/2017/11/10/druid-oracle-pscache.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xkcoding">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CodingDiary">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用 Druid 加速 oracle 的查询
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-10T09:06:33+08:00">
+                2017-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术相关/" itemprop="url" rel="index">
+                    <span itemprop="name">技术相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/10/druid-oracle-pscache.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/10/druid-oracle-pscache.html" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/10/druid-oracle-pscache.html" class="leancloud_visitors" data-flag-title="使用 Druid 加速 oracle 的查询">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  315 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>最近，公司的 web 应用，查询数据有些慢，数据库使用的是 oracle，连接池采用了阿里巴巴温少开源的 Druid 连接池，于是开始寻找解决办法。</p>
+<a id="more"></a>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><ol>
+<li>首先我们需要做的应该是通过 Druid 来监控我们应用中的慢 SQL，然后对其进行优化。从 SQL 监控和 SQL 防火墙中，我发现我们的 SQL 并没有多少慢 SQL。于是排除了慢 SQL 导致查询变慢的原因。</li>
+<li>Druid 中支持配置 <strong>PSCache</strong>。我们的 web 程序并没有开启这个选项，我们将其开启，发现查询返回的结果速度快了 <strong><code>20%</code></strong> 左右。</li>
+</ol>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>oracle 支持游标，一个 <strong>PreparedStatement</strong> 对应服务器一个游标，如果 <strong>PreparedStatement</strong> 被缓存起来重复执行，<strong>PreparedStatement</strong> 没有被关闭，服务器端的游标就不会被关闭，性能提高非常显著。在类似 <code>SELECT * FROM T WHERE ID = ?</code>这样的场景，启用 PSCache 和不启用 PSCache 的性能可能是相差一个数量级的。</p>
+<p>连接 oracle 数据库，打开 <strong>PSCache</strong>，但是其他的数据库连接池都会存在内存占用过多的问题，Druid 是唯一解决这个问题的连接池。</p>
 
-      <h2 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/07/19/spring-boot-mybatis-logback.html" itemprop="url">
-              
-                <span itemprop="name">spring-boot整合mybatis的时候使用logback打印日志</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h2>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>o(╯□╰)o我只要一毛钱的鼓励~~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/resources/wechat-reward-image.png" alt="xkcoding WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/resources/alipay-reward-image.png" alt="xkcoding Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-19T11:44:55+08:00"
-              content="2017-07-19" >
-          07-19
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      xkcoding
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://xkcoding.com/2017/11/10/druid-oracle-pscache.html" title="使用 Druid 加速 oracle 的查询">http://xkcoding.com/2017/11/10/druid-oracle-pscache.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/oracle/" rel="tag"># oracle</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/08/dubbo-admin-install.html" rel="next" title="dubbo前置知识：dubbo-admin 的安装">
+                <i class="fa fa-chevron-left"></i> dubbo前置知识：dubbo-admin 的安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -376,6 +628,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
 
         </div>
         
@@ -395,8 +653,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -533,6 +800,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -659,6 +942,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
