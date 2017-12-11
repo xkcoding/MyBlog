@@ -18,35 +18,32 @@ Try a better life , you deserve more !
 
 ** xkcoding ** * - Try to be free *</blockquote>
 
-## 我的超神学习计划~
+## 进步之路~
+
 <hr>
-* ~~学习 Jfinal 3.x 版本 新特性~~
-* ~~学习 Oracle 关系型数据库~~
-* ~~学习 Lucene 全文检索引擎~~
-* ~~学习 ElasticSearch 全文检索引擎~~
-* ~~学习 Layui 前端UI框架(国产)~~
-* ~~学习 vue.js~~
-* ~~学习 Docker 虚拟技术~~
-* ~~学习 Dubbo/Motan 分布式RPC服务框架之一，已学习 Dubbo~~
-* ~~学习 Zookeeper 中间件~~
-* ~~学习 Redis 分布式缓存~~
-* 学习 SSDB,NOSQL (吹牛逼说可以替代 Redis )
-* 学习 jenkins 持续集成工具
-* 学习 Solr 搜索应用服务器
-* ~~学习 ActiveMQ,RabbitMQ,Kafka,RocketMQ 等任意消息中间件  -- > Apollo(ActiveMQ下一代产品),已学习ActiveMQ,RabbitMQ~~
-* 学习 Spring Cloud
-* 学习 MyCat 数据库中间件
-* 学习 NIO 编程 / AIO 编程,以及 NIO 框架 Netty
-* ~~学习 Spring Boot~~
-* 学习 Hadoop,Storm,Jstorm(Alibaba)
-* 学习 FastDFS 分布式文件系统
-* ~~学习 Beetl 模版引擎(号称是JEE里面效率最牛逼的模版渲染引擎)~~
-* 学习 BeetlSQL 持久层框架(号称是秒杀Hibernate和MyBatis的持久层框架)
-* 学习 Zabbix 分布式监控系统
-* 学习 Thrift(非死不可- Apache)RPC框架
-* 学习 Sharding-jdbc (当当网)
-* 学习开源框架 t-io
-* 在好基友的带领下入门机器学习
+- ~~学习 Jfinal 3.x 版本 新特性~~
+- ~~学习 Oracle 关系型数据库~~
+- ~~学习 Lucene 全文检索引擎~~
+- ~~学习 ElasticSearch 全文检索引擎~~
+- ~~学习 Layui 前端UI框架(国产)~~
+- ~~学习 vue.js~~
+- ~~学习 react.js~~
+- ~~学习 Zookeeper 中间件~~
+- ~~学习 Redis 分布式缓存~~
+- ~~学习 ActiveMQ,RabbitMQ,Kafka,RocketMQ 等任意消息中间件  -- > Apollo(ActiveMQ下一代产品),已学习ActiveMQ,RabbitMQ~~
+- 学习 MyCat 数据库中间件
+- ~~学习 Spring Boot~~
+- 学习 Spring Cloud
+- 学习 Dubbo 分布式RPC服务框架
+- ~~学习 Beetl 模版引擎(号称是JEE里面效率最牛逼的模版渲染引擎)~~
+- ~~学习 BeetlSQL 持久层框架(号称是秒杀Hibernate和MyBatis的持久层框架)~~
+- 学习 Sharding-jdbc (当当网)
+- 学习 NIO 编程 / AIO 编程,以及 NIO 框架 Netty
+- 学习开源框架 t-io
+- ~~学习 Docker 虚拟技术~~
+- 学习 jenkins 持续集成工具
+- 学习 Zabbix 分布式监控系统
+- 学习 FastDFS 分布式文件系统
 
 ## 我正在坚持的行动~
 <hr>

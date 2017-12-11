@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[提升 JAVA 编程技能]]></title>
+    <url>%2F2017%2F12%2F11%2Ftips-for-improve-java-skill.html</url>
+    <content type="text"><![CDATA[翻译自： How to improve Java programming skill 深入理解 OO 思想 多读 JAVA 相关的书籍 多练习，只有多去写代码，才能更懂代码 阅读关键的 API（java.lang.*，java.io.*，java.util.*）的源码 处理问题之前，花更多的时间去分析问题，这其实是在节约时间 通过帮助他人来提升自己对问题的理解 尽量写简单、容易理解的逻辑代码，而不是通过复杂的代码来彰显自己的代码多么牛逼，好的代码本身就是文档 多阅读大牛的技术博客 保持跟进新的 JAVA 技术，可以不去精通，但是你不能落后 多阅读文档 不要去和他人比较（最后一点，但并不是关键性的），最大的敌人永远是你自己]]></content>
+      <categories>
+        <category>技术相关</category>
+      </categories>
+      <tags>
+        <tag>技术相关</tag>
+        <tag>翻译</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[redux 和 mobx 初体验]]></title>
+    <url>%2F2017%2F12%2F05%2Fredux-and-mobx-first.html</url>
+    <content type="text"><![CDATA[前段时间搞了 Vue，现在又得开始写 React 了。 我堂堂的一个后端，真是太残忍啦 o(╯□╰)o 接触过 Vue 的应该都知道，Vue 的状态管理可以有两种实现，一种是 Vuex，还有一种是 eventBus 形式。 React 状态管理，老牌的应该是 Redux，但是存在了太多的概念，对于刚接触的童鞋不太友好。mobx 当属时代的新星了。不管从效率，还是易读性都远超 Redux。 下面带来俩小🌰大家感受下~~ 最简单的一个 redux 操作123456789101112131415161718192021222324252627import &#123;createStore&#125; from 'redux';const ADD_ACTION = 'ADD';const add = (num) =&gt; &#123; return &#123; type: ADD_ACTION, num &#125;;&#125;;const initialState = &#123; count: 0&#125;;const reducers = (state = initialState, action) =&gt; &#123; switch (action.type) &#123; case ADD_ACTION: return Object.assign(&#123;&#125;, state, &#123;count: state.count + action.num&#125;); default: return state; &#125;&#125;;const reduxStore = createStore(reducers);reduxStore.dispatch(add(1)); 最简单的一个 mobx 操作12345678910import &#123;observable, action&#125; from 'mobx';const mobxStore = observable(&#123; count: 0, add: action((num) =&gt; &#123; this.count += num; &#125;)&#125;);mobxStore.add(1);]]></content>
+      <categories>
+        <category>技术相关</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Mac 下彻底解决 mysql 中文乱码问题]]></title>
     <url>%2F2017%2F11%2F14%2Fmysql-chinese-character-encoding.html</url>
     <content type="text"><![CDATA[数据库中文乱码是个比较常见的问题，今天笔者就遇到了。 系统环境：macOS Sierra 10.12.6MySQL 版本：5.7.18 Homebrew连接软件：Navicat Premium 12.0.12 TNT edition MySQL程序问题1234567891011121314151617181920#启动mysql.server start#关闭mysql.server stop#执行mysql命令mysql;#查看编码设置[下面显示的是已经设置好的]mysql&gt; show variables like &apos;%char%&apos;;+--------------------------+--------------------------------------------------------+| Variable_name | Value |+--------------------------+--------------------------------------------------------+| character_set_client | utf8 || character_set_connection | utf8 || character_set_database | utf8 || character_set_filesystem | binary || character_set_results | utf8 || character_set_server | utf8 || character_set_system | utf8 || character_sets_dir | /usr/local/Cellar/mysql/5.7.18_1/share/mysql/charsets/ |+--------------------------+--------------------------------------------------------+ 与客户端（网页或软件：web／终端／数据库管理工具）有关的： character_set_client：对客户端的请求字符串进行编码 character_set_connection：连接服务器时的默认编码，例如navicat连接阿里云服务器 character_set_results：表示客户端想以哪种编码接收查询结果 如果后两个没有特别指定，则默认和character_set_client是一样的 与服务器端（增删查改命令）有关的： character_set_server：服务器编码 character_set_database：创建数据库时的默认编码 如果后一个没有特别指定，则默认和character_set_server是一样的 其他： character_set_filesystem：以二进制文件进行设置，不影响字符显示 character_set_system：用于mysql存储标识符，一直是UTF8，也不影响字符显示 因此如果字符编码有异常，我们只需要在my.cnf中对character_set_client与character_set_server进行设置就ok了。 12345#默认路径下，配置文件加载的先后顺序/etc/my.cnf/etc/mysql/my.cnf/usr/local/etc/my.cnf~/.my.cnf 但是我的系统是通过 homebrew 安装的 MySQL，默认情况下没有 my.cnf 文件。 1cd /etc &amp;&amp; touch my.cnf 使用 vi 编辑器将下面内容写入 /etc/my.cnf 。 1234[client]default-character-set=utf8[mysqld]character-set-server=utf8 保存退出，然后停止 MySQL（mysql.server stop），并重新启动 MySQL（mysql.server start），并用以下命令校验字符编码信息。 1234#执行mysql命令mysql -uroot -proot;#查看编码设置[下面显示的是已经设置好的]mysql&gt; show variables like &apos;%char%&apos;; MySQL 数据库数据问题如果显示的数据查询结果还是乱码，可能就是之前创建的数据库或数据表有问题了，可以通过以下方式进行检查。 查询数据库支持的所有字符集 1show character set;或者show char set; 查看mysql服务器当前状态 1status或者\s 查看数据库编码 1show create database dbname; 查看数据表编码 1show create table tablename\G; 查看数据表字段编码 1show full columns from tablename; 如果发现编码不是 UTF-8，请重新创建相应的数据库／数据表／字段 。 Mac终端－iTerm2软件设置这一种情况比较少见，就是Mac终端不支持显示中文，这样也会导致乱码。一方面对终端软件如iterm2的软件偏好设置进行修改为utf-8。另一方面就是在终端执行以下语句： 12LANG='zh_CN.UTF-8';export $LANG; MySQL 管理工具—Navicat 软件设置笔者这次遇到的问题就属于最后一种，前面的数据库配置，查看的编码都是正确的，并且使用程序查询出来的也没有乱码，偏偏 Navicat 显示数据表时中文便乱码了，那么请新建mysql服务器连接，Encoding那一栏不要选择默认的 UTF-8，选择Auto即可正常显示中文。 本文参考： Mac系统解决MySQL乱码问题]]></content>
@@ -202,8 +226,8 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>volley</tag>
         <tag>Android</tag>
+        <tag>volley</tag>
       </tags>
   </entry>
   <entry>

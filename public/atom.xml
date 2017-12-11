@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2017-11-14T02:20:46.000Z</updated>
+  <updated>2017-12-11T05:33:09.581Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>提升 JAVA 编程技能</title>
+    <link href="http://xkcoding.com/2017/12/11/tips-for-improve-java-skill.html"/>
+    <id>http://xkcoding.com/2017/12/11/tips-for-improve-java-skill.html</id>
+    <published>2017-12-11T05:18:56.000Z</published>
+    <updated>2017-12-11T05:33:09.581Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;翻译自： &lt;a href=&quot;http://www.javatechblog.com/java/how-to-improve-java-programming-skill/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to improve Java programming skill&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="翻译" scheme="http://xkcoding.com/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redux 和 mobx 初体验</title>
+    <link href="http://xkcoding.com/2017/12/05/redux-and-mobx-first.html"/>
+    <id>http://xkcoding.com/2017/12/05/redux-and-mobx-first.html</id>
+    <published>2017-12-05T09:58:56.000Z</published>
+    <updated>2017-12-05T10:07:36.402Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前段时间搞了 Vue，现在又得开始写 React 了。 我堂堂的一个后端，真是太残忍啦 o(╯□╰)o&lt;/p&gt;
+&lt;p&gt;接触过 Vue 的应该都知道，Vue 的状态管理可以有两种实现，一种是 Vuex，还有一种是 eventBus 形式。&lt;/p&gt;
+&lt;p&gt;React 状态管理，老牌的应该是 Redux，但是存在了太多的概念，对于刚接触的童鞋不太友好。mobx 当属时代的新星了。不管从效率，还是易读性都远超 Redux。&lt;/p&gt;
+&lt;p&gt;下面带来俩小🌰大家感受下~~&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+    
+      <category term="react" scheme="http://xkcoding.com/tags/react/"/>
+    
+      <category term="前端" scheme="http://xkcoding.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 下彻底解决 mysql 中文乱码问题</title>
@@ -414,9 +461,9 @@
       <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
     
     
-      <category term="volley" scheme="http://xkcoding.com/tags/volley/"/>
-    
       <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
+    
+      <category term="volley" scheme="http://xkcoding.com/tags/volley/"/>
     
   </entry>
   
@@ -445,50 +492,6 @@
       <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
     
       <category term="开源项目汇总" scheme="http://xkcoding.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu-15.04安装jdk</title>
-    <link href="http://xkcoding.com/2016/03/24/ubuntu-15.04-install-jdk.html"/>
-    <id>http://xkcoding.com/2016/03/24/ubuntu-15.04-install-jdk.html</id>
-    <published>2016-03-23T16:00:46.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;最近在Linux上学习Python，而PyCharm需要java环境的支持，本文记录了在Ubuntu-15.04上安装jdk1.8版本的步骤与遇到的问题。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://xkcoding.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
-    
-      <category term="JDK" scheme="http://xkcoding.com/tags/JDK/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>helloworld</title>
-    <link href="http://xkcoding.com/2016/03/21/helloworld.html"/>
-    <id>http://xkcoding.com/2016/03/21/helloworld.html</id>
-    <published>2016-03-21T15:58:59.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
-    
-    <summary type="html">
-    
-      Welcome to Hexo: This is your very first post.
-    
-    </summary>
-    
-      <category term="HelloWorld" scheme="http://xkcoding.com/categories/HelloWorld/"/>
-    
-    
-      <category term="Hexo" scheme="http://xkcoding.com/tags/Hexo/"/>
-    
-      <category term="HelloWorld" scheme="http://xkcoding.com/tags/HelloWorld/"/>
     
   </entry>
   
