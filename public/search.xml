@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[GitLab 安装、汉化及常见错误处理]]></title>
+    <url>%2F2018%2F01%2F03%2Fdevops-gitlab.html</url>
+    <content type="text"><![CDATA[公司现在开始实行 DevOps 的开发模式，代码托管采用了 GitLab 搭建私有代码仓库，本文记录了 GitLab 的安装、汉化及常见错误处理。 安装GitLab准备工作 12345678sudo yum install curl policycoreutils openssh-server openssh-clientssudo systemctl enable sshdsudo systemctl start sshdsudo yum install postfixsudo systemctl enable postfixsudo systemctl start postfixsudo firewall-cmd --permanent --add-service=httpsudo systemctl reload firewalld 配置镜像源地址 12curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bashsudo yum install gitlab-ce 安装完毕后执行注册启动 1sudo gitlab-ctl reconfigure 修改访问 IP 和 端口号 vim /etc/gitlab/gitlab.rb 修改 external_url ，比如 http://localhost:9080 配置邮件发送服务 vim /etc/gitlab/gitlab.rb 修改与 email 有关的配置项 123456789101112131415161718192021222324252627## 邮箱基础配置gitlab_rails[&apos;gitlab_email_enabled&apos;] = truegitlab_rails[&apos;gitlab_email_from&apos;] = &apos;237497819@qq.com&apos;gitlab_rails[&apos;gitlab_email_display_name&apos;] = &apos;237497819&apos;gitlab_rails[&apos;gitlab_email_reply_to&apos;] = &apos;237497819@qq.com&apos;gitlab_rails[&apos;gitlab_email_subject_suffix&apos;] = &apos;&apos;gitlab_rails[&apos;gitlab_default_can_create_group&apos;] = truegitlab_rails[&apos;gitlab_username_changing_enabled&apos;] = true## smtp 配置gitlab_rails[&apos;smtp_enable&apos;] = truegitlab_rails[&apos;smtp_address&apos;] = &quot;smtp.qq.com&quot;gitlab_rails[&apos;smtp_port&apos;] = 25gitlab_rails[&apos;smtp_user_name&apos;] = &quot;237497819@qq.com&quot;gitlab_rails[&apos;smtp_password&apos;] = &quot;*********&quot;gitlab_rails[&apos;smtp_domain&apos;] = &quot;smtp.qq.com&quot;gitlab_rails[&apos;smtp_authentication&apos;] = &quot;login&quot;gitlab_rails[&apos;smtp_enable_starttls_auto&apos;] = truegitlab_rails[&apos;smtp_tls&apos;] = falsegitlab_rails[&apos;smtp_openssl_verify_mode&apos;] = &apos;none&apos;gitlab_rails[&apos;smtp_ca_path&apos;] = &quot;/etc/ssl/certs&quot;gitlab_rails[&apos;smtp_ca_file&apos;] = &quot;/etc/ssl/certs/ca-certificates.crt&quot;## 用户配置user[&apos;git_user_email&apos;] = &quot;237497819@qq.com&quot; 汉化 GitLab 注意：汉化之前是必须设置root密码登录过的，否则有些必须文件没有生成，汉化不成功。 汉化包版本选择：version ≤ 8.8、version &gt; 8.8 查看安装的 GitLab 的版本 12cat /opt/gitlab/embedded/service/gitlab-rails/VERSION10.3.2 停止 GitLab 服务：gitlab-ctl stop git clone https://gitlab.com/xhang/gitlab.git 汉化操作： 12cd gitlabyes|cp -rf ../gitlab/* /opt/gitlab/embedded/service/gitlab-rails/ 重新启动查看效果：gitlab-ctl start 日常 GitLab 管理1gitlab-ctl start|stop|status|restart 常见错误解决在卸载 GitLab 然后再次安装执行 sudo gitlab-ctl reconfigure 的时候往往会出现：ruby_block[supervise_redis_sleep] action run，会一直卡无法往下进行。 按住 CTRL+C 强制结束； 运行：sudo systemctl restart gitlab-runsvdir 再次执行：sudo gitlab-ctl reconfigure gitlab-ctl reconfigure 之后，访问浏览器出现如下错误：Whoops, GitLab is taking too much time to respond. 使用 gitlab-ctl tail 查看完整的 gitlab-ctl reconfigure 日志 我出现这个的错误是因为日志中出现了端口占用 123==&gt; /var/log/gitlab/unicorn/unicorn_stderr.log &lt;==Errno::EADDRINUSE: Address already in use - bind(2) for 127.0.0.1:8080 vim /etc/gitlab/gitlab.rb 去修改 unicorn 的 url 和 port 12unicorn[&apos;listen&apos;] = &apos;127.0.0.1&apos;unicorn[&apos;port&apos;] = 8888 再次执行：sudo gitlab-ctl reconfigure 有时也可能是超时引起的这个错误，vim /etc/gitlab/gitlab.rb 去修改 webhook_timeout 12## WebHook 超时时间gitlab_rails[&apos;webhook_timeout&apos;] = 60 ​]]></content>
+      <categories>
+        <category>技术相关</category>
+        <category>devops</category>
+      </categories>
+      <tags>
+        <tag>技术相关</tag>
+        <tag>gitlab</tag>
+        <tag>devops</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[提升 JAVA 编程技能]]></title>
     <url>%2F2017%2F12%2F11%2Ftips-for-improve-java-skill.html</url>
     <content type="text"><![CDATA[翻译自： How to improve Java programming skill 深入理解 OO 思想 多读 JAVA 相关的书籍 多练习，只有多去写代码，才能更懂代码 阅读关键的 API（java.lang.*，java.io.*，java.util.*）的源码 处理问题之前，花更多的时间去分析问题，这其实是在节约时间 通过帮助他人来提升自己对问题的理解 尽量写简单、容易理解的逻辑代码，而不是通过复杂的代码来彰显自己的代码多么牛逼，好的代码本身就是文档 多阅读大牛的技术博客 保持跟进新的 JAVA 技术，可以不去精通，但是你不能落后 多阅读文档 不要去和他人比较（最后一点，但并不是关键性的），最大的敌人永远是你自己]]></content>
@@ -144,8 +158,8 @@
         <category>oracle</category>
       </categories>
       <tags>
-        <tag>oracle</tag>
         <tag>java</tag>
+        <tag>oracle</tag>
       </tags>
   </entry>
   <entry>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2017-12-11T05:33:09.581Z</updated>
+  <updated>2018-01-03T03:32:40.542Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GitLab 安装、汉化及常见错误处理</title>
+    <link href="http://xkcoding.com/2018/01/03/devops-gitlab.html"/>
+    <id>http://xkcoding.com/2018/01/03/devops-gitlab.html</id>
+    <published>2018-01-03T03:12:37.000Z</published>
+    <updated>2018-01-03T03:32:40.542Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;公司现在开始实行 DevOps 的开发模式，代码托管采用了 GitLab 搭建私有代码仓库，本文记录了 GitLab 的安装、汉化及常见错误处理。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="devops" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/devops/"/>
+    
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="gitlab" scheme="http://xkcoding.com/tags/gitlab/"/>
+    
+      <category term="devops" scheme="http://xkcoding.com/tags/devops/"/>
+    
+  </entry>
   
   <entry>
     <title>提升 JAVA 编程技能</title>
@@ -297,9 +323,9 @@
       <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
     
     
-      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
-    
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
+    
+      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
     
   </entry>
   
@@ -464,34 +490,6 @@
       <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
     
       <category term="volley" scheme="http://xkcoding.com/tags/volley/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 开源项目分类汇总</title>
-    <link href="http://xkcoding.com/2016/03/25/android-open-project.html"/>
-    <id>http://xkcoding.com/2016/03/25/android-open-project.html</id>
-    <published>2016-03-25T14:15:00.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;目前包括：&quot;&gt;&lt;a href=&quot;#目前包括：&quot; class=&quot;headerlink&quot; title=&quot;目前包括：&quot;&gt;&lt;/a&gt;目前包括：&lt;/h2&gt;&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Android 开源项目第一篇——个性化控件(View)篇&lt;br&gt;&lt;em&gt;包括：ListView、ActionBar、Menu、ViewPager、Gallery、GridView、ImageView、ProgressBar、TextView、ScrollView、TimeView、TipView、FlipView、ColorPickView、GraphView、UI Style、其他&lt;/em&gt;  &lt;/li&gt;
-&lt;li&gt;Android 开源项目第二篇——工具库篇&lt;br&gt;&lt;em&gt;包括：依赖注入、图片缓存、网络请求、数据库 ORM 工具包、Android 公共库、高版本向低版本兼容库、多媒体、事件总线、传感器、安全、插件化、文件、其他&lt;/em&gt;  &lt;/li&gt;
-&lt;li&gt;Android 开源项目第三篇——优秀项目篇&lt;br&gt;&lt;em&gt;比较有意思的完整的 Android 项目&lt;/em&gt;  &lt;/li&gt;
-&lt;li&gt;Android 开源项目第四篇——开发及测试工具篇&lt;br&gt;&lt;em&gt;包括：开发效率工具、开发自测相关、测试工具、开发及编译环境、其他&lt;/em&gt;  &lt;/li&gt;
-&lt;li&gt;Android 开源项目第五篇——优秀个人和团体篇&lt;br&gt;&lt;em&gt;乐于分享并且有一些很不错的开源项目的个人和组织，包括 JakeWharton、Chris Banes、Koushik Dutta 等大牛&lt;/em&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
-    
-      <category term="开源项目汇总" scheme="http://xkcoding.com/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/"/>
     
   </entry>
   
