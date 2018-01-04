@@ -112,7 +112,7 @@
 <meta property="og:url" content="http://xkcoding.com/2018/01/04/devops-jenkins.html">
 <meta property="og:site_name" content="CodingDiary">
 <meta property="og:description" content="继续上一篇的话题，既然已经搭建了 GitLab 的代码仓库，那么现在就可以开始进行下一步持续集成环境的搭建了。公司准备利用 Jenkins CI 进行持续集成，本文记录了  Jenkins 的安装、基础配置、界面美化、常用插件及常见错误处理。">
-<meta property="og:updated_time" content="2018-01-04T06:26:07.738Z">
+<meta property="og:updated_time" content="2018-01-04T07:05:26.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DevOps 之 Jenkins 安装、配置、美化、插件及常见错误处理">
 <meta name="twitter:description" content="继续上一篇的话题，既然已经搭建了 GitLab 的代码仓库，那么现在就可以开始进行下一步持续集成环境的搭建了。公司准备利用 Jenkins CI 进行持续集成，本文记录了  Jenkins 的安装、基础配置、界面美化、常用插件及常见错误处理。">
@@ -463,7 +463,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,157 字
+                  1,219 字
                 </span>
               
 
@@ -575,6 +575,9 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Resolving pkg.jenkins-ci.org (pkg.jenkins-ci.org)... failed: Temporary failure in name resolution.</div><div class="line"></div><div class="line">wget: unable to resolve host address ‘pkg.jenkins-ci.org’</div></pre></td></tr></table></figure>
 <p>解决方法：</p>
 <p><code>vim  /etc/resolv.conf</code> 添加一行 <code>nameserver 8.8.8.8</code></p>
+<p><strong>HTML Publisher Plugin 插件在新的Jenkins版本中，打开生成的网页中无法加载CSS、无法点击按钮等情况：</strong></p>
+<p>由于 CSP（Content Security Policy）所致，可在 系统管理→脚本命令行 中执行：</p>
+<p> <code>System.setProperty(&quot;hudson.model.DirectoryBrowserSupport.CSP&quot;,&quot;&quot;)</code></p>
 
       
     </div>
