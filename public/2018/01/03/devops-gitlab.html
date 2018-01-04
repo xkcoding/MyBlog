@@ -114,7 +114,7 @@
 <meta property="og:description" content="公司现在开始实行 DevOps 的开发模式，代码托管采用了 GitLab 搭建私有代码仓库，本文记录了 GitLab 的安装、汉化及常见错误处理。">
 <meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2018-01-03-15149489321563.jpg">
 <meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2018-01-03-15149489565891.jpg">
-<meta property="og:updated_time" content="2018-01-03T03:32:40.542Z">
+<meta property="og:updated_time" content="2018-01-04T05:14:52.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitLab 安装、汉化及常见错误处理">
 <meta name="twitter:description" content="公司现在开始实行 DevOps 的开发模式，代码托管采用了 GitLab 搭建私有代码仓库，本文记录了 GitLab 的安装、汉化及常见错误处理。">
@@ -466,7 +466,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  617 字
+                  625 字
                 </span>
               
 
@@ -557,7 +557,7 @@
 <li><p>再次执行：<code>sudo gitlab-ctl reconfigure</code></p>
 </li>
 <li><p>有时也可能是超时引起的这个错误，<code>vim /etc/gitlab/gitlab.rb</code> 去修改 <code>webhook_timeout</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">## WebHook 超时时间</div><div class="line">gitlab_rails[&apos;webhook_timeout&apos;] = 60</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## unicorn 连接超时</div><div class="line">unicorn[&apos;worker_timeout&apos;] = 90</div><div class="line">## WebHook 超时时间</div><div class="line">gitlab_rails[&apos;webhook_timeout&apos;] = 60</div></pre></td></tr></table></figure>
 <p>​</p>
 </li>
 </ol>
