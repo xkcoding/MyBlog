@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="elasticsearch," />
+  <meta name="keywords" content="技术相关,devops,jenkins," />
 
 
 
@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="ElasticSearch 概述 ElasticSearch是一个高可扩展的开源的全文搜索分析引擎。   它允许你快速的存储、搜索和分析大量数据。ElasticSearch通常作为后端程序，为需要复杂查询的应用提供服务。 Elasticsearch是一个基于Lucene的开源分布式搜索引擎，具有分布式多用户能力。Elasticsearch是用java开发，提供Restful接口，能够达到实时搜索、">
-<meta name="keywords" content="elasticsearch">
+<meta name="description" content="继续上一篇的话题，既然已经搭建了 GitLab 的代码仓库，那么现在就可以开始进行下一步持续集成环境的搭建了。公司准备利用 Jenkins CI 进行持续集成，本文记录了  Jenkins 的安装、基础配置、界面美化、常用插件及常见错误处理。">
+<meta name="keywords" content="技术相关,devops,jenkins">
 <meta property="og:type" content="article">
-<meta property="og:title" content="elasticsearch环境搭建及起步">
-<meta property="og:url" content="http://xkcoding.com/2016/12/13/elasticsearch-get-start.html">
+<meta property="og:title" content="DevOps 之 Jenkins 安装、配置、美化、插件及常见错误处理">
+<meta property="og:url" content="http://xkcoding.com/2018/01/04/devops-jenkins.html">
 <meta property="og:site_name" content="CodingDiary">
-<meta property="og:description" content="ElasticSearch 概述 ElasticSearch是一个高可扩展的开源的全文搜索分析引擎。   它允许你快速的存储、搜索和分析大量数据。ElasticSearch通常作为后端程序，为需要复杂查询的应用提供服务。 Elasticsearch是一个基于Lucene的开源分布式搜索引擎，具有分布式多用户能力。Elasticsearch是用java开发，提供Restful接口，能够达到实时搜索、">
-<meta property="og:updated_time" content="2017-07-26T09:34:52.000Z">
+<meta property="og:description" content="继续上一篇的话题，既然已经搭建了 GitLab 的代码仓库，那么现在就可以开始进行下一步持续集成环境的搭建了。公司准备利用 Jenkins CI 进行持续集成，本文记录了  Jenkins 的安装、基础配置、界面美化、常用插件及常见错误处理。">
+<meta property="og:updated_time" content="2018-01-04T06:26:07.738Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="elasticsearch环境搭建及起步">
-<meta name="twitter:description" content="ElasticSearch 概述 ElasticSearch是一个高可扩展的开源的全文搜索分析引擎。   它允许你快速的存储、搜索和分析大量数据。ElasticSearch通常作为后端程序，为需要复杂查询的应用提供服务。 Elasticsearch是一个基于Lucene的开源分布式搜索引擎，具有分布式多用户能力。Elasticsearch是用java开发，提供Restful接口，能够达到实时搜索、">
+<meta name="twitter:title" content="DevOps 之 Jenkins 安装、配置、美化、插件及常见错误处理">
+<meta name="twitter:description" content="继续上一篇的话题，既然已经搭建了 GitLab 的代码仓库，那么现在就可以开始进行下一步持续集成环境的搭建了。公司准备利用 Jenkins CI 进行持续集成，本文记录了  Jenkins 的安装、基础配置、界面美化、常用插件及常见错误处理。">
 
 
 
@@ -143,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="http://xkcoding.com/2016/12/13/elasticsearch-get-start.html"/>
+  <link rel="canonical" href="http://xkcoding.com/2018/01/04/devops-jenkins.html"/>
 
 
 
 
 
-  <title> elasticsearch环境搭建及起步 | CodingDiary </title>
+  <title> DevOps 之 Jenkins 安装、配置、美化、插件及常见错误处理 | CodingDiary </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -341,7 +341,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://xkcoding.com/2016/12/13/elasticsearch-get-start.html">
+    <link itemprop="mainEntityOfPage" href="http://xkcoding.com/2018/01/04/devops-jenkins.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xkcoding">
@@ -362,7 +362,7 @@
             
             
               
-                elasticsearch环境搭建及起步
+                DevOps 之 Jenkins 安装、配置、美化、插件及常见错误处理
               
             
           </h2>
@@ -377,8 +377,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-13T17:12:39+08:00">
-                2016-12-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T13:19:13+08:00">
+                2018-01-04
               </time>
             
 
@@ -400,8 +400,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
-                    <span itemprop="name">elasticsearch</span>
+                  <a href="/categories/技术相关/" itemprop="url" rel="index">
+                    <span itemprop="name">技术相关</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术相关/devops/" itemprop="url" rel="index">
+                    <span itemprop="name">devops</span>
                   </a>
                 </span>
 
@@ -419,8 +430,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2016/12/13/elasticsearch-get-start.html#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2016/12/13/elasticsearch-get-start.html" itemprop="commentsCount"></span>
+                <a href="/2018/01/04/devops-jenkins.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/01/04/devops-jenkins.html" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -428,7 +439,7 @@
 
           
           
-             <span id="/2016/12/13/elasticsearch-get-start.html" class="leancloud_visitors" data-flag-title="elasticsearch环境搭建及起步">
+             <span id="/2018/01/04/devops-jenkins.html" class="leancloud_visitors" data-flag-title="DevOps 之 Jenkins 安装、配置、美化、插件及常见错误处理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -452,7 +463,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  856 字
+                  1,157 字
                 </span>
               
 
@@ -468,7 +479,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4 分钟
+                  6 分钟
                 </span>
               
             </div>
@@ -487,84 +498,83 @@
       
 
       
-        <h2 id="ElasticSearch-概述"><a href="#ElasticSearch-概述" class="headerlink" title="ElasticSearch 概述"></a>ElasticSearch 概述</h2><blockquote>
-<p>ElasticSearch是一个高可扩展的开源的全文搜索分析引擎。 </p>
-<ul>
-<li>它允许你快速的存储、搜索和分析大量数据。ElasticSearch通常作为后端程序，为需要复杂查询的应用提供服务。</li>
-<li>Elasticsearch是一个基于Lucene的开源分布式搜索引擎，具有分布式多用户能力。Elasticsearch是用java开发，提供Restful接口，能够达到实时搜索、高性能计算；同时Elasticsearch的横向扩展能力非常强，不需要重启服务，基本上达到了零配置。</li>
-</ul>
-</blockquote>
+        <p>继续上一篇的话题，既然已经搭建了 GitLab 的代码仓库，那么现在就可以开始进行下一步持续集成环境的搭建了。公司准备利用 Jenkins CI 进行持续集成，本文记录了  Jenkins 的安装、基础配置、界面美化、常用插件及常见错误处理。</p>
 <a id="more"></a>
-<h2 id="ElasticSearch-安装"><a href="#ElasticSearch-安装" class="headerlink" title="ElasticSearch 安装"></a>ElasticSearch 安装</h2><ol>
-<li>在VMware上安装centos7</li>
-<li>安装vim，输入<code>yum install -y vim</code></li>
-<li>安装git，输入：<code>yum install -y git</code></li>
-<li><p>安装jdk1.8+</p>
-<ul>
-<li>查看CentOS自带JDK是否已安装，输入：<code>yum list installed |grep java</code>。</li>
-<li>若有自带安装的JDK，卸载CentOS系统自带Java环境。</li>
-<li>卸载JDK相关文件，输入：<code>yum -y remove java-1.8.0-openjdk*</code>。</li>
-<li><p>卸载tzdata-java，输入：<code>yum -y remove tzdata-java.noarch</code>。当结果显示为Complete！即卸载完毕。</p>
-<blockquote>
-<p>注：“*”表示卸载掉java1.8.0的所有openjdk相关文件。</p>
-</blockquote>
+<h2 id="安装Jenkins"><a href="#安装Jenkins" class="headerlink" title="安装Jenkins"></a>安装Jenkins</h2><p><strong>准备工作</strong></p>
+<ol>
+<li><p>安装 JDK，并配置环境变量</p>
 </li>
-<li><p>新建目录<code>mkdir /usr/java/</code></p>
+<li><p>安装 maven</p>
 </li>
-<li>将下载的jdk的rpm包上传至<code>/usr/java</code>文件夹中，修改权限，输入<code>chmod +x jdk-8u111-linux-x64.rpm</code></li>
-<li>输入<code>rpm -ivh jdk-8u101-linux-x64.rpm</code>安装</li>
-<li>输入<code>PATH=&quot;${PATH}:/usr/java/jdk1.8.0_111&quot;</code>，修改环境变量</li>
-<li>查看刚安装的Java版本信息，输入：<code>java -version</code> 可查看Java版本。</li>
-</ul>
+<li><p>配置阿里云的 maven 镜像源地址，<code>vim /usr/share/maven/conf/settings.xml</code> 将👇内容添加进 <code>mirrors</code> 节点</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--This sends everything else to /public --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>打开xshell通过xftp将elasticsearch-2.1.1.tar.gz传到虚拟机<code>/opt</code>中，cd到opt目录，输入<code>tar zxvf elasticsearch-2.1.1.tar.gz</code>，解压至当前目录。</p>
-<blockquote>
-<p>注：不可以使用root用户启动elasticsearch，这是出于系统安全考虑设置的条件。由于ElasticSearch可以接收用户输入的脚本并且执行，为了系统安全考虑，建议创建一个单独的用户用来运行xkcoding</p>
-<p>如果是用root账号启动，会报以下错误</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Exception in thread <span class="string">"main"</span> java.lang.RuntimeException: don<span class="string">'t run elasticsearch as root. at org.elasticsearch.bootstrap.Bootstrap.initializeNatives(Bootstrap.java:93) at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:144) at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:285) at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:35) Refer to the log for complete error details.</span></div></pre></td></tr></table></figure>
-</blockquote>
+<li><p>安装 git</p>
 </li>
-<li><p>创建xkcoding用户组及xkcoding用户</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">groupadd xkcoding</div><div class="line">useradd xkcoding -g xkcoding -p elasticsearch-2.1.1</div></pre></td></tr></table></figure>
-</li>
-<li><p>更改elasticsearch-2.1.1文件夹及内部文件的所属用户及组为xkcoding:xkcoding</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /opt</div><div class="line">chown -R xkcoding:xkcoding elasticsearch-2.1.1</div></pre></td></tr></table></figure>
-</li>
-<li><p>切换到elsearch用户再启动</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">su xkcoding</div><div class="line"><span class="built_in">cd</span> elasticsearch-2.1.1</div><div class="line">./bin/elasticsearch -d <span class="comment">#以守护进程的方式运行</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>打开一个新的终端进行测试</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl <span class="string">'http://localhost:9200/?pretty'</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>查看返回数据</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span> : <span class="string">"node-1"</span>,</div><div class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"togeek"</span>,</div><div class="line">  <span class="attr">"version"</span> : &#123;</div><div class="line">    <span class="attr">"number"</span> : <span class="string">"2.1.1"</span>,</div><div class="line">    <span class="attr">"build_hash"</span> : <span class="string">"40e2c53a6b6c2972b3d13846e450e66f4375bd71"</span>,</div><div class="line">    <span class="attr">"build_timestamp"</span> : <span class="string">"2015-12-15T13:05:55Z"</span>,</div><div class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</div><div class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"5.3.1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>需要从windows本机访问centos7虚拟机，因此需要关闭防火墙</p>
-<blockquote>
-<p>CentOS 7.0默认使用的是firewall作为防火墙，使用iptables必须重新设置一下</p>
-</blockquote>
-<ul>
-<li><p>直接关闭防火墙</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl stop firewalld.service <span class="comment">#停止firewall</span></div><div class="line">systemctl <span class="built_in">disable</span> firewalld.service <span class="comment">#禁止firewall开机启动</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>设置 <code>iptables service</code></p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install iptables-services</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果要修改防火墙配置，如增加防火墙端口9200</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysconfig/iptables</div></pre></td></tr></table></figure>
-</li>
-<li><p>增加规则</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 9200 -j ACCEPT</div></pre></td></tr></table></figure>
-</li>
-<li><p>保存退出后</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl restart iptables.service <span class="comment">#重启防火墙使配置生效</span></div><div class="line">systemctl <span class="built_in">enable</span> iptables.service <span class="comment">#设置防火墙开机启动</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>最后重启系统使设置生效即可。</p>
-</li>
-</ul>
-</li>
-<li>在windows的cmd中测试，返回json，测试通过！</li>
 </ol>
+<p><strong>配置镜像源地址</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</div><div class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</div><div class="line">yum install jenkins</div></pre></td></tr></table></figure>
+<p><strong>修改访问 IP 和 端口号</strong></p>
+<ol>
+<li><code>vim /etc/sysconfig/jenkins</code></li>
+<li><code>JENKINS_PORT=&quot;10080&quot;</code></li>
+</ol>
+<p><strong>配置 JDK 路径到 Jenkins 中</strong></p>
+<ol>
+<li><p><code>vim /etc/init.d/jenkins</code></p>
+</li>
+<li><p>将自己的 java 目录加入到 <code>candidates</code> 里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">candidates=&quot;</div><div class="line">/etc/alternatives/java</div><div class="line">/usr/lib/jvm/java-1.8.0/bin/java</div><div class="line">/usr/lib/jvm/jre-1.8.0/bin/java</div><div class="line">/usr/lib/jvm/java-1.7.0/bin/java</div><div class="line">/usr/lib/jvm/jre-1.7.0/bin/java</div><div class="line">/usr/bin/java</div><div class="line">/opt/jdk1.8.0_144/bin/java</div><div class="line">&quot;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>安装完毕后启动</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service jenkins start # 启动jenkins服务</div></pre></td></tr></table></figure>
+<h2 id="配置-Jenkins"><a href="#配置-Jenkins" class="headerlink" title="配置 Jenkins"></a>配置 Jenkins</h2><ol>
+<li><p><strong>初始化密码</strong></p>
+<p><code>cat /var/lib/jenkins/secrets/initialAdminPassword</code></p>
+</li>
+<li><p><strong>安装插件</strong></p>
+<p>选择左侧推荐的插件安装即可</p>
+</li>
+<li><p><strong>配置管理员账号密码</strong></p>
+</li>
+<li><p><strong>配置 JDK、Maven、Git、Docker</strong></p>
+<p>系统管理 → 全局工具配置（尽量在服务器本地安装，然后输入安装路径，不推荐使用在线安装，因为在线安装有些资源都在国外，下载速度极慢）</p>
+</li>
+<li><p><strong>配置邮件服务器信息</strong></p>
+<p>系统管理 → 系统设置，①Jenkins Location→系统管理员邮件地址②Extended E-mail Notification③邮件通知。</p>
+<p>其中<strong>Extended E-mail Notification</strong>的两个地方可以做个性化配置：</p>
+<ul>
+<li><p>Default Content Type 邮件的内容类型，改为<code>HTML(text/html)</code>。</p>
+</li>
+<li><p>Default Subject 邮件的标题，改为<code>构建通知：$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!</code>。</p>
+</li>
+<li><p>Default Content 邮件的内容，改为👇内容。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>$&#123;PROJECT_NAME&#125;-第$&#123;BUILD_NUMBER&#125;次构建日志<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">leftmargin</span>=<span class="string">"8"</span> <span class="attr">marginwidth</span>=<span class="string">"0"</span> <span class="attr">topmargin</span>=<span class="string">"8"</span> <span class="attr">marginheight</span>=<span class="string">"4"</span> <span class="attr">offset</span>=<span class="string">"0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">width</span>=<span class="string">"95%"</span> <span class="attr">cellpadding</span>=<span class="string">"0"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span> <span class="attr">style</span>=<span class="string">"font-size: 11pt; font-family: Tahoma, Arial, Helvetica, sans-serif"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>(本邮件是程序自动下发的，请勿回复！)<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#0000FF"</span>&gt;</span>构建结果 - $&#123;BUILD_STATUS&#125;<span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">b</span>&gt;</span><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#0B610B"</span>&gt;</span>构建信息<span class="tag">&lt;/<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">hr</span> <span class="attr">size</span>=<span class="string">"2"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">align</span>=<span class="string">"center"</span> /&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目名称： $&#123;PROJECT_NAME&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>构建编号： 第$&#123;BUILD_NUMBER&#125;次构建<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>触发原因： $&#123;CAUSE&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>构建日志： <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;BUILD_URL&#125;console"</span>&gt;</span>$&#123;BUILD_URL&#125;console<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>构建Url： <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;BUILD_URL&#125;"</span>&gt;</span>$&#123;BUILD_URL&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>工作目录： <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;PROJECT_URL&#125;ws"</span>&gt;</span>$&#123;PROJECT_URL&#125;ws<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目Url： <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;PROJECT_URL&#125;"</span>&gt;</span>$&#123;PROJECT_URL&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">b</span>&gt;</span><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#0B610B"</span>&gt;</span>Changes Since Last Successful Build:<span class="tag">&lt;/<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">hr</span> <span class="attr">size</span>=<span class="string">"2"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">align</span>=<span class="string">"center"</span> /&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>历史变更记录 : <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;PROJECT_URL&#125;changes"</span>&gt;</span>$&#123;PROJECT_URL&#125;changes<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span> $&#123;CHANGES_SINCE_LAST_SUCCESS,reverse=true, format="Changes for Build #%n:<span class="tag">&lt;<span class="name">br</span> /&gt;</span>%c<span class="tag">&lt;<span class="name">br</span> /&gt;</span>",showPaths=true,changesFormat="<span class="tag">&lt;<span class="name">pre</span>&gt;</span>[%a]<span class="tag">&lt;<span class="name">br</span> /&gt;</span>%m<span class="tag">&lt;/<span class="name">pre</span>&gt;</span>",pathFormat="    %p"&#125;  </div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">b</span>&gt;</span>Test Informations<span class="tag">&lt;/<span class="name">b</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">hr</span> <span class="attr">size</span>=<span class="string">"2"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">align</span>=<span class="string">"center"</span> /&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">pre</span> <span class="attr">style</span>=<span class="string">"font-size: 11pt; font-family: Tahoma, Arial, Helvetica, sans-serif"</span>&gt;</span>Total:$&#123;TEST_COUNTS,var="total"&#125;,Pass:$&#123;TEST_COUNTS,var="pass"&#125;,Failed:$&#123;TEST_COUNTS,var="fail"&#125;,Skiped:$&#123;TEST_COUNTS,var="skip"&#125;<span class="tag">&lt;/<span class="name">pre</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">b</span>&gt;</span><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#0B610B"</span>&gt;</span>构建日志 (最后 100行):<span class="tag">&lt;/<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">hr</span> <span class="attr">size</span>=<span class="string">"2"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">align</span>=<span class="string">"center"</span> /&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">cols</span>=<span class="string">"80"</span> <span class="attr">rows</span>=<span class="string">"30"</span> <span class="attr">readonly</span>=<span class="string">"readonly"</span> <span class="attr">style</span>=<span class="string">"font-family: Courier New"</span>&gt;</span>$&#123;BUILD_LOG, maxLines=100&#125;<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>勾选上 <strong>Enable Debug Mode、Require Administrator for Template Testing、Enable watching for jobs、Allow sending to unregistered users</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="美化-Jenkins"><a href="#美化-Jenkins" class="headerlink" title="美化 Jenkins"></a>美化 Jenkins</h2><p>安利一款material风格的主题：<a href="http://afonsof.com/jenkins-material-theme/" target="_blank" rel="external">http://afonsof.com/jenkins-material-theme/</a> ，支持使用 CDN，也支持自定义公司 logo 等等。</p>
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><ol>
+<li>Maven Integration plugin：用于构建 Maven 项目</li>
+<li>Gitlab Hook Plugin：用于触发 GitLab 的一些 WebHooks 来构建项目</li>
+<li>Simple Theme Plugin：配合上面的美化 Jenkins 使用</li>
+<li>FireLine Plugin：代码规范检查，已经集成了阿里巴巴的代码规约（P3C）检查</li>
+<li>HTML Publisher plugin：将一些测试结果变成 HTML 文档</li>
+<li>JUnit Plugin：JUnit 测试</li>
+<li><a href="https://plugins.jenkins.io/checkstyle" target="_blank" rel="external">Checkstyle Plug-in</a>：检测代码风格</li>
+<li><a href="https://plugins.jenkins.io/findbugs" target="_blank" rel="external">FindBugs Plug-in</a>：检测构建出来的 class 文件是否安全</li>
+<li><a href="https://plugins.jenkins.io/analysis-collector" target="_blank" rel="external">Static Analysis Collector Plug-in</a>：对7、8两个插件检测出来的结果进行汇总</li>
+<li>Extended E-mail Notification：个性化邮件模板</li>
+<li><a href="https://wiki.jenkins.io/display/JENKINS/Dingding+Notification+Plugin" target="_blank" rel="external">Dingding[钉钉] Plugin</a>：钉钉通知插件</li>
+</ol>
+<h2 id="常见错误解决"><a href="#常见错误解决" class="headerlink" title="常见错误解决"></a>常见错误解决</h2><p><strong>添加镜像源的时候出现如下错误：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Resolving pkg.jenkins-ci.org (pkg.jenkins-ci.org)... failed: Temporary failure in name resolution.</div><div class="line"></div><div class="line">wget: unable to resolve host address ‘pkg.jenkins-ci.org’</div></pre></td></tr></table></figure>
+<p>解决方法：</p>
+<p><code>vim  /etc/resolv.conf</code> 添加一行 <code>nameserver 8.8.8.8</code></p>
 
       
     </div>
@@ -614,7 +624,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://xkcoding.com/2016/12/13/elasticsearch-get-start.html" title="elasticsearch环境搭建及起步">http://xkcoding.com/2016/12/13/elasticsearch-get-start.html</a>
+      <a href="http://xkcoding.com/2018/01/04/devops-jenkins.html" title="DevOps 之 Jenkins 安装、配置、美化、插件及常见错误处理">http://xkcoding.com/2018/01/04/devops-jenkins.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -630,7 +640,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/elasticsearch/" rel="tag"># elasticsearch</a>
+            <a href="/tags/技术相关/" rel="tag"># 技术相关</a>
+          
+            <a href="/tags/devops/" rel="tag"># devops</a>
+          
+            <a href="/tags/jenkins/" rel="tag"># jenkins</a>
           
         </div>
       
@@ -643,8 +657,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/31/server-install-centos6.html" rel="next" title="Lenovo System X3250 M5服务器安装CentOS6.4">
-                <i class="fa fa-chevron-left"></i> Lenovo System X3250 M5服务器安装CentOS6.4
+              <a href="/2018/01/03/devops-gitlab.html" rel="next" title="DevOps 之 GitLab 安装、汉化及常见错误处理">
+                <i class="fa fa-chevron-left"></i> DevOps 之 GitLab 安装、汉化及常见错误处理
               </a>
             
           </div>
@@ -652,10 +666,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/06/connect-oracle11g-rac-url.html" rel="prev" title="Oracle 11gR2 RAC的JDBC连接串">
-                Oracle 11gR2 RAC的JDBC连接串 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -883,7 +893,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ElasticSearch-概述"><span class="nav-number">1.</span> <span class="nav-text">ElasticSearch 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ElasticSearch-安装"><span class="nav-number">2.</span> <span class="nav-text">ElasticSearch 安装</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Jenkins"><span class="nav-number">1.</span> <span class="nav-text">安装Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Jenkins"><span class="nav-number">2.</span> <span class="nav-text">配置 Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#美化-Jenkins"><span class="nav-number">3.</span> <span class="nav-text">美化 Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用插件"><span class="nav-number">4.</span> <span class="nav-text">常用插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见错误解决"><span class="nav-number">5.</span> <span class="nav-text">常见错误解决</span></a></li></ol></div>
             
 
           </div>

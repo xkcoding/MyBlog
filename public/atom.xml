@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2018-01-04T05:14:52.091Z</updated>
+  <updated>2018-01-04T06:26:07.738Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -16,11 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>GitLab 安装、汉化及常见错误处理</title>
+    <title>DevOps 之 Jenkins 安装、配置、美化、插件及常见错误处理</title>
+    <link href="http://xkcoding.com/2018/01/04/devops-jenkins.html"/>
+    <id>http://xkcoding.com/2018/01/04/devops-jenkins.html</id>
+    <published>2018-01-04T05:19:13.000Z</published>
+    <updated>2018-01-04T06:26:07.738Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;继续上一篇的话题，既然已经搭建了 GitLab 的代码仓库，那么现在就可以开始进行下一步持续集成环境的搭建了。公司准备利用 Jenkins CI 进行持续集成，本文记录了  Jenkins 的安装、基础配置、界面美化、常用插件及常见错误处理。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="devops" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/devops/"/>
+    
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="devops" scheme="http://xkcoding.com/tags/devops/"/>
+    
+      <category term="jenkins" scheme="http://xkcoding.com/tags/jenkins/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DevOps 之 GitLab 安装、汉化及常见错误处理</title>
     <link href="http://xkcoding.com/2018/01/03/devops-gitlab.html"/>
     <id>http://xkcoding.com/2018/01/03/devops-gitlab.html</id>
     <published>2018-01-03T03:12:37.000Z</published>
-    <updated>2018-01-04T05:14:52.091Z</updated>
+    <updated>2018-01-04T05:24:54.434Z</updated>
     
     <summary type="html">
     
@@ -323,9 +349,9 @@
       <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
     
     
-      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
-    
       <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
+    
+      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
     
   </entry>
   
@@ -468,28 +494,6 @@
       <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
     
       <category term="eclipse小技巧" scheme="http://xkcoding.com/tags/eclipse%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>volley开源框架的初体验</title>
-    <link href="http://xkcoding.com/2016/03/26/first-use-volley-demo.html"/>
-    <id>http://xkcoding.com/2016/03/26/first-use-volley-demo.html</id>
-    <published>2016-03-25T16:51:41.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;Http网络数据交互请求是极其重要并且使用很频繁的一个模块，也是最基本的网络编程所需要学习的。网络请求方式的效率和性能直接影响到APP的整体用户体验流畅性，所以学习并掌握一款好的Http请求框架对我们的网络开发非常重要。Http请求在移动网络编程中主要是Get和Post请求接口数据的使用。所以，在学习好基础的Http请求知识后，为了提升开发效率，选择学习使用一款好的Http网络请求框架变得非常的重要。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
-    
-      <category term="volley" scheme="http://xkcoding.com/tags/volley/"/>
     
   </entry>
   
