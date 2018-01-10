@@ -114,7 +114,9 @@
 <meta property="og:description" content="公司现在开始实行 DevOps 的开发模式，代码托管采用了 GitLab 搭建私有代码仓库，本文记录了 GitLab 的安装、汉化及常见错误处理。">
 <meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2018-01-03-15149489321563.jpg">
 <meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2018-01-03-15149489565891.jpg">
-<meta property="og:updated_time" content="2018-01-04T05:24:54.434Z">
+<meta property="og:image" content="http://static.xkcoding.com/2018-01-10-6801515572021_.pic_hd.jpg">
+<meta property="og:image" content="http://static.xkcoding.com/2018-01-10-6831515572084_.pic_hd.jpg">
+<meta property="og:updated_time" content="2018-01-10T08:23:37.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DevOps 之 GitLab 安装、汉化及常见错误处理">
 <meta name="twitter:description" content="公司现在开始实行 DevOps 的开发模式，代码托管采用了 GitLab 搭建私有代码仓库，本文记录了 GitLab 的安装、汉化及常见错误处理。">
@@ -466,7 +468,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  625 字
+                  740 字
                 </span>
               
 
@@ -558,7 +560,24 @@
 </li>
 <li><p>有时也可能是超时引起的这个错误，<code>vim /etc/gitlab/gitlab.rb</code> 去修改 <code>webhook_timeout</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## unicorn 连接超时</div><div class="line">unicorn[&apos;worker_timeout&apos;] = 90</div><div class="line">## WebHook 超时时间</div><div class="line">gitlab_rails[&apos;webhook_timeout&apos;] = 60</div></pre></td></tr></table></figure>
-<p>​</p>
+</li>
+</ol>
+<h2 id="配置-push-操作时发送-diff-信息给指定人邮箱"><a href="#配置-push-操作时发送-diff-信息给指定人邮箱" class="headerlink" title="配置 push 操作时发送 diff 信息给指定人邮箱"></a>配置 push 操作时发送 diff 信息给指定人邮箱</h2><ol>
+<li><p>创建用户的时候，邮箱保证正确。</p>
+</li>
+<li><p>User Settings –&gt;  Profile –&gt; Main Settings –&gt; email / public email 里是你的邮箱</p>
+</li>
+<li><p>User Settings –&gt; Emails 保证第二步里显示的 email在这里是 verified 状态</p>
+</li>
+<li><p>User Settings –&gt; Notifications 里 email保证正确，选择 level 为第一个，并勾选接收通知如下图</p>
+<p><img src="http://static.xkcoding.com/2018-01-10-6801515572021_.pic_hd.jpg" alt="6801515572021_.pic_hd"></p>
+</li>
+<li><p>创建一个项目</p>
+</li>
+<li><p>Settings –&gt; Integrations –&gt; email on push，具体如下图</p>
+<p><img src="http://static.xkcoding.com/2018-01-10-6831515572084_.pic_hd.jpg" alt="6831515572084_.pic_hd"></p>
+</li>
+<li><p>❤️enjoy it ~~</p>
 </li>
 </ol>
 
@@ -883,7 +902,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装GitLab"><span class="nav-number">1.</span> <span class="nav-text">安装GitLab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#汉化-GitLab"><span class="nav-number">2.</span> <span class="nav-text">汉化 GitLab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日常-GitLab-管理"><span class="nav-number">3.</span> <span class="nav-text">日常 GitLab 管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见错误解决"><span class="nav-number">4.</span> <span class="nav-text">常见错误解决</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装GitLab"><span class="nav-number">1.</span> <span class="nav-text">安装GitLab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#汉化-GitLab"><span class="nav-number">2.</span> <span class="nav-text">汉化 GitLab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日常-GitLab-管理"><span class="nav-number">3.</span> <span class="nav-text">日常 GitLab 管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见错误解决"><span class="nav-number">4.</span> <span class="nav-text">常见错误解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-push-操作时发送-diff-信息给指定人邮箱"><span class="nav-number">5.</span> <span class="nav-text">配置 push 操作时发送 diff 信息给指定人邮箱</span></a></li></ol></div>
             
 
           </div>
@@ -942,7 +961,7 @@
     	总访问量<span id="busuanzi_value_site_pv"></span>次
 	</span>
   </div>
-  <span class="post-count">博客全站共40.0k字</span>
+  <span class="post-count">博客全站共40.1k字</span>
   <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
 </div>
 
