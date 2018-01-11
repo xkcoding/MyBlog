@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,技术相关,多线程," />
+  <meta name="keywords" content="java,技术相关,多线程,代码片段," />
 
 
 
@@ -106,7 +106,7 @@
 
 
 <meta name="description" content="今天重温了下 java 多线程中的 notify() 方法以及 wait() 方法，一时兴起，决定通过这俩个方法，实现一个简易的自定义阻塞队列。">
-<meta name="keywords" content="java,技术相关,多线程">
+<meta name="keywords" content="java,技术相关,多线程,代码片段">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自定义阻塞队列">
 <meta property="og:url" content="http://xkcoding.com/2017/08/02/customize-blocked-queue.html">
@@ -114,7 +114,7 @@
 <meta property="og:description" content="今天重温了下 java 多线程中的 notify() 方法以及 wait() 方法，一时兴起，决定通过这俩个方法，实现一个简易的自定义阻塞队列。">
 <meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2017-08-02-15016611637131.jpg">
 <meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2017-08-02-15016613283795.jpg">
-<meta property="og:updated_time" content="2017-08-02T08:23:59.000Z">
+<meta property="og:updated_time" content="2018-01-11T02:15:39.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义阻塞队列">
 <meta name="twitter:description" content="今天重温了下 java 多线程中的 notify() 方法以及 wait() 方法，一时兴起，决定通过这俩个方法，实现一个简易的自定义阻塞队列。">
@@ -403,8 +403,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术相关/" itemprop="url" rel="index">
-                    <span itemprop="name">技术相关</span>
+                  <a href="/categories/代码片段/" itemprop="url" rel="index">
+                    <span itemprop="name">代码片段</span>
                   </a>
                 </span>
 
@@ -414,7 +414,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术相关/java/" itemprop="url" rel="index">
+                  <a href="/categories/代码片段/java/" itemprop="url" rel="index">
                     <span itemprop="name">java</span>
                   </a>
                 </span>
@@ -515,7 +515,7 @@
 <li><p>启动测试类，查看运行结果。控制台如果应该出现的效果是，队列先初始化完成，然后休眠2s，接下来先取数据，再插入数据，则证明阻塞队列生效。下面是控制台运行的效果：</p>
 <ul>
 <li>初始化队列<br><img src="http://oriqjordg.bkt.clouddn.com/2017-08-02-15016611637131.jpg" alt="初始化队列"></li>
-<li>休眠2s后取队首元素，再插入队尾元素<br><img src="http://oriqjordg.bkt.clouddn.com/2017-08-02-15016613283795.jpg" alt="取队首元素，插入队尾元素"></li>
+<li>休眠2s后取队首元素，再插入队尾元素<br> <img src="http://oriqjordg.bkt.clouddn.com/2017-08-02-15016613283795.jpg" alt="取队首元素，插入队尾元素"></li>
 <li>此时我们会发现，程序还未停止，因为此时队列已满，但是线程 <code>t1</code> 还未插入 <code>h</code> 元素，因此线程被阻塞着，直至下次队列有空余空间才会被唤醒。</li>
 </ul>
 </li>
@@ -592,6 +592,8 @@
             <a href="/tags/技术相关/" rel="tag"># 技术相关</a>
           
             <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          
+            <a href="/tags/代码片段/" rel="tag"># 代码片段</a>
           
         </div>
       
@@ -704,7 +706,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -715,7 +717,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -726,7 +728,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -878,7 +880,7 @@
     	总访问量<span id="busuanzi_value_site_pv"></span>次
 	</span>
   </div>
-  <span class="post-count">博客全站共40.1k字</span>
+  <span class="post-count">博客全站共40.4k字</span>
   <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
 </div>
 

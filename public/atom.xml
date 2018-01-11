@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2018-01-04T07:05:26.770Z</updated>
+  <updated>2018-01-11T02:16:46.546Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>驼峰命名和下划线命名互相转化</title>
+    <link href="http://xkcoding.com/2018/01/11/camelcase-underline-transform.html"/>
+    <id>http://xkcoding.com/2018/01/11/camelcase-underline-transform.html</id>
+    <published>2018-01-11T01:47:10.000Z</published>
+    <updated>2018-01-11T02:16:46.546Z</updated>
+    
+    <summary type="html">
+    
+      分享一个驼峰命名和下划线命名互相转化的工具类
+    
+    </summary>
+    
+      <category term="代码片段" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
+    
+      <category term="java" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/java/"/>
+    
+    
+      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="代码片段" scheme="http://xkcoding.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
+    
+  </entry>
   
   <entry>
     <title>DevOps 之 Jenkins 安装、配置、美化、插件及常见错误处理</title>
@@ -119,7 +145,7 @@
     <link href="http://xkcoding.com/2017/11/14/mysql-chinese-character-encoding.html"/>
     <id>http://xkcoding.com/2017/11/14/mysql-chinese-character-encoding.html</id>
     <published>2017-11-14T01:26:08.000Z</published>
-    <updated>2017-11-14T02:20:46.000Z</updated>
+    <updated>2018-01-11T02:14:53.222Z</updated>
     
     <summary type="html">
     
@@ -132,8 +158,10 @@
     
       <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
     
+      <category term="mysql" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/mysql/"/>
     
-      <category term="MySQL" scheme="http://xkcoding.com/tags/MySQL/"/>
+    
+      <category term="mysql" scheme="http://xkcoding.com/tags/mysql/"/>
     
       <category term="Mac" scheme="http://xkcoding.com/tags/Mac/"/>
     
@@ -144,7 +172,7 @@
     <link href="http://xkcoding.com/2017/11/10/druid-oracle-pscache.html"/>
     <id>http://xkcoding.com/2017/11/10/druid-oracle-pscache.html</id>
     <published>2017-11-10T01:06:33.000Z</published>
-    <updated>2017-11-10T01:30:41.000Z</updated>
+    <updated>2018-01-11T02:14:44.005Z</updated>
     
     <summary type="html">
     
@@ -153,6 +181,8 @@
     </summary>
     
       <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
     
     
       <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
@@ -164,7 +194,7 @@
     <link href="http://xkcoding.com/2017/11/08/dubbo-admin-install.html"/>
     <id>http://xkcoding.com/2017/11/08/dubbo-admin-install.html</id>
     <published>2017-11-08T07:37:14.000Z</published>
-    <updated>2017-11-08T09:53:29.000Z</updated>
+    <updated>2018-01-11T02:14:36.788Z</updated>
     
     <summary type="html">
     
@@ -176,6 +206,8 @@
     
       <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
     
+      <category term="java" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/java/"/>
+    
     
       <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
     
@@ -186,7 +218,7 @@
     <link href="http://xkcoding.com/2017/11/01/zookeeper-cluster.html"/>
     <id>http://xkcoding.com/2017/11/01/zookeeper-cluster.html</id>
     <published>2017-11-01T05:55:10.000Z</published>
-    <updated>2017-11-02T08:44:00.000Z</updated>
+    <updated>2018-01-11T02:14:30.182Z</updated>
     
     <summary type="html">
     
@@ -200,10 +232,14 @@
     
       <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
     
+      <category term="java" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/java/"/>
+    
     
       <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
     
       <category term="zookeeper" scheme="http://xkcoding.com/tags/zookeeper/"/>
+    
+      <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
     
   </entry>
   
@@ -212,7 +248,7 @@
     <link href="http://xkcoding.com/2017/08/31/mysql-start-error.html"/>
     <id>http://xkcoding.com/2017/08/31/mysql-start-error.html</id>
     <published>2017-08-31T01:48:10.000Z</published>
-    <updated>2017-08-31T02:09:32.000Z</updated>
+    <updated>2018-01-11T02:15:44.492Z</updated>
     
     <summary type="html">
     
@@ -221,6 +257,8 @@
     </summary>
     
       <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="mysql" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/mysql/"/>
     
     
       <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
@@ -234,7 +272,7 @@
     <link href="http://xkcoding.com/2017/08/02/customize-blocked-queue.html"/>
     <id>http://xkcoding.com/2017/08/02/customize-blocked-queue.html</id>
     <published>2017-08-02T07:47:07.000Z</published>
-    <updated>2017-08-02T08:23:59.000Z</updated>
+    <updated>2018-01-11T02:15:39.722Z</updated>
     
     <summary type="html">
     
@@ -242,9 +280,9 @@
     
     </summary>
     
-      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+      <category term="代码片段" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
     
-      <category term="java" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/java/"/>
+      <category term="java" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/java/"/>
     
     
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
@@ -252,6 +290,8 @@
       <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
     
       <category term="多线程" scheme="http://xkcoding.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+      <category term="代码片段" scheme="http://xkcoding.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
     
   </entry>
   
@@ -309,7 +349,7 @@
     <link href="http://xkcoding.com/2017/07/12/jdk-map-source-explore.html"/>
     <id>http://xkcoding.com/2017/07/12/jdk-map-source-explore.html</id>
     <published>2017-07-12T03:26:43.000Z</published>
-    <updated>2017-07-12T03:42:53.000Z</updated>
+    <updated>2018-01-11T02:15:25.093Z</updated>
     
     <summary type="html">
     
@@ -328,6 +368,8 @@
     
       <category term="JDK HashMap 源码探索" scheme="http://xkcoding.com/tags/JDK-HashMap-%E6%BA%90%E7%A0%81%E6%8E%A2%E7%B4%A2/"/>
     
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
   </entry>
   
   <entry>
@@ -335,7 +377,7 @@
     <link href="http://xkcoding.com/2017/01/06/connect-oracle11g-rac-url.html"/>
     <id>http://xkcoding.com/2017/01/06/connect-oracle11g-rac-url.html</id>
     <published>2017-01-06T05:51:10.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
+    <updated>2018-01-11T02:15:17.780Z</updated>
     
     <summary type="html">
     
@@ -352,6 +394,8 @@
       <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
     
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
     
   </entry>
   
@@ -472,28 +516,6 @@
     
     
       <category term="随笔" scheme="http://xkcoding.com/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>android 在eclipse中把局部变量变成成员变量前自动加m</title>
-    <link href="http://xkcoding.com/2016/03/27/eclipse-tips-variable.html"/>
-    <id>http://xkcoding.com/2016/03/27/eclipse-tips-variable.html</id>
-    <published>2016-03-27T04:22:09.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;在开发过程中,开发规范很重要,这样有利于后期维护,而且如果离职后,新同事接收你项目时也方便阅读代码,比如我们命名一个成员变量,一般在都是m子母开头。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
-    
-      <category term="eclipse小技巧" scheme="http://xkcoding.com/tags/eclipse%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   
