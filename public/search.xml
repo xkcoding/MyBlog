@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ElasticSearch 笔记]]></title>
+    <url>%2F2018%2F01%2F12%2Felasticsearch_note.html</url>
+    <content type="text"><![CDATA[ElasticSearch是一个基于 Lucene 的分布式搜索引擎，业内简称ES。它提供了基于 RESTful 风格的全文搜索API。Elasticsearch 是用 Java 开发的，并作为 Apache 许可条款下的开放源码发布，是当前最流行的企业级搜索引擎。另外，它的分布式设计让它天生就适合用于云计算中，并能够达到准实时搜索，而且安装使用方便，还拥有稳定，可靠，快速等特性。本文是我对 ES 的一个完整记录，方便后期查阅。另外大家还可以查阅更多的相关资料对 ElasticSearch 有更深入的了解。（备注：本文未完待续。。。） 安装单机安装 ElasticSearch 要求本地的 JDK 版本不低于1.8 去官网下载最新版的 ES 软件包 https://www.elastic.co/downloads/elasticsearch ，目前 ES 最新版本为6.1.1，我这里采用 wget 命令在终端下载 12cd appswget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.1.tar.gz 如果出现 command not found: wget，如果是 Linux，可以用 yum install -y wget 下载，如果是 Mac 就可以用 brew install wget 下载 检查本地 JDK 版本，必须保证为1.8版本以上 1234$ java -versionjava version "1.8.0_131"Java(TM) SE Runtime Environment (build 1.8.0_131-b11)Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode) 解压软件包 1tar -zxvf elasticsearch-6.1.1.tar.gz 启动 ES 12cd elasticsearch-6.1.1./bin/elasticsearch 测试，打开 PostMan 测试 http://localhost:9200 ，查看返回的 JSON 信息 分布式安装这里我会在本地启动3个 ES 节点，分别用不同的端口号来模拟分布式的环境，一个节点为 master，另外两个节点为 slave 节点。 下载安装包，解压3份，分别命名为 elasticsearch-master，elasticsearch-slave1，elasticsearch-slave2 修改 elasticsearch-master 的配置文件，config/elasticsearch.yml 123456789101112http.cors.enabled: truehttp.cors.allow-origin: "*"## 用于指定集群名称cluster.name: xkcoding## 用于指定节点名称node.name: master## 用于指定当前节点是 master 节点node.master: truenetwork.host: 127.0.0.1http.port: 9200 修改 elasticsearch-slave1 的配置文件，config/elasticsearch.yml 12345678910111213http.cors.enabled: truehttp.cors.allow-origin: "*"## 用于指定集群名称cluster.name: xkcoding## 用于指定节点名称node.name: slave1network.host: 127.0.0.1http.port: 8200## 用于发现 master 节点discovery.zen.ping.unicast.hosts: ["127.0.0.1"] 修改 elasticsearch-slave2 的配置文件，config/elasticsearch.yml 12345678910111213http.cors.enabled: truehttp.cors.allow-origin: "*"## 用于指定集群名称cluster.name: xkcoding## 用于指定节点名称node.name: slave2network.host: 127.0.0.1http.port: 7200## 用于发现 master 节点discovery.zen.ping.unicast.hosts: ["127.0.0.1"] 启动 head 插件，打开浏览器，访问 http://localhost:9100，查看分布式节点的运行状态 插件安装head 插件 head 插件要求本地的 Node 版本不低于8.0 前往 GitHub 搜索 elasticsearch-head ，这里我直接给出插件的 GitHub 仓库地址，https://github.com/mobz/elasticsearch-head ，clone 源代码 12cd ~/appsgit clone https://github.com/mobz/elasticsearch-head.git 检查本地 Node 版本，必须保证为8.0版本以上 12$ node -vv8.5.0 编译 head 插件 12cd ~/apps/elasticsearch-headnpm install 如果觉得这一步的依赖下载比较慢的话，有两种解决方式： 可以选择科学上网 使用国内阿里的镜像源，使用 cnpm 安装，具体如何配置，本文不做赘述。具体参考：http://npm.taobao.org/ 配置 ES 支持跨域访问，让 head 插件可以访问到 12cd ~/apps/elasticsearch-6.1.1vim config/elasticsearch.yml 添加进下面两行对跨域的配置 12http.cors.enabled: truehttp.cors.allow-origin: "*" 保存 :wq! 配置文件，启动 ES 1./bin/elasticsearch 运行 head 插件 12cd ~/apps/elasticsearch-headnpm run start 打开浏览器，访问 http://localhost:9100/ ，查看 head 插件运行效果 ik 中文分词插件基本用法索引创建删除插入修改删除查询高级查询queryfilter复合查询Spring Boot 集成 ESSpring Boot 集成 ES 的配置类插入修改删除查询复合查询搜索建议聚合查询]]></content>
+      <categories>
+        <category>elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[驼峰命名和下划线命名互相转化]]></title>
     <url>%2F2018%2F01%2F11%2Fcamelcase-underline-transform.html</url>
     <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758import java.util.regex.Matcher;import java.util.regex.Pattern;/** * &lt;p&gt; * 驼峰命名和下划线命名互转 * &lt;/p&gt; * * @package: com.xkcoding * @description： 驼峰命名和下划线命名互转 * @author: yangkai.shen * @date: Created in 2018/1/11 上午9:49 * @copyright: Copyright (c) 2018 * @version: 0.0.1 * @modified: yangkai.shen */public class CasesUtil &#123; private static final Pattern CAMELCASE_PATTERN = Pattern.compile("[A-Z]"); private static final Pattern UNDERLINE_PATTERN = Pattern.compile("_[a-z]"); private static final char UNDERLINE = '_'; /** * 驼峰命名（形如：UserInfo）转化为下划线命名（user_info） * * @param camelCase 驼峰格式的字符串 * @return 下划线形式的字符串 */ public static String camelCase2UnderlineCase(String camelCase) &#123; Matcher matcher = CAMELCASE_PATTERN.matcher(camelCase); StringBuilder builder = new StringBuilder(camelCase); for (int i = 0; matcher.find(); i++) &#123; builder.replace(matcher.start() + i, matcher.end() + i, UNDERLINE + matcher.group().toLowerCase()); &#125; if (builder.charAt(0) == UNDERLINE) &#123; builder.deleteCharAt(0); &#125; return builder.toString(); &#125; /** * 下划线命名（user_info）转化为驼峰命名（形如：userInfo） * * @param underlineCase 下划线形式的字符串 * @return 驼峰格式的字符串 */ public static String underlineCase2CamelCase(String underlineCase) &#123; Matcher matcher = UNDERLINE_PATTERN.matcher(underlineCase); StringBuilder builder = new StringBuilder(underlineCase); for (int i = 0; matcher.find(); i++) &#123; builder.replace(matcher.start() - i, matcher.end() - i, matcher.group().substring(1).toUpperCase()); &#125; if (Character.isUpperCase(builder.charAt(0))) &#123; builder.replace(0, 1, String.valueOf(Character.toLowerCase(builder.charAt(0)))); &#125; return builder.toString(); &#125;&#125;]]></content>
@@ -181,8 +192,8 @@
       </categories>
       <tags>
         <tag>java</tag>
-        <tag>JDK HashMap 源码探索</tag>
         <tag>技术相关</tag>
+        <tag>JDK HashMap 源码探索</tag>
       </tags>
   </entry>
   <entry>
@@ -194,9 +205,9 @@
         <category>oracle</category>
       </categories>
       <tags>
-        <tag>oracle</tag>
         <tag>java</tag>
         <tag>技术相关</tag>
+        <tag>oracle</tag>
       </tags>
   </entry>
   <entry>

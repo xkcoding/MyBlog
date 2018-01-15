@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2018-01-11T02:16:46.546Z</updated>
+  <updated>2018-01-12T10:13:31.964Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ElasticSearch 笔记</title>
+    <link href="http://xkcoding.com/2018/01/12/elasticsearch_note.html"/>
+    <id>http://xkcoding.com/2018/01/12/elasticsearch_note.html</id>
+    <published>2018-01-12T09:11:18.000Z</published>
+    <updated>2018-01-12T10:13:31.964Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;ElasticSearch&lt;/code&gt;是一个基于 &lt;code&gt;Lucene&lt;/code&gt; 的分布式搜索引擎，业内简称ES。它提供了基于 &lt;code&gt;RESTful&lt;/code&gt; 风格的全文搜索API。&lt;code&gt;Elasticsearch&lt;/code&gt; 是用 &lt;code&gt;Java&lt;/code&gt; 开发的，并作为 &lt;code&gt;Apache&lt;/code&gt; 许可条款下的开放源码发布，是当前最流行的企业级搜索引擎。另外，它的分布式设计让它天生就适合用于云计算中，并能够达到准实时搜索，而且安装使用方便，还拥有稳定，可靠，快速等特性。本文是我对 ES 的一个完整记录，方便后期查阅。另外大家还可以查阅更多的相关资料对 &lt;code&gt;ElasticSearch&lt;/code&gt; 有更深入的了解。（备注：本文未完待续。。。）&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="elasticsearch" scheme="http://xkcoding.com/categories/elasticsearch/"/>
+    
+    
+      <category term="elasticsearch" scheme="http://xkcoding.com/tags/elasticsearch/"/>
+    
+  </entry>
   
   <entry>
     <title>驼峰命名和下划线命名互相转化</title>
@@ -300,7 +320,7 @@
     <link href="http://xkcoding.com/2017/07/19/spring-boot-mybatis-logback.html"/>
     <id>http://xkcoding.com/2017/07/19/spring-boot-mybatis-logback.html</id>
     <published>2017-07-19T03:44:55.000Z</published>
-    <updated>2017-11-10T04:33:35.000Z</updated>
+    <updated>2018-01-11T02:15:32.578Z</updated>
     
     <summary type="html">
     
@@ -366,9 +386,9 @@
     
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
     
-      <category term="JDK HashMap 源码探索" scheme="http://xkcoding.com/tags/JDK-HashMap-%E6%BA%90%E7%A0%81%E6%8E%A2%E7%B4%A2/"/>
-    
       <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="JDK HashMap 源码探索" scheme="http://xkcoding.com/tags/JDK-HashMap-%E6%BA%90%E7%A0%81%E6%8E%A2%E7%B4%A2/"/>
     
   </entry>
   
@@ -391,11 +411,11 @@
       <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
     
     
-      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
-    
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
     
       <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
     
   </entry>
   
@@ -496,26 +516,6 @@
       <category term="svn" scheme="http://xkcoding.com/tags/svn/"/>
     
       <category term="eclipse" scheme="http://xkcoding.com/tags/eclipse/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>蓝桥杯感想</title>
-    <link href="http://xkcoding.com/2016/03/28/lanqiao-exam.html"/>
-    <id>http://xkcoding.com/2016/03/28/lanqiao-exam.html</id>
-    <published>2016-03-28T15:08:33.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;今年是我第一次参加蓝桥杯。3月20号。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="http://xkcoding.com/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="http://xkcoding.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   

@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,技术相关,JDK HashMap 源码探索," />
+  <meta name="keywords" content="elasticsearch," />
 
 
 
@@ -105,19 +105,21 @@
 
 
 
-<meta name="description" content="缘由：今天好友拿着下面的代码，问我为什么Map.Entry 这个接口没有实现 getKey() 和 getValue() 方法，却可以使用，由此，开启了一番查阅 JDK 源码的旅途….">
-<meta name="keywords" content="java,技术相关,JDK HashMap 源码探索">
+<meta name="description" content="ElasticSearch是一个基于 Lucene 的分布式搜索引擎，业内简称ES。它提供了基于 RESTful 风格的全文搜索API。Elasticsearch 是用 Java 开发的，并作为 Apache 许可条款下的开放源码发布，是当前最流行的企业级搜索引擎。另外，它的分布式设计让它天生就适合用于云计算中，并能够达到准实时搜索，而且安装使用方便，还拥有稳定，可靠，快速等特性。本文是我对 ES">
+<meta name="keywords" content="elasticsearch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HashMap 的 JDK 源码探索">
-<meta property="og:url" content="http://xkcoding.com/2017/07/12/jdk-map-source-explore.html">
+<meta property="og:title" content="ElasticSearch 笔记">
+<meta property="og:url" content="http://xkcoding.com/2018/01/12/elasticsearch_note.html">
 <meta property="og:site_name" content="CodingDiary">
-<meta property="og:description" content="缘由：今天好友拿着下面的代码，问我为什么Map.Entry 这个接口没有实现 getKey() 和 getValue() 方法，却可以使用，由此，开启了一番查阅 JDK 源码的旅途….">
-<meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2017-07-12-14998277900006.jpg">
-<meta property="og:updated_time" content="2018-01-11T02:15:25.093Z">
+<meta property="og:description" content="ElasticSearch是一个基于 Lucene 的分布式搜索引擎，业内简称ES。它提供了基于 RESTful 风格的全文搜索API。Elasticsearch 是用 Java 开发的，并作为 Apache 许可条款下的开放源码发布，是当前最流行的企业级搜索引擎。另外，它的分布式设计让它天生就适合用于云计算中，并能够达到准实时搜索，而且安装使用方便，还拥有稳定，可靠，快速等特性。本文是我对 ES">
+<meta property="og:image" content="http://static.xkcoding.com/2018-01-12-15157443065618.jpg">
+<meta property="og:image" content="http://static.xkcoding.com/2018-01-12-15157518741687.jpg">
+<meta property="og:image" content="http://static.xkcoding.com/2018-01-12-15157472517495.jpg">
+<meta property="og:updated_time" content="2018-01-12T10:13:31.964Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HashMap 的 JDK 源码探索">
-<meta name="twitter:description" content="缘由：今天好友拿着下面的代码，问我为什么Map.Entry 这个接口没有实现 getKey() 和 getValue() 方法，却可以使用，由此，开启了一番查阅 JDK 源码的旅途….">
-<meta name="twitter:image" content="http://oriqjordg.bkt.clouddn.com/2017-07-12-14998277900006.jpg">
+<meta name="twitter:title" content="ElasticSearch 笔记">
+<meta name="twitter:description" content="ElasticSearch是一个基于 Lucene 的分布式搜索引擎，业内简称ES。它提供了基于 RESTful 风格的全文搜索API。Elasticsearch 是用 Java 开发的，并作为 Apache 许可条款下的开放源码发布，是当前最流行的企业级搜索引擎。另外，它的分布式设计让它天生就适合用于云计算中，并能够达到准实时搜索，而且安装使用方便，还拥有稳定，可靠，快速等特性。本文是我对 ES">
+<meta name="twitter:image" content="http://static.xkcoding.com/2018-01-12-15157443065618.jpg">
 
 
 
@@ -145,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="http://xkcoding.com/2017/07/12/jdk-map-source-explore.html"/>
+  <link rel="canonical" href="http://xkcoding.com/2018/01/12/elasticsearch_note.html"/>
 
 
 
 
 
-  <title> HashMap 的 JDK 源码探索 | CodingDiary </title>
+  <title> ElasticSearch 笔记 | CodingDiary </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -343,7 +345,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://xkcoding.com/2017/07/12/jdk-map-source-explore.html">
+    <link itemprop="mainEntityOfPage" href="http://xkcoding.com/2018/01/12/elasticsearch_note.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xkcoding">
@@ -364,7 +366,7 @@
             
             
               
-                HashMap 的 JDK 源码探索
+                ElasticSearch 笔记
               
             
           </h2>
@@ -379,8 +381,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-12T11:26:43+08:00">
-                2017-07-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T17:11:18+08:00">
+                2018-01-12
               </time>
             
 
@@ -402,19 +404,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术相关/" itemprop="url" rel="index">
-                    <span itemprop="name">技术相关</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术相关/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
                   </a>
                 </span>
 
@@ -432,8 +423,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/07/12/jdk-map-source-explore.html#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/07/12/jdk-map-source-explore.html" itemprop="commentsCount"></span>
+                <a href="/2018/01/12/elasticsearch_note.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/01/12/elasticsearch_note.html" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -441,7 +432,7 @@
 
           
           
-             <span id="/2017/07/12/jdk-map-source-explore.html" class="leancloud_visitors" data-flag-title="HashMap 的 JDK 源码探索">
+             <span id="/2018/01/12/elasticsearch_note.html" class="leancloud_visitors" data-flag-title="ElasticSearch 笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -465,7 +456,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  679 字
+                  1,021 字
                 </span>
               
 
@@ -481,7 +472,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -500,26 +491,82 @@
       
 
       
-        <blockquote>
-<p>缘由：今天好友拿着下面的代码，问我为什么Map.Entry 这个接口没有实现 getKey() 和 getValue() 方法，却可以使用，由此，开启了一番查阅 JDK 源码的旅途….</p>
-</blockquote>
+        <p><code>ElasticSearch</code>是一个基于 <code>Lucene</code> 的分布式搜索引擎，业内简称ES。它提供了基于 <code>RESTful</code> 风格的全文搜索API。<code>Elasticsearch</code> 是用 <code>Java</code> 开发的，并作为 <code>Apache</code> 许可条款下的开放源码发布，是当前最流行的企业级搜索引擎。另外，它的分布式设计让它天生就适合用于云计算中，并能够达到准实时搜索，而且安装使用方便，还拥有稳定，可靠，快速等特性。本文是我对 ES 的一个完整记录，方便后期查阅。另外大家还可以查阅更多的相关资料对 <code>ElasticSearch</code> 有更深入的了解。（备注：本文未完待续。。。）</p>
 <a id="more"></a>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Map map = <span class="keyword">new</span> HashMap();</div><div class="line">   </div><div class="line">map.put(<span class="number">1</span>, <span class="string">"张三"</span>);</div><div class="line">map.put(<span class="number">2</span>, <span class="string">"李四"</span>);</div><div class="line">map.put(<span class="number">3</span>, <span class="string">"王五"</span>);</div><div class="line">map.put(<span class="number">4</span>, <span class="string">"赵六"</span>);</div><div class="line">map.put(<span class="number">5</span>, <span class="string">"钱七"</span>);</div><div class="line">   </div><div class="line">Set set = map.entrySet();</div><div class="line"><span class="keyword">for</span> (Object object : set) &#123;</div><div class="line">   Map.Entry entry = (Map.Entry) object;</div><div class="line">   System.out.println(entry.getKey() + <span class="string">"--&gt;"</span> + entry.getValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="单机安装"><a href="#单机安装" class="headerlink" title="单机安装"></a>单机安装</h3><blockquote>
+<p>ElasticSearch 要求本地的 JDK 版本不低于<strong>1.8</strong></p>
+</blockquote>
 <ol>
-<li><p>首先，我们看 <code>map</code> 对象，这个 <code>map</code> 对象是 <code>HashMap</code> 的一个实例，然后下面的 <code>Set set = map.entrySet();</code> 可以知道这其实用的 <code>HashMap</code> 实现的 <code>entrySet()</code> 方法，然后我们可以查看 <code>HashMap</code> 里 <code>entrySet()</code> 的源码</p>
-<p> <img src="http://oriqjordg.bkt.clouddn.com/2017-07-12-14998277900006.jpg" alt=""></p>
-<p> 从源码可以看出，这里的返回了一个 <code>EntrySet</code> 对象，但是需要注意的是这个 <code>EntrySet</code> 是 <code>HashMap</code> 里的一个内部类，源码如下：</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">EntrySet</span> <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">Map</span>.<span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;&gt; </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> size;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</div><div class="line">        HashMap.<span class="keyword">this</span>.clear();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> Iterator&lt;Map.Entry&lt;K,V&gt;&gt; iterator() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> EntryIterator();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Map.Entry))</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        Map.Entry&lt;?,?&gt; e = (Map.Entry&lt;?,?&gt;) o;</div><div class="line">        Object key = e.getKey();</div><div class="line">        Node&lt;K,V&gt; candidate = getNode(hash(key), key);</div><div class="line">        <span class="keyword">return</span> candidate != <span class="keyword">null</span> &amp;&amp; candidate.equals(e);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (o <span class="keyword">instanceof</span> Map.Entry) &#123;</div><div class="line">            Map.Entry&lt;?,?&gt; e = (Map.Entry&lt;?,?&gt;) o;</div><div class="line">            Object key = e.getKey();</div><div class="line">            Object value = e.getValue();</div><div class="line">            <span class="keyword">return</span> removeNode(hash(key), key, value, <span class="keyword">true</span>, <span class="keyword">true</span>) != <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> Spliterator&lt;Map.Entry&lt;K,V&gt;&gt; spliterator() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> EntrySpliterator&lt;&gt;(HashMap.<span class="keyword">this</span>, <span class="number">0</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> Map.Entry&lt;K,V&gt;&gt; action)</span> </span>&#123;</div><div class="line">        Node&lt;K,V&gt;[] tab;</div><div class="line">        <span class="keyword">if</span> (action == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">        <span class="keyword">if</span> (size &gt; <span class="number">0</span> &amp;&amp; (tab = table) != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">int</span> mc = modCount;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tab.length; ++i) &#123;</div><div class="line">                <span class="keyword">for</span> (Node&lt;K,V&gt; e = tab[i]; e != <span class="keyword">null</span>; e = e.next)</div><div class="line">                    action.accept(e);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (modCount != mc)</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p> 从这里我们是可以看出，这个 <code>EntrySet</code> 其实是封装的一个 <code>Node</code> 类的实体。也就是说我们的 <code>set</code> 其实就是这个 <code>Node</code> 对象。</p>
+<li><p>去官网下载最新版的 ES 软件包 <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="external">https://www.elastic.co/downloads/elasticsearch</a> ，目前 ES 最新版本为6.1.1，我这里采用 wget 命令在终端下载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd apps</div><div class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.1.tar.gz</div></pre></td></tr></table></figure>
 </li>
-<li><p>现在我们来说说这个 <code>Node</code> 对象，<code>Node</code> 对象也是 <code>HashMap</code> 里的一个内部类，源码如下：</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>.<span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> hash;</div><div class="line">    <span class="keyword">final</span> K key;</div><div class="line">    V value;</div><div class="line">    Node&lt;K,V&gt; next;</div><div class="line"></div><div class="line">    Node(<span class="keyword">int</span> hash, K key, V value, Node&lt;K,V&gt; next) &#123;</div><div class="line">        <span class="keyword">this</span>.hash = hash;</div><div class="line">        <span class="keyword">this</span>.key = key;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">        <span class="keyword">this</span>.next = next;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> K <span class="title">getKey</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> key;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">getValue</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> key + <span class="string">"="</span> + value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Objects.hashCode(key) ^ Objects.hashCode(value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">setValue</span><span class="params">(V newValue)</span> </span>&#123;</div><div class="line">        V oldValue = value;</div><div class="line">        value = newValue;</div><div class="line">        <span class="keyword">return</span> oldValue;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (o == <span class="keyword">this</span>)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">if</span> (o <span class="keyword">instanceof</span> Map.Entry) &#123;</div><div class="line">            Map.Entry&lt;?,?&gt; e = (Map.Entry&lt;?,?&gt;)o;</div><div class="line">            <span class="keyword">if</span> (Objects.equals(key, e.getKey()) &amp;&amp;</div><div class="line">                Objects.equals(value, e.getValue()))</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p> 可以看出来，这个 <code>Node</code> 对象是 <code>Map.Entry&lt;K,V&gt;</code> 的实现类，我们可以看到这个 <code>Node</code> 对象实现了 <code>getKey()</code> 和 <code>getValue()</code> 的方法，所以后面调用的 <code>entry.getKey()</code> 以及 <code>entry.getValue()</code> 方法其实都是调用的 Node 对象里的<code>getKey()</code> 和 <code>getValue()</code> 方法，这里就是 <code>Java</code> 的多态的一种表现。</p>
+<li><p>如果出现 <code>command not found: wget</code>，如果是 Linux，可以用 <code>yum install -y wget</code> 下载，如果是 Mac 就可以用 <code>brew install wget</code> 下载</p>
 </li>
-<li><p>至此，打完收枪！</p>
+<li><p>检查本地 JDK 版本，必须保证为<strong>1.8</strong>版本以上</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> java -version</div><div class="line">java version "1.8.0_131"</div><div class="line">Java(TM) SE Runtime Environment (build 1.8.0_131-b11)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode)</div></pre></td></tr></table></figure>
+</li>
+<li><p>解压软件包</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf elasticsearch-<span class="number">6.1</span>.1.tar.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动 ES</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd elasticsearch-6.1.1</div><div class="line">./bin/elasticsearch</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试，打开 PostMan 测试 <a href="http://localhost:9200" target="_blank" rel="external">http://localhost:9200</a> ，查看返回的 JSON 信息</p>
+<p><img src="http://static.xkcoding.com/2018-01-12-15157443065618.jpg" alt="PostMan测试单机部署结果"></p>
 </li>
 </ol>
-
+<h3 id="分布式安装"><a href="#分布式安装" class="headerlink" title="分布式安装"></a>分布式安装</h3><p>这里我会在本地启动3个 ES 节点，分别用不同的端口号来模拟分布式的环境，一个节点为 master，另外两个节点为 slave 节点。</p>
+<ol>
+<li><p>下载安装包，解压3份，分别命名为 <code>elasticsearch-master</code>，<code>elasticsearch-slave1</code>，<code>elasticsearch-slave2</code></p>
+</li>
+<li><p>修改 <code>elasticsearch-master</code> 的配置文件，<code>config/elasticsearch.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="string">http.cors.enabled:</span> <span class="literal">true</span></div><div class="line"><span class="string">http.cors.allow-origin:</span> <span class="string">"*"</span></div><div class="line"></div><div class="line"><span class="comment">## 用于指定集群名称</span></div><div class="line"><span class="string">cluster.name:</span> <span class="string">xkcoding</span></div><div class="line"><span class="comment">## 用于指定节点名称</span></div><div class="line"><span class="string">node.name:</span> <span class="string">master</span></div><div class="line"><span class="comment">## 用于指定当前节点是 master 节点</span></div><div class="line"><span class="string">node.master:</span> <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="string">network.host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line"><span class="string">http.port:</span> <span class="number">9200</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>修改 <code>elasticsearch-slave1</code> 的配置文件，<code>config/elasticsearch.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="string">http.cors.enabled:</span> <span class="literal">true</span></div><div class="line"><span class="string">http.cors.allow-origin:</span> <span class="string">"*"</span></div><div class="line"></div><div class="line"><span class="comment">## 用于指定集群名称</span></div><div class="line"><span class="string">cluster.name:</span> <span class="string">xkcoding</span></div><div class="line"><span class="comment">## 用于指定节点名称</span></div><div class="line"><span class="string">node.name:</span> <span class="string">slave1</span></div><div class="line"></div><div class="line"><span class="string">network.host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line"><span class="string">http.port:</span> <span class="number">8200</span></div><div class="line"></div><div class="line"><span class="comment">## 用于发现 master 节点</span></div><div class="line"><span class="string">discovery.zen.ping.unicast.hosts:</span> <span class="string">["127.0.0.1"]</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>修改 <code>elasticsearch-slave2</code> 的配置文件，<code>config/elasticsearch.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="string">http.cors.enabled:</span> <span class="literal">true</span></div><div class="line"><span class="string">http.cors.allow-origin:</span> <span class="string">"*"</span></div><div class="line"></div><div class="line"><span class="comment">## 用于指定集群名称</span></div><div class="line"><span class="string">cluster.name:</span> <span class="string">xkcoding</span></div><div class="line"><span class="comment">## 用于指定节点名称</span></div><div class="line"><span class="string">node.name:</span> <span class="string">slave2</span></div><div class="line"></div><div class="line"><span class="string">network.host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line"><span class="string">http.port:</span> <span class="number">7200</span></div><div class="line"></div><div class="line"><span class="comment">## 用于发现 master 节点</span></div><div class="line"><span class="string">discovery.zen.ping.unicast.hosts:</span> <span class="string">["127.0.0.1"]</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>启动 head 插件，打开浏览器，访问 <a href="http://localhost:9100，查看分布式节点的运行状态" target="_blank" rel="external">http://localhost:9100，查看分布式节点的运行状态</a></p>
+<p><img src="http://static.xkcoding.com/2018-01-12-15157518741687.jpg" alt="分布式 ES 的集群状态"></p>
+</li>
+</ol>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><h4 id="head-插件"><a href="#head-插件" class="headerlink" title="head 插件"></a>head 插件</h4><blockquote>
+<p>head 插件要求本地的 Node 版本不低于8.0</p>
+</blockquote>
+<ol>
+<li><p>前往 GitHub 搜索 <code>elasticsearch-head</code> ，这里我直接给出插件的 GitHub 仓库地址，<a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="external">https://github.com/mobz/elasticsearch-head</a> ，clone 源代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/apps</div><div class="line">git clone https://github.com/mobz/elasticsearch-head.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>检查本地 Node 版本，必须保证为<strong>8.0</strong>版本以上</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> node -v</div><div class="line">v8.5.0</div></pre></td></tr></table></figure>
+</li>
+<li><p>编译 head 插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/apps/elasticsearch-head</div><div class="line">npm install</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果觉得这一步的依赖下载比较慢的话，有两种解决方式：</p>
+<ol>
+<li>可以选择科学上网</li>
+<li>使用国内阿里的镜像源，使用 cnpm 安装，具体如何配置，本文不做赘述。具体参考：<a href="http://npm.taobao.org/" target="_blank" rel="external">http://npm.taobao.org/</a></li>
+</ol>
+</blockquote>
+</li>
+<li><p>配置 ES 支持跨域访问，让 head 插件可以访问到</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/apps/elasticsearch-6.1.1</div><div class="line">vim config/elasticsearch.yml</div></pre></td></tr></table></figure>
+<p>添加进下面两行对跨域的配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">http.cors.enabled:</span> <span class="literal">true</span></div><div class="line"><span class="string">http.cors.allow-origin:</span> <span class="string">"*"</span></div></pre></td></tr></table></figure>
+<p>保存 <code>:wq!</code> 配置文件，启动 ES</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/elasticsearch</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行 head 插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/apps/elasticsearch-head</div><div class="line">npm run start</div></pre></td></tr></table></figure>
+</li>
+<li><p>打开浏览器，访问 <a href="http://localhost:9100/" target="_blank" rel="external">http://localhost:9100/</a> ，查看 head 插件运行效果</p>
+<p><img src="http://static.xkcoding.com/2018-01-12-15157472517495.jpg" alt="运行 head 插件，查看单机 ES 状态"></p>
+</li>
+</ol>
+<h4 id="ik-中文分词插件"><a href="#ik-中文分词插件" class="headerlink" title="ik 中文分词插件"></a>ik 中文分词插件</h4><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3><h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><h2 id="高级查询"><a href="#高级查询" class="headerlink" title="高级查询"></a>高级查询</h2><h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><h3 id="复合查询"><a href="#复合查询" class="headerlink" title="复合查询"></a>复合查询</h3><h2 id="Spring-Boot-集成-ES"><a href="#Spring-Boot-集成-ES" class="headerlink" title="Spring Boot 集成 ES"></a>Spring Boot 集成 ES</h2><h3 id="Spring-Boot-集成-ES-的配置类"><a href="#Spring-Boot-集成-ES-的配置类" class="headerlink" title="Spring Boot 集成 ES 的配置类"></a>Spring Boot 集成 ES 的配置类</h3><h3 id="插入-1"><a href="#插入-1" class="headerlink" title="插入"></a>插入</h3><h3 id="修改-1"><a href="#修改-1" class="headerlink" title="修改"></a>修改</h3><h3 id="删除-2"><a href="#删除-2" class="headerlink" title="删除"></a>删除</h3><h3 id="查询-1"><a href="#查询-1" class="headerlink" title="查询"></a>查询</h3><h3 id="复合查询-1"><a href="#复合查询-1" class="headerlink" title="复合查询"></a>复合查询</h3><h3 id="搜索建议"><a href="#搜索建议" class="headerlink" title="搜索建议"></a>搜索建议</h3><h3 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h3>
       
     </div>
 
@@ -568,7 +615,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://xkcoding.com/2017/07/12/jdk-map-source-explore.html" title="HashMap 的 JDK 源码探索">http://xkcoding.com/2017/07/12/jdk-map-source-explore.html</a>
+      <a href="http://xkcoding.com/2018/01/12/elasticsearch_note.html" title="ElasticSearch 笔记">http://xkcoding.com/2018/01/12/elasticsearch_note.html</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -584,11 +631,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
-          
-            <a href="/tags/技术相关/" rel="tag"># 技术相关</a>
-          
-            <a href="/tags/JDK-HashMap-源码探索/" rel="tag"># JDK HashMap 源码探索</a>
+            <a href="/tags/elasticsearch/" rel="tag"># elasticsearch</a>
           
         </div>
       
@@ -601,8 +644,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/06/connect-oracle11g-rac-url.html" rel="next" title="Oracle 11gR2 RAC的JDBC连接串">
-                <i class="fa fa-chevron-left"></i> Oracle 11gR2 RAC的JDBC连接串
+              <a href="/2018/01/11/camelcase-underline-transform.html" rel="next" title="驼峰命名和下划线命名互相转化">
+                <i class="fa fa-chevron-left"></i> 驼峰命名和下划线命名互相转化
               </a>
             
           </div>
@@ -610,10 +653,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/18/win10-download.html" rel="prev" title="Windows10 系统下载与激活">
-                Windows10 系统下载与激活 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -685,8 +724,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -822,6 +870,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单机安装"><span class="nav-number">1.1.</span> <span class="nav-text">单机安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式安装"><span class="nav-number">1.2.</span> <span class="nav-text">分布式安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件安装"><span class="nav-number">1.3.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#head-插件"><span class="nav-number">1.3.1.</span> <span class="nav-text">head 插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ik-中文分词插件"><span class="nav-number">1.3.2.</span> <span class="nav-text">ik 中文分词插件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">2.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引"><span class="nav-number">2.1.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">2.1.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">2.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改"><span class="nav-number">2.3.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除-1"><span class="nav-number">2.4.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询"><span class="nav-number">2.5.</span> <span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级查询"><span class="nav-number">3.</span> <span class="nav-text">高级查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#query"><span class="nav-number">3.1.</span> <span class="nav-text">query</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">3.2.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合查询"><span class="nav-number">3.3.</span> <span class="nav-text">复合查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-集成-ES"><span class="nav-number">4.</span> <span class="nav-text">Spring Boot 集成 ES</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-集成-ES-的配置类"><span class="nav-number">4.1.</span> <span class="nav-text">Spring Boot 集成 ES 的配置类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入-1"><span class="nav-number">4.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-1"><span class="nav-number">4.3.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除-2"><span class="nav-number">4.4.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询-1"><span class="nav-number">4.5.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合查询-1"><span class="nav-number">4.6.</span> <span class="nav-text">复合查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索建议"><span class="nav-number">4.7.</span> <span class="nav-text">搜索建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合查询"><span class="nav-number">4.8.</span> <span class="nav-text">聚合查询</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
