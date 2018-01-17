@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2018-01-12T10:13:31.964Z</updated>
+  <updated>2018-01-16T06:36:18.267Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -16,11 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>关于 MSSQL/MYSQL/ORACLE 的分页语句</title>
+    <link href="http://xkcoding.com/2018/01/16/db-page-sqls.html"/>
+    <id>http://xkcoding.com/2018/01/16/db-page-sqls.html</id>
+    <published>2018-01-16T06:07:37.000Z</published>
+    <updated>2018-01-16T06:36:18.267Z</updated>
+    
+    <summary type="html">
+    
+      不同数据库的前 N 条或者第 N 条到第 M 条记录的 SQL 语句
+    
+    </summary>
+    
+      <category term="代码片段" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
+    
+      <category term="sql" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/sql/"/>
+    
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="代码片段" scheme="http://xkcoding.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
+    
+      <category term="sql" scheme="http://xkcoding.com/tags/sql/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ElasticSearch 笔记</title>
     <link href="http://xkcoding.com/2018/01/12/elasticsearch_note.html"/>
     <id>http://xkcoding.com/2018/01/12/elasticsearch_note.html</id>
     <published>2018-01-12T09:11:18.000Z</published>
-    <updated>2018-01-12T10:13:31.964Z</updated>
+    <updated>2018-01-17T10:02:43.598Z</updated>
     
     <summary type="html">
     
@@ -257,9 +283,9 @@
     
       <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
     
-      <category term="zookeeper" scheme="http://xkcoding.com/tags/zookeeper/"/>
-    
       <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
+    
+      <category term="zookeeper" scheme="http://xkcoding.com/tags/zookeeper/"/>
     
   </entry>
   
@@ -411,11 +437,11 @@
       <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
     
     
+      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
+    
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
     
       <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
     
   </entry>
   
@@ -482,38 +508,6 @@
     
     
       <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
-    
-      <category term="eclipse" scheme="http://xkcoding.com/tags/eclipse/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android中svn不需要进行版本控制的部分</title>
-    <link href="http://xkcoding.com/2016/04/03/android-svn-attention.html"/>
-    <id>http://xkcoding.com/2016/04/03/android-svn-attention.html</id>
-    <published>2016-04-03T05:07:36.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;SVN是Subversion的简称，是一个开放源代码的版本控制系统，说得简单一点SVN就是用于多个人共同开发同一个项目，共用资源的目的。但是SVN对于Android项目来说并不是所有文件都需要进行版本控制的。&lt;p&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;bin，gen 两个文件夹不用提交，因为这两个文件夹是自动生成的，如果提交可能会产生编译异常。&lt;/li&gt;
-&lt;li&gt;.settings也是自动生成，也不用提交。&lt;/li&gt;
-&lt;li&gt;.git文件夹也不需要提交，这是存放git的配置信息&lt;/li&gt;
-&lt;li&gt;.svn同.git一样，是存放svn的配置信息的，同样不需要提交&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
-    
-      <category term="svn" scheme="http://xkcoding.com/tags/svn/"/>
     
       <category term="eclipse" scheme="http://xkcoding.com/tags/eclipse/"/>
     
