@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2018-01-16T06:36:18.267Z</updated>
+  <updated>2018-02-07T04:02:26.654Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常用正则表达式</title>
+    <link href="http://xkcoding.com/2018/02/07/regular-expression-list.html"/>
+    <id>http://xkcoding.com/2018/02/07/regular-expression-list.html</id>
+    <published>2018-02-07T03:45:02.000Z</published>
+    <updated>2018-02-07T04:02:26.654Z</updated>
+    
+    <summary type="html">
+    
+      最全的常用正则表达式大全——包括校验数字、字符、一些特殊的需求等等
+    
+    </summary>
+    
+      <category term="代码片段" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
+    
+      <category term="regex" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/regex/"/>
+    
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="代码片段" scheme="http://xkcoding.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
+    
+      <category term="regex" scheme="http://xkcoding.com/tags/regex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OSX 常用软件汇总</title>
+    <link href="http://xkcoding.com/2018/02/05/osx-software-lists.html"/>
+    <id>http://xkcoding.com/2018/02/05/osx-software-lists.html</id>
+    <published>2018-02-05T05:41:03.000Z</published>
+    <updated>2018-02-09T10:07:11.758Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;每次重装系统，或者新电脑到手的时候，最麻烦的莫过于重新安装之前常用的一些软件了。但是，平时常用的软件实在有点多，于是乎，整理一个 OSX 常用软件的列表，便于以后查找使用，以下整理的软件仅代表我个人平时常用的软件，不喜勿喷。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="软件" scheme="http://xkcoding.com/categories/%E8%BD%AF%E4%BB%B6/"/>
+    
+    
+      <category term="软件" scheme="http://xkcoding.com/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>关于 MSSQL/MYSQL/ORACLE 的分页语句</title>
@@ -46,11 +92,11 @@
     <link href="http://xkcoding.com/2018/01/12/elasticsearch_note.html"/>
     <id>http://xkcoding.com/2018/01/12/elasticsearch_note.html</id>
     <published>2018-01-12T09:11:18.000Z</published>
-    <updated>2018-01-17T10:02:43.598Z</updated>
+    <updated>2018-01-19T07:56:15.572Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;code&gt;ElasticSearch&lt;/code&gt;是一个基于 &lt;code&gt;Lucene&lt;/code&gt; 的分布式搜索引擎，业内简称ES。它提供了基于 &lt;code&gt;RESTful&lt;/code&gt; 风格的全文搜索API。&lt;code&gt;Elasticsearch&lt;/code&gt; 是用 &lt;code&gt;Java&lt;/code&gt; 开发的，并作为 &lt;code&gt;Apache&lt;/code&gt; 许可条款下的开放源码发布，是当前最流行的企业级搜索引擎。另外，它的分布式设计让它天生就适合用于云计算中，并能够达到准实时搜索，而且安装使用方便，还拥有稳定，可靠，快速等特性。本文是我对 ES 的一个完整记录，方便后期查阅。另外大家还可以查阅更多的相关资料对 &lt;code&gt;ElasticSearch&lt;/code&gt; 有更深入的了解。（备注：本文未完待续。。。）&lt;/p&gt;
+      &lt;p&gt;&lt;code&gt;ElasticSearch&lt;/code&gt;是一个基于 &lt;code&gt;Lucene&lt;/code&gt; 的分布式搜索引擎，业内简称ES。它提供了基于 &lt;code&gt;RESTful&lt;/code&gt; 风格的全文搜索API。&lt;code&gt;Elasticsearch&lt;/code&gt; 是用 &lt;code&gt;Java&lt;/code&gt; 开发的，并作为 &lt;code&gt;Apache&lt;/code&gt; 许可条款下的开放源码发布，是当前最流行的企业级搜索引擎。另外，它的分布式设计让它天生就适合用于云计算中，并能够达到准实时搜索，而且安装使用方便，还拥有稳定，可靠，快速等特性。本文是我对 ES 的一个完整记录，方便后期查阅。另外大家还可以查阅更多的相关资料对 &lt;code&gt;ElasticSearch&lt;/code&gt; 有更深入的了解。&lt;/p&gt;
     
     </summary>
     
@@ -283,9 +329,9 @@
     
       <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
     
-      <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
-    
       <category term="zookeeper" scheme="http://xkcoding.com/tags/zookeeper/"/>
+    
+      <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
     
   </entry>
   
@@ -468,48 +514,6 @@
     
     
       <category term="elasticsearch" scheme="http://xkcoding.com/tags/elasticsearch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Lenovo System X3250 M5服务器安装CentOS6.4</title>
-    <link href="http://xkcoding.com/2016/08/31/server-install-centos6.html"/>
-    <id>http://xkcoding.com/2016/08/31/server-install-centos6.html</id>
-    <published>2016-08-31T02:46:09.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;&lt;br&gt;第一次真正接触服务器，公司要求安装linux系统，花了2天时间，因为该服务器比较复杂，以此文记录下安装过程中出现的问题。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://xkcoding.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实际项目中的代码规范</title>
-    <link href="http://xkcoding.com/2016/04/05/coding-standards.html"/>
-    <id>http://xkcoding.com/2016/04/05/coding-standards.html</id>
-    <published>2016-04-05T13:35:53.000Z</published>
-    <updated>2017-06-06T14:08:27.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;/p&gt;&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;最近在准备软件杯的比赛项目，因为是担任的是项目组长，所以要求组员之间的项目代码必须要有规范，方便组员之间的团队合作，以及后期代码的维护。而且，我相信，如果我们代码规范能够做好的话，对于我们的开发水平也会提高多少。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://xkcoding.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://xkcoding.com/tags/Android/"/>
-    
-      <category term="eclipse" scheme="http://xkcoding.com/tags/eclipse/"/>
     
   </entry>
   
