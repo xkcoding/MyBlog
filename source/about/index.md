@@ -30,25 +30,25 @@ Try a better life , you deserve more !
 - ~~学习 react.js~~
 - ~~学习 Zookeeper 中间件~~
 - ~~学习 Redis 分布式缓存~~
-- ~~学习 ActiveMQ,RabbitMQ,Kafka,RocketMQ 等任意消息中间件  -- > Apollo(ActiveMQ下一代产品),已学习ActiveMQ,RabbitMQ~~
+- ~~学习 ActiveMQ,RabbitMQ,Kafka,RocketMQ 等任意消息中间件  -- > Apollo(ActiveMQ下一代产品),已学习Kafka,RabbitMQ~~
 - 学习 MyCat 数据库中间件
 - ~~学习 Spring Boot~~
-- 学习 Spring Cloud
-- 学习 Dubbo 分布式RPC服务框架
+- ~~学习 Spring Cloud各个组件的使用~~
+- ~~学习 Dubbo 分布式RPC服务框架~~
 - ~~学习 Beetl 模版引擎(号称是JEE里面效率最牛逼的模版渲染引擎)~~
 - ~~学习 BeetlSQL 持久层框架(号称是秒杀Hibernate和MyBatis的持久层框架)~~
 - 学习 Sharding-jdbc (当当网)
 - 学习 NIO 编程 / AIO 编程,以及 NIO 框架 Netty
 - 学习开源框架 t-io
 - ~~学习 Docker 虚拟技术~~
-- 学习 jenkins 持续集成工具
+- ~~学习 jenkins 持续集成工具~~
 - 学习 Zabbix 分布式监控系统
 - 学习 FastDFS 分布式文件系统
 
 ## 我正在坚持的行动~
 <hr>
-* 我的 Mooc 学习计划
-* 每周至少 3 次的跑步计划
+* 我的超神学习计划
+* 每周至少 2 次的跑步计划
 * ......
 
 ## One more thing ……
@@ -60,4 +60,5 @@ Try a better life , you deserve more !
 * [QQ](http://wpa.qq.com/msgrd?v=3&uin=237497819&site=qq&menu=yes)
 * <a href="/resume.html" target="_blank">查看我的完整简历</a>
 
-与我一起，聆听这首 Beyond 的《海阔天空》，感受内心深处的触动 ~<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=347230&auto=0&height=66"></iframe>
+与我一起，聆听这首 Beyond 的《海阔天空》，感受内心深处的触动 ~<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=28875146&auto=0&height=66"></iframe>
+

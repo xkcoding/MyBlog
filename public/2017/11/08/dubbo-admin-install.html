@@ -117,7 +117,7 @@
 <meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2017-11-08-15101329647345.jpg">
 <meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2017-11-08-15101329831583.jpg">
 <meta property="og:image" content="http://oriqjordg.bkt.clouddn.com/2017-11-08-15101329768536.jpg">
-<meta property="og:updated_time" content="2018-01-11T02:14:36.788Z">
+<meta property="og:updated_time" content="2018-04-17T10:39:33.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dubbo前置知识：dubbo-admin 的安装">
 <meta name="twitter:description" content="dubbo-admin 是 dubbo 官方提供的一个的管控台程序，可以对 dubbo 服务进行监控，还可以对其进行权重分配、负载均衡策略等的调优操作，简而言之，我们可以通过 dubbo-admin，对我们的 dubbo 服务进行服务治理及服务监控。">
@@ -389,7 +389,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-17T18:39:33+08:00">
+                2018-04-17
+              </time>
             
           </span>
 
@@ -469,7 +481,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  882 字
+                  880 字
                 </span>
               
 
@@ -512,20 +524,20 @@
 <ol>
 <li><p>首先启动我们之前安装了 <code>zookeeper</code> 集群的三台 <code>Linux</code> 虚拟机，并将虚拟机的 <code>zookeeper</code> 集群启动起来。</p>
 </li>
-<li><p>前往 <code>GitHub</code> 的 <a href="https://github.com/alibaba/dubbo" target="_blank" rel="external">dubbo 仓库</a> 去 <code>clone</code> 最新的 dubbo 源码。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> yangkai.shen @ localhost <span class="keyword">in</span> ~/Documents/code/open [16:23:11]</span></div><div class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/alibaba/dubbo.git</span></div></pre></td></tr></table></figure>
+<li><p>前往 <code>GitHub</code> 的 <a href="https://github.com/apache/incubator-dubbo-ops" target="_blank" rel="external">dubbo-ops 仓库</a> 去 <code>clone</code> 最新的 dubbo 源码。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> yangkai.shen @ localhost in ~/Documents/code/open [16:23:11]</div><div class="line"><span class="meta">$</span> git clone https://github.com/apache/incubator-dubbo-ops.git</div></pre></td></tr></table></figure>
 </li>
 <li><p>进入 <code>dubbo</code> 项目文件夹里的 <code>dubbo-admin</code> 文件夹中。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> yangkai.shen @ localhost <span class="keyword">in</span> ~/Documents/code/open [16:24:05] C:1</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> dubbo/dubbo-admin</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> yangkai.shen @ localhost in ~/Documents/code/open [16:24:05] C:1</div><div class="line"><span class="meta">$</span> cd incubator-dubbo-ops</div></pre></td></tr></table></figure>
 </li>
 <li><p>使用 <code>maven</code> 编译打包项目，然后在 <code>dubbo/dubbo-admin/target</code> 目录中得到 <code>dubbo-admin</code> 的 <code>war</code> 包程序。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> yangkai.shen @ localhost <span class="keyword">in</span> ~/Documents/code/open/dubbo/dubbo-admin on git:master o [16:24:12]</span></div><div class="line"><span class="meta">$</span><span class="bash"> mvn package</span></div><div class="line">[INFO] Scanning for projects...</div><div class="line"></div><div class="line">...省略中间一些日志信息...</div><div class="line"></div><div class="line">[INFO]</div><div class="line">[INFO] --- maven-war-plugin:2.2:war (default-war) @ dubbo-admin ---</div><div class="line">[INFO] Packaging webapp</div><div class="line">[INFO] Assembling webapp [dubbo-admin] in [/Users/yangkai.shen/Documents/code/open/dubbo/dubbo-admin/target/dubbo-admin-2.5.6]</div><div class="line">[INFO] Processing war project</div><div class="line">[INFO] Copying webapp resources [/Users/yangkai.shen/Documents/code/open/dubbo/dubbo-admin/src/main/webapp]</div><div class="line">[INFO] Webapp assembled in [405 msecs]</div><div class="line">[INFO] Building war: /Users/yangkai.shen/Documents/code/open/dubbo/dubbo-admin/target/dubbo-admin-2.5.6.war</div><div class="line">[INFO] WEB-INF/web.xml already added, skipping</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESS</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Total time: 3.831 s</div><div class="line">[INFO] Finished at: 2017-11-08T16:29:21+08:00</div><div class="line">[INFO] Final Memory: 15M/301M</div><div class="line">[INFO] ------------------------------------------------------------------------</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> yangkai.shen @ localhost in ~/Documents/code/open/dubbo/dubbo-admin on git:master o [16:24:12]</div><div class="line"><span class="meta">$</span> mvn package</div><div class="line">[INFO] Scanning for projects...</div><div class="line"></div><div class="line">...省略中间一些日志信息...</div><div class="line"></div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Reactor Summary:</div><div class="line">[INFO]</div><div class="line">[INFO] dubbo-ops .......................................... SUCCESS [  0.003 s]</div><div class="line">[INFO] dubbo-admin ........................................ SUCCESS [  3.612 s]</div><div class="line">[INFO] dubbo-monitor-simple ............................... SUCCESS [  2.491 s]</div><div class="line">[INFO] dubbo-registry-simple .............................. SUCCESS [  0.699 s]</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESS</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Total time: 6.941 s</div><div class="line">[INFO] Finished at: 2018-04-17T18:37:09+08:00</div><div class="line">[INFO] Final Memory: 22M/301M</div><div class="line">[INFO] ------------------------------------------------------------------------</div></pre></td></tr></table></figure>
 </li>
 <li><p>前往<a href="https://tomcat.apache.org/download-90.cgi" target="_blank" rel="external"> Apache 的 Tomcat 主页</a>，下载并解压一个新的 <code>Tomcat</code> 程序，专门用来启动 <code>dubbo-admin</code> 。</p>
 </li>
 <li><p>接下来我们开始对 <code>Tomcat</code> 以及 <code>dubbo-admin</code> 做一些配置。</p>
 <ol>
-<li><p>删除 <code>webapps/ROOT</code> 目录下的所有文件，然后将 打包的 <code>dubbo-admin.war</code> 程序解压至 <code>webapps/ROOT</code> 目录下，注意不需要 dubbo-admin 这个目录，只要将里面的 WEB-INF 这级目录及其子目录的文件放置在 <code>webapps/ROOT</code> 中。</p>
+<li><p>可以直接将打包出来的 war 文件放在 <code>webapps</code> 目录下，但是为了后面访问 URL 的时候更简单（<em>其实就是想偷懒</em>）可以将其放入 <code>ROOT</code> 下，删除 <code>webapps/ROOT</code> 目录下的所有文件，然后将 打包的 <code>dubbo-admin.war</code> 程序解压至 <code>webapps/ROOT</code> 目录下，注意不需要 dubbo-admin 这个目录，只要将里面的 WEB-INF 这级目录及其子目录的文件放置在 <code>webapps/ROOT</code> 中。</p>
 </li>
 <li><p>配置 <code>dubbo-admin</code> 的一些启动配置，配置文件是 <code>WEB-INF/dubbo.properties</code> ，我们需要把之前的 <code>zookeeper</code> 集群地址配置上。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># zookeeper 地址，这里是集群配置，如果 zookeeper 是 standalone 模式，那么则不需要 ?backup=*** 这部分内容</div><div class="line">dubbo.registry.address=zookeeper://172.16.15.129:2181?backup=172.16.15.130:2181,172.16.15.131:2181</div><div class="line"></div><div class="line"># dubbo-admin 程序 root 用户的密码</div><div class="line">dubbo.admin.root.password=root</div><div class="line"></div><div class="line"># dubbo-admin 程序 guest 用户的密码</div><div class="line">dubbo.admin.guest.password=guest</div></pre></td></tr></table></figure>
