@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2018-02-07T04:02:26.654Z</updated>
+  <updated>2018-07-30T02:58:27.927Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java8 学习整理</title>
+    <link href="http://xkcoding.com/2018/07/30/java8-learning.html"/>
+    <id>http://xkcoding.com/2018/07/30/java8-learning.html</id>
+    <published>2018-07-30T02:39:07.000Z</published>
+    <updated>2018-07-30T02:58:27.927Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前言：Java 8 (又称为 jdk 1.8) 是 Java 语言开发的一个主要版本。 Oracle 公司于 2014 年 3 月 18 日发布 Java 8 ，它支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。目前大部分公司都已经在使用 Java 8开发项目。本文是我在公司的一次Java 8分享的文章，开篇先介绍了 &lt;strong&gt;Java 8 的发展&lt;/strong&gt;，再分别讲述 &lt;strong&gt;Java 8 的新特性&lt;/strong&gt;，同时附上一些 Demo 代码（ &lt;a href=&quot;https://github.com/xkcoding/java8_learning&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/xkcoding/java8_learning&lt;/a&gt; ），以便更好的入门学习 Java 8，厚脸皮的求个 Star。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="http://xkcoding.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>常用正则表达式</title>
@@ -488,32 +510,6 @@
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
     
       <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>elasticsearch环境搭建及起步</title>
-    <link href="http://xkcoding.com/2016/12/13/elasticsearch-get-start.html"/>
-    <id>http://xkcoding.com/2016/12/13/elasticsearch-get-start.html</id>
-    <published>2016-12-13T09:12:39.000Z</published>
-    <updated>2017-07-26T09:34:52.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;ElasticSearch-概述&quot;&gt;&lt;a href=&quot;#ElasticSearch-概述&quot; class=&quot;headerlink&quot; title=&quot;ElasticSearch 概述&quot;&gt;&lt;/a&gt;ElasticSearch 概述&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;ElasticSearch是一个高可扩展的开源的全文搜索分析引擎。 &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;它允许你快速的存储、搜索和分析大量数据。ElasticSearch通常作为后端程序，为需要复杂查询的应用提供服务。&lt;/li&gt;
-&lt;li&gt;Elasticsearch是一个基于Lucene的开源分布式搜索引擎，具有分布式多用户能力。Elasticsearch是用java开发，提供Restful接口，能够达到实时搜索、高性能计算；同时Elasticsearch的横向扩展能力非常强，不需要重启服务，基本上达到了零配置。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="elasticsearch" scheme="http://xkcoding.com/categories/elasticsearch/"/>
-    
-    
-      <category term="elasticsearch" scheme="http://xkcoding.com/tags/elasticsearch/"/>
     
   </entry>
   

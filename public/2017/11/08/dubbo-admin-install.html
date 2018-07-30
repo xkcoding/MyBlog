@@ -525,13 +525,13 @@
 <li><p>首先启动我们之前安装了 <code>zookeeper</code> 集群的三台 <code>Linux</code> 虚拟机，并将虚拟机的 <code>zookeeper</code> 集群启动起来。</p>
 </li>
 <li><p>前往 <code>GitHub</code> 的 <a href="https://github.com/apache/incubator-dubbo-ops" target="_blank" rel="external">dubbo-ops 仓库</a> 去 <code>clone</code> 最新的 dubbo 源码。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> yangkai.shen @ localhost in ~/Documents/code/open [16:23:11]</div><div class="line"><span class="meta">$</span> git clone https://github.com/apache/incubator-dubbo-ops.git</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> yangkai.shen @ localhost <span class="keyword">in</span> ~/Documents/code/open [16:23:11]</span></div><div class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/apache/incubator-dubbo-ops.git</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>进入 <code>dubbo</code> 项目文件夹里的 <code>dubbo-admin</code> 文件夹中。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> yangkai.shen @ localhost in ~/Documents/code/open [16:24:05] C:1</div><div class="line"><span class="meta">$</span> cd incubator-dubbo-ops</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> yangkai.shen @ localhost <span class="keyword">in</span> ~/Documents/code/open [16:24:05] C:1</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> incubator-dubbo-ops</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>使用 <code>maven</code> 编译打包项目，然后在 <code>dubbo/dubbo-admin/target</code> 目录中得到 <code>dubbo-admin</code> 的 <code>war</code> 包程序。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> yangkai.shen @ localhost in ~/Documents/code/open/dubbo/dubbo-admin on git:master o [16:24:12]</div><div class="line"><span class="meta">$</span> mvn package</div><div class="line">[INFO] Scanning for projects...</div><div class="line"></div><div class="line">...省略中间一些日志信息...</div><div class="line"></div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Reactor Summary:</div><div class="line">[INFO]</div><div class="line">[INFO] dubbo-ops .......................................... SUCCESS [  0.003 s]</div><div class="line">[INFO] dubbo-admin ........................................ SUCCESS [  3.612 s]</div><div class="line">[INFO] dubbo-monitor-simple ............................... SUCCESS [  2.491 s]</div><div class="line">[INFO] dubbo-registry-simple .............................. SUCCESS [  0.699 s]</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESS</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Total time: 6.941 s</div><div class="line">[INFO] Finished at: 2018-04-17T18:37:09+08:00</div><div class="line">[INFO] Final Memory: 22M/301M</div><div class="line">[INFO] ------------------------------------------------------------------------</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> yangkai.shen @ localhost <span class="keyword">in</span> ~/Documents/code/open/dubbo/dubbo-admin on git:master o [16:24:12]</span></div><div class="line"><span class="meta">$</span><span class="bash"> mvn package</span></div><div class="line">[INFO] Scanning for projects...</div><div class="line"></div><div class="line">...省略中间一些日志信息...</div><div class="line"></div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Reactor Summary:</div><div class="line">[INFO]</div><div class="line">[INFO] dubbo-ops .......................................... SUCCESS [  0.003 s]</div><div class="line">[INFO] dubbo-admin ........................................ SUCCESS [  3.612 s]</div><div class="line">[INFO] dubbo-monitor-simple ............................... SUCCESS [  2.491 s]</div><div class="line">[INFO] dubbo-registry-simple .............................. SUCCESS [  0.699 s]</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] BUILD SUCCESS</div><div class="line">[INFO] ------------------------------------------------------------------------</div><div class="line">[INFO] Total time: 6.941 s</div><div class="line">[INFO] Finished at: 2018-04-17T18:37:09+08:00</div><div class="line">[INFO] Final Memory: 22M/301M</div><div class="line">[INFO] ------------------------------------------------------------------------</div></pre></td></tr></table></figure>
 </li>
 <li><p>前往<a href="https://tomcat.apache.org/download-90.cgi" target="_blank" rel="external"> Apache 的 Tomcat 主页</a>，下载并解压一个新的 <code>Tomcat</code> 程序，专门用来启动 <code>dubbo-admin</code> 。</p>
 </li>
@@ -748,7 +748,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -759,7 +759,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -922,7 +922,7 @@
     	总访问量<span id="busuanzi_value_site_pv"></span>次
 	</span>
   </div>
-  <span class="post-count">博客全站共47.4k字</span>
+  <span class="post-count">博客全站共62.5k字</span>
   <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
 </div>
 
