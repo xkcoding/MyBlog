@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2018-07-30T02:58:27.927Z</updated>
+  <updated>2018-09-28T01:59:21.540Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -16,11 +16,107 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>后台运行node服务</title>
+    <link href="http://xkcoding.com/2018/09/28/run-node-service-in-background.html"/>
+    <id>http://xkcoding.com/2018/09/28/run-node-service-in-background.html</id>
+    <published>2018-09-28T01:46:37.000Z</published>
+    <updated>2018-09-28T01:59:21.540Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;很多时候，我们需要后台运行我们的 node 服务，有3种方式可以实现。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用Linux自带的&lt;code&gt;nohup&lt;/code&gt;命令&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;forever&lt;/code&gt;命令&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;PM2&lt;/code&gt;管理node进程&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这里推荐使用PM2来管理和运行我们的node服务&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="node" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/node/"/>
+    
+    
+      <category term="node" scheme="http://xkcoding.com/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Neo4j 和 Mysql 查询基本语法的区别</title>
+    <link href="http://xkcoding.com/2018/09/20/query-language-differences-between-neo4j-and-mysql.html"/>
+    <id>http://xkcoding.com/2018/09/20/query-language-differences-between-neo4j-and-mysql.html</id>
+    <published>2018-09-20T05:54:31.000Z</published>
+    <updated>2018-09-20T06:05:25.352Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;每种数据库都有自己的一套查询语言或者标准，即使是同为关系型数据库的Oracle、Sql Server 和 MySQL，其在一些语法细节上也有差异，更别说 Mongo, Redis 类似的非关系型数据库了。Neo4j 也一样，有自己专属的查询语言 Cypher。深入学习其实发现 Neo4j 的查询语法并不难去学习，因为 Cypher 的语意确实简洁，直观。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="neo4j" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/neo4j/"/>
+    
+    
+      <category term="neo4j" scheme="http://xkcoding.com/tags/neo4j/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git 如何更新 fork 的项目到原项目的最新版本</title>
+    <link href="http://xkcoding.com/2018/09/18/how-to-update-the-fork-project.html"/>
+    <id>http://xkcoding.com/2018/09/18/how-to-update-the-fork-project.html</id>
+    <published>2018-09-18T01:04:23.000Z</published>
+    <updated>2018-09-18T02:13:49.382Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在 github 上 fork 了一个项目之后，如何使自己 fork 的项目和原先作者的项目分支保持同步呢，下面我使用 hutool 的项目做示范，手摸手示范如何使 fork 的项目与原项目分支保持同步。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="git" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/git/"/>
+    
+    
+      <category term="git" scheme="http://xkcoding.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Boot 全局异常处理</title>
+    <link href="http://xkcoding.com/2018/08/20/spring-boot-global-exception-handler.html"/>
+    <id>http://xkcoding.com/2018/08/20/spring-boot-global-exception-handler.html</id>
+    <published>2018-08-20T01:39:36.000Z</published>
+    <updated>2018-08-21T09:34:50.922Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们在做 &lt;code&gt;Web&lt;/code&gt; 应用的时候，请求处理过程中发生错误异常是一个非常常见的情况，但是异常的处理方式和放回的异常内容并没有做一个统一的处理。在现在这种前后端分离的时代，不论响应成功还是失败的数据格式都需要保持一致。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="spring boot" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/spring-boot/"/>
+    
+    
+      <category term="spring boot" scheme="http://xkcoding.com/tags/spring-boot/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java8 学习整理</title>
     <link href="http://xkcoding.com/2018/07/30/java8-learning.html"/>
     <id>http://xkcoding.com/2018/07/30/java8-learning.html</id>
     <published>2018-07-30T02:39:07.000Z</published>
-    <updated>2018-07-30T02:58:27.927Z</updated>
+    <updated>2018-08-20T01:41:06.814Z</updated>
     
     <summary type="html">
     
@@ -28,7 +124,9 @@
     
     </summary>
     
-      <category term="java" scheme="http://xkcoding.com/categories/java/"/>
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="java" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/java/"/>
     
     
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
@@ -114,7 +212,7 @@
     <link href="http://xkcoding.com/2018/01/12/elasticsearch_note.html"/>
     <id>http://xkcoding.com/2018/01/12/elasticsearch_note.html</id>
     <published>2018-01-12T09:11:18.000Z</published>
-    <updated>2018-01-19T07:56:15.572Z</updated>
+    <updated>2018-09-29T08:50:13.285Z</updated>
     
     <summary type="html">
     
@@ -351,9 +449,9 @@
     
       <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
     
-      <category term="zookeeper" scheme="http://xkcoding.com/tags/zookeeper/"/>
-    
       <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
+    
+      <category term="zookeeper" scheme="http://xkcoding.com/tags/zookeeper/"/>
     
   </entry>
   
@@ -406,110 +504,6 @@
       <category term="多线程" scheme="http://xkcoding.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
       <category term="代码片段" scheme="http://xkcoding.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spring-boot整合mybatis的时候使用logback打印日志</title>
-    <link href="http://xkcoding.com/2017/07/19/spring-boot-mybatis-logback.html"/>
-    <id>http://xkcoding.com/2017/07/19/spring-boot-mybatis-logback.html</id>
-    <published>2017-07-19T03:44:55.000Z</published>
-    <updated>2018-01-11T02:15:32.578Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;最近在学习 &lt;code&gt;spring boot&lt;/code&gt; ，日志用的是 &lt;code&gt;logback&lt;/code&gt; ，至于为什么没有选常用的 &lt;code&gt;log4j&lt;/code&gt; ，因为 &lt;code&gt;logback&lt;/code&gt; 是 &lt;code&gt;spring boot&lt;/code&gt; 官方推荐的日志系统。但是在整合 &lt;code&gt;Mybatis&lt;/code&gt; 的时候一直打印不了 &lt;code&gt;SQL&lt;/code&gt; 语句，查阅多方资料，终于解决了~&lt;br&gt;
-    
-    </summary>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="spring boot" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/spring-boot/"/>
-    
-    
-      <category term="spring boot" scheme="http://xkcoding.com/tags/spring-boot/"/>
-    
-      <category term="mybatis" scheme="http://xkcoding.com/tags/mybatis/"/>
-    
-      <category term="日志" scheme="http://xkcoding.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows10 系统下载与激活</title>
-    <link href="http://xkcoding.com/2017/07/18/win10-download.html"/>
-    <id>http://xkcoding.com/2017/07/18/win10-download.html</id>
-    <published>2017-07-18T01:57:35.000Z</published>
-    <updated>2017-07-27T01:11:30.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;windows 是目前我们用的最多一个系统，win10 现在也优化的越来越好，今天大姐的电脑有点问题，担心太蠢，不会下载和激活系统，所以整理并记录一下如何下载并激活 win10 系统，以供查阅。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="系统" scheme="http://xkcoding.com/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-      <category term="win10" scheme="http://xkcoding.com/tags/win10/"/>
-    
-      <category term="系统" scheme="http://xkcoding.com/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HashMap 的 JDK 源码探索</title>
-    <link href="http://xkcoding.com/2017/07/12/jdk-map-source-explore.html"/>
-    <id>http://xkcoding.com/2017/07/12/jdk-map-source-explore.html</id>
-    <published>2017-07-12T03:26:43.000Z</published>
-    <updated>2018-01-11T02:15:25.093Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;缘由：今天好友拿着下面的代码，问我为什么Map.Entry 这个接口没有实现 getKey() 和 getValue() 方法，却可以使用，由此，开启了一番查阅 JDK 源码的旅途….&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="java" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/java/"/>
-    
-    
-      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="JDK HashMap 源码探索" scheme="http://xkcoding.com/tags/JDK-HashMap-%E6%BA%90%E7%A0%81%E6%8E%A2%E7%B4%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Oracle 11gR2 RAC的JDBC连接串</title>
-    <link href="http://xkcoding.com/2017/01/06/connect-oracle11g-rac-url.html"/>
-    <id>http://xkcoding.com/2017/01/06/connect-oracle11g-rac-url.html</id>
-    <published>2017-01-06T05:51:10.000Z</published>
-    <updated>2018-01-11T02:15:17.780Z</updated>
-    
-    <summary type="html">
-    
-      &lt;!--&lt;h2 id=&quot;intro&quot;&gt;前言&lt;/h2&gt;--&gt;
-&lt;p&gt;今天tomcat启动时，连接oracle直接报错，出现ORA-12505的问题，最开始，我以为错误的原因是jdbc连接Oracle的连接串中的sid配置的不对，oracle不能解析连接串中的sid名字，所以拒绝了连接。在连接字串中写入正确的sid即可。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
-    
-    
-      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
-    
-      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
     
   </entry>
   

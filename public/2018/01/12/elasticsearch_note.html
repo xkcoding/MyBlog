@@ -121,7 +121,7 @@
 <meta property="og:image" content="http://static.xkcoding.com/2018-01-17-15161727420397.jpg">
 <meta property="og:image" content="http://static.xkcoding.com/2018-01-17-15161741012942.jpg">
 <meta property="og:image" content="http://static.xkcoding.com/2018-01-17-15161767712389.jpg">
-<meta property="og:updated_time" content="2018-01-19T07:56:15.572Z">
+<meta property="og:updated_time" content="2018-09-29T08:50:13.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElasticSearch 笔记">
 <meta name="twitter:description" content="ElasticSearch是一个基于 Lucene 的分布式搜索引擎，业内简称ES。它提供了基于 RESTful 风格的全文搜索API。Elasticsearch 是用 Java 开发的，并作为 Apache 许可条款下的开放源码发布，是当前最流行的企业级搜索引擎。另外，它的分布式设计让它天生就适合用于云计算中，并能够达到准实时搜索，而且安装使用方便，还拥有稳定，可靠，快速等特性。本文是我对 ES">
@@ -403,8 +403,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-19T15:56:15+08:00">
-                2018-01-19
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-29T16:50:13+08:00">
+                2018-09-29
               </time>
             
           </span>
@@ -474,7 +474,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  3,678 字
+                  3,936 字
                 </span>
               
 
@@ -490,7 +490,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  17 分钟
+                  18 分钟
                 </span>
               
             </div>
@@ -521,7 +521,7 @@
 <li><p>如果出现 <code>command not found: wget</code>，如果是 Linux，可以用 <code>yum install -y wget</code> 下载，如果是 Mac 就可以用 <code>brew install wget</code> 下载</p>
 </li>
 <li><p>检查本地 JDK 版本，必须保证为<strong>1.8</strong>版本以上</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> java -version</span></div><div class="line">java version "1.8.0_131"</div><div class="line">Java(TM) SE Runtime Environment (build 1.8.0_131-b11)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode)</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> java -version</div><div class="line">java version "1.8.0_131"</div><div class="line">Java(TM) SE Runtime Environment (build 1.8.0_131-b11)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode)</div></pre></td></tr></table></figure>
 </li>
 <li><p>解压软件包</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf elasticsearch-<span class="number">6.1</span>.1.tar.gz</div></pre></td></tr></table></figure>
@@ -550,15 +550,15 @@
 <p><img src="http://static.xkcoding.com/2018-01-12-15157518741687.jpg" alt="分布式 ES 的集群状态"></p>
 </li>
 </ol>
-<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><h4 id="head-插件"><a href="#head-插件" class="headerlink" title="head 插件"></a>head 插件</h4><blockquote>
-<p>head 插件要求本地的 Node 版本不低于8.0</p>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><h4 id="head-插件"><a href="#head-插件" class="headerlink" title="head 插件"></a>head 插件</h4><h5 id="独立安装"><a href="#独立安装" class="headerlink" title="独立安装"></a>独立安装</h5><blockquote>
+<p>独立安装是指，head插件安装在es外部，<br>独立安装 head 插件，要求本地的 Node 版本不低于8.0</p>
 </blockquote>
 <ol>
 <li><p>前往 GitHub 搜索 <code>elasticsearch-head</code> ，这里我直接给出插件的 GitHub 仓库地址，<a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="external">https://github.com/mobz/elasticsearch-head</a> ，clone 源代码</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/apps</div><div class="line">git clone https://github.com/mobz/elasticsearch-head.git</div></pre></td></tr></table></figure>
 </li>
 <li><p>检查本地 Node 版本，必须保证为<strong>8.0</strong>版本以上</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> node -v</span></div><div class="line">v8.5.0</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> node -v</div><div class="line">v8.5.0</div></pre></td></tr></table></figure>
 </li>
 <li><p>编译 head 插件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/apps/elasticsearch-head</div><div class="line">npm install</div></pre></td></tr></table></figure>
@@ -584,7 +584,39 @@
 <p><img src="http://static.xkcoding.com/2018-01-12-15157472517495.jpg" alt="运行 head 插件，查看单机 ES 状态"></p>
 </li>
 </ol>
-<h4 id="ik-中文分词插件（有时间补充）"><a href="#ik-中文分词插件（有时间补充）" class="headerlink" title="ik 中文分词插件（有时间补充）"></a>ik 中文分词插件（有时间补充）</h4><hr>
+<h5 id="集成安装"><a href="#集成安装" class="headerlink" title="集成安装"></a>集成安装</h5><blockquote>
+<p>ES 版本 5.x 以上，不支持这种方式安装，如果想使用head插件，请使用独立安装</p>
+</blockquote>
+<ol>
+<li><p>使用ES提供的插件安装方式安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/plugin install mobz/elasticsearch-head</div></pre></td></tr></table></figure>
+</li>
+<li><p>打开浏览器，访问 <a href="http://localhost:9200/_plugin/head/" target="_blank" rel="external">http://localhost:9200/_plugin/head/</a> ，查看 head 插件运行效果</p>
+</li>
+</ol>
+<h4 id="ik-中文分词插件"><a href="#ik-中文分词插件" class="headerlink" title="ik 中文分词插件"></a>ik 中文分词插件</h4><blockquote>
+<p>ik 分词插件版本与ES版本对照，请查阅：<a href="https://github.com/medcl/elasticsearch-analysis-ik#versions" target="_blank" rel="external">https://github.com/medcl/elasticsearch-analysis-ik#versions</a> </p>
+</blockquote>
+<h5 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h5><ol>
+<li><p>在 ES 的 plugins 目录下创建 ik 目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ./plugins &amp;&amp; mkdir ik</div></pre></td></tr></table></figure>
+</li>
+<li><p>下载编译包到 ik 目录，下载地址：<a href="https://github.com/medcl/elasticsearch-analysis-ik/releases" target="_blank" rel="external">https://github.com/medcl/elasticsearch-analysis-ik/releases</a> </p>
+</li>
+<li><p>解压下载的压缩包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip elasticsearch-analysis-ik-&#123; ES 版本 &#125;.zip</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启 ES</p>
+</li>
+</ol>
+<h5 id="自动安装"><a href="#自动安装" class="headerlink" title="自动安装"></a>自动安装</h5><ol>
+<li><p>使用 ES 提供的插件安装方式安装，替换下面的ES 版本，具体信息可以去 <a href="https://github.com/medcl/elasticsearch-analysis-ik/releases" target="_blank" rel="external">https://github.com/medcl/elasticsearch-analysis-ik/releases</a> 查看</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/&#123; ES 版本 &#125;/elasticsearch-analysis-ik-&#123; ES 版本 &#125;.zip</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启 ES</p>
+</li>
+</ol>
+<hr>
 <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h3 id="集群和节点"><a href="#集群和节点" class="headerlink" title="集群和节点"></a>集群和节点</h3><p>每个节点都是一个 ES 的单独实例，通过 node_name 来指定各个节点的名字。</p>
 <p>集群是通过配置cluster_name来使得节点找到集群。</p>
 <h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>索引是含有相同属性的文档集合，在 ES 中是通过一个名字来识别的，而且要求是<span style="color:red"><strong>英文字母小写且不包含中划线</strong></span></p>
@@ -959,7 +991,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -970,7 +1002,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -981,7 +1013,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1090,7 +1122,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单机安装"><span class="nav-number">1.1.</span> <span class="nav-text">单机安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式安装"><span class="nav-number">1.2.</span> <span class="nav-text">分布式安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件安装"><span class="nav-number">1.3.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#head-插件"><span class="nav-number">1.3.1.</span> <span class="nav-text">head 插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ik-中文分词插件（有时间补充）"><span class="nav-number">1.3.2.</span> <span class="nav-text">ik 中文分词插件（有时间补充）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">2.</span> <span class="nav-text">基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集群和节点"><span class="nav-number">2.1.</span> <span class="nav-text">集群和节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引"><span class="nav-number">2.2.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型"><span class="nav-number">2.3.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档"><span class="nav-number">2.4.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分片"><span class="nav-number">2.5.</span> <span class="nav-text">分片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备份"><span class="nav-number">2.6.</span> <span class="nav-text">备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">3.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求方式"><span class="nav-number">3.1.</span> <span class="nav-text">请求方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引-1"><span class="nav-number">3.2.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-number">3.2.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">3.2.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">3.3.</span> <span class="nav-text">插入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指定-ID-插入"><span class="nav-number">3.3.1.</span> <span class="nav-text">指定 ID 插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不指定-ID-插入"><span class="nav-number">3.3.2.</span> <span class="nav-text">不指定 ID 插入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改"><span class="nav-number">3.4.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除-1"><span class="nav-number">3.5.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询"><span class="nav-number">3.6.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单查询"><span class="nav-number">3.6.1.</span> <span class="nav-text">简单查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件查询"><span class="nav-number">3.6.2.</span> <span class="nav-text">条件查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚合查询"><span class="nav-number">3.6.3.</span> <span class="nav-text">聚合查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级查询"><span class="nav-number">4.</span> <span class="nav-text">高级查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#query"><span class="nav-number">4.1.</span> <span class="nav-text">query</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模糊匹配"><span class="nav-number">4.1.1.</span> <span class="nav-text">模糊匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词组匹配"><span class="nav-number">4.1.2.</span> <span class="nav-text">词组匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字段查询"><span class="nav-number">4.1.3.</span> <span class="nav-text">字段查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#范围查询（支持数值型和日期型）"><span class="nav-number">4.1.4.</span> <span class="nav-text">范围查询（支持数值型和日期型）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">4.2.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合条件查询"><span class="nav-number">4.3.</span> <span class="nav-text">复合条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#固定分数查询"><span class="nav-number">4.3.1.</span> <span class="nav-text">固定分数查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布尔查询"><span class="nav-number">4.3.2.</span> <span class="nav-text">布尔查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-集成-ES"><span class="nav-number">5.</span> <span class="nav-text">Spring Boot 集成 ES</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-集成-ES-的配置类"><span class="nav-number">5.1.</span> <span class="nav-text">Spring Boot 集成 ES 的配置类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入-1"><span class="nav-number">5.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-1"><span class="nav-number">5.3.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除-2"><span class="nav-number">5.4.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单查询-1"><span class="nav-number">5.5.</span> <span class="nav-text">简单查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合查询"><span class="nav-number">5.6.</span> <span class="nav-text">复合查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索建议（有时间补充）"><span class="nav-number">5.7.</span> <span class="nav-text">搜索建议（有时间补充）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合查询（有时间补充）"><span class="nav-number">5.8.</span> <span class="nav-text">聚合查询（有时间补充）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">6.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单机安装"><span class="nav-number">1.1.</span> <span class="nav-text">单机安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式安装"><span class="nav-number">1.2.</span> <span class="nav-text">分布式安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件安装"><span class="nav-number">1.3.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#head-插件"><span class="nav-number">1.3.1.</span> <span class="nav-text">head 插件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#独立安装"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">独立安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#集成安装"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">集成安装</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ik-中文分词插件"><span class="nav-number">1.3.2.</span> <span class="nav-text">ik 中文分词插件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#手动安装"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">手动安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自动安装"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">自动安装</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">2.</span> <span class="nav-text">基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集群和节点"><span class="nav-number">2.1.</span> <span class="nav-text">集群和节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引"><span class="nav-number">2.2.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型"><span class="nav-number">2.3.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档"><span class="nav-number">2.4.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分片"><span class="nav-number">2.5.</span> <span class="nav-text">分片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备份"><span class="nav-number">2.6.</span> <span class="nav-text">备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">3.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求方式"><span class="nav-number">3.1.</span> <span class="nav-text">请求方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引-1"><span class="nav-number">3.2.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建"><span class="nav-number">3.2.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">3.2.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">3.3.</span> <span class="nav-text">插入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指定-ID-插入"><span class="nav-number">3.3.1.</span> <span class="nav-text">指定 ID 插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不指定-ID-插入"><span class="nav-number">3.3.2.</span> <span class="nav-text">不指定 ID 插入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改"><span class="nav-number">3.4.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除-1"><span class="nav-number">3.5.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询"><span class="nav-number">3.6.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单查询"><span class="nav-number">3.6.1.</span> <span class="nav-text">简单查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件查询"><span class="nav-number">3.6.2.</span> <span class="nav-text">条件查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚合查询"><span class="nav-number">3.6.3.</span> <span class="nav-text">聚合查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级查询"><span class="nav-number">4.</span> <span class="nav-text">高级查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#query"><span class="nav-number">4.1.</span> <span class="nav-text">query</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模糊匹配"><span class="nav-number">4.1.1.</span> <span class="nav-text">模糊匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词组匹配"><span class="nav-number">4.1.2.</span> <span class="nav-text">词组匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字段查询"><span class="nav-number">4.1.3.</span> <span class="nav-text">字段查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#范围查询（支持数值型和日期型）"><span class="nav-number">4.1.4.</span> <span class="nav-text">范围查询（支持数值型和日期型）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">4.2.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合条件查询"><span class="nav-number">4.3.</span> <span class="nav-text">复合条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#固定分数查询"><span class="nav-number">4.3.1.</span> <span class="nav-text">固定分数查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布尔查询"><span class="nav-number">4.3.2.</span> <span class="nav-text">布尔查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-集成-ES"><span class="nav-number">5.</span> <span class="nav-text">Spring Boot 集成 ES</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-集成-ES-的配置类"><span class="nav-number">5.1.</span> <span class="nav-text">Spring Boot 集成 ES 的配置类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入-1"><span class="nav-number">5.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-1"><span class="nav-number">5.3.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除-2"><span class="nav-number">5.4.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单查询-1"><span class="nav-number">5.5.</span> <span class="nav-text">简单查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合查询"><span class="nav-number">5.6.</span> <span class="nav-text">复合查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索建议（有时间补充）"><span class="nav-number">5.7.</span> <span class="nav-text">搜索建议（有时间补充）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合查询（有时间补充）"><span class="nav-number">5.8.</span> <span class="nav-text">聚合查询（有时间补充）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">6.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
@@ -1149,7 +1181,7 @@
     	总访问量<span id="busuanzi_value_site_pv"></span>次
 	</span>
   </div>
-  <span class="post-count">博客全站共62.5k字</span>
+  <span class="post-count">博客全站共65.5k字</span>
   <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
 </div>
 
