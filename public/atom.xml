@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2018-09-28T01:59:21.540Z</updated>
+  <updated>2019-01-14T07:30:26.514Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,85 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决 Mac 安装最新版 minikube 出现的问题</title>
+    <link href="http://xkcoding.com/2019/01/14/solve-mac-install-minikube-problem.html"/>
+    <id>http://xkcoding.com/2019/01/14/solve-mac-install-minikube-problem.html</id>
+    <published>2019-01-14T06:22:11.000Z</published>
+    <updated>2019-01-14T07:30:26.514Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;kubernetes (本文后续简称 k8s )，是一个开源的，用于管理云平台中多个主机上的容器化的应用。Mac 本地运行 k8s 最快的方式，肯定是基于单节点的 minikube 来搭建。人人都说 minikube 搭建 k8s 最简单、快速、只需要傻瓜式输入命令就可以搭建成功，可事实并非如此，比如笔者在搭建的过程中就遇到了 &lt;strong&gt;版本&lt;/strong&gt; 和 &lt;strong&gt;代理&lt;/strong&gt; 的问题。&lt;/p&gt;
+&lt;p&gt;下面我将对遇到的问题一一进行解答。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="kubernetes" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/kubernetes/"/>
+    
+    
+      <category term="kubernetes" scheme="http://xkcoding.com/tags/kubernetes/"/>
+    
+      <category term="docker" scheme="http://xkcoding.com/tags/docker/"/>
+    
+      <category term="minikube" scheme="http://xkcoding.com/tags/minikube/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>溜了溜了2018，来了来了2019</title>
+    <link href="http://xkcoding.com/2019/01/01/bye2018-hello2019.html"/>
+    <id>http://xkcoding.com/2019/01/01/bye2018-hello2019.html</id>
+    <published>2018-12-31T16:00:00.000Z</published>
+    <updated>2019-01-15T03:17:08.657Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;18年不知不觉已到尽头，但自己总觉得好像18年只过了9个月一样。抓住18年的小尾巴，给自己的2018做个年终总结，为2019做个展望。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="总结展望" scheme="http://xkcoding.com/categories/%E6%80%BB%E7%BB%93%E5%B1%95%E6%9C%9B/"/>
+    
+    
+      <category term="总结展望" scheme="http://xkcoding.com/tags/%E6%80%BB%E7%BB%93%E5%B1%95%E6%9C%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello,Spring Boot!</title>
+    <link href="http://xkcoding.com/2018/11/07/spring-boot-start.html"/>
+    <id>http://xkcoding.com/2018/11/07/spring-boot-start.html</id>
+    <published>2018-11-07T08:09:07.000Z</published>
+    <updated>2018-11-08T02:12:28.061Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Spring Boot 是Spring项目中的一个子工程，与我们所熟知的Spring-framework 同属于spring的产品:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://static.xkcoding.com/blog/spring-boot-start/image-20181107161531369.png&quot; alt=&quot;image-20181107161531369&quot;&gt;&lt;/p&gt;
+&lt;p&gt;官网这个logo下有这么一段介绍：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Takes an opinionated view of building production-ready Spring applications. Spring Boot favors convention over configuration and is designed to get you up and running as quickly as possible.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;翻译一下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;用一些固定的方式来构建生产级别的spring应用。Spring Boot 推崇约定大于配置的方式以便于你能够尽可能快速的启动并运行程序。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;其实人们把Spring Boot 称为搭建程序的&lt;code&gt;脚手架&lt;/code&gt;。其最主要作用就是帮我们快速的构建庞大的spring项目，并且尽可能的减少一切xml配置，做到开箱即用，迅速上手，让我们关注与业务而非配置。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="spring boot" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/spring-boot/"/>
+    
+    
+      <category term="spring boot" scheme="http://xkcoding.com/tags/spring-boot/"/>
+    
+  </entry>
   
   <entry>
     <title>后台运行node服务</title>
@@ -212,7 +291,7 @@
     <link href="http://xkcoding.com/2018/01/12/elasticsearch_note.html"/>
     <id>http://xkcoding.com/2018/01/12/elasticsearch_note.html</id>
     <published>2018-01-12T09:11:18.000Z</published>
-    <updated>2018-09-29T08:50:13.285Z</updated>
+    <updated>2018-11-07T07:25:05.913Z</updated>
     
     <summary type="html">
     
@@ -422,88 +501,6 @@
     
     
       <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dubbo前置知识：zookeeper集群搭建</title>
-    <link href="http://xkcoding.com/2017/11/01/zookeeper-cluster.html"/>
-    <id>http://xkcoding.com/2017/11/01/zookeeper-cluster.html</id>
-    <published>2017-11-01T05:55:10.000Z</published>
-    <updated>2018-01-11T02:14:30.182Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;拖了一天一天又一天，终于在时隔3月之后，又迎来了一篇新博客。真的是懒癌晚期了。o(╯□╰)o&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;dubbo&lt;/code&gt; 框架需要将服务统一注册到一个注册中心，才能被远程调用。这里注册中心可以使用 &lt;code&gt;zookeeper&lt;/code&gt; 或者 &lt;code&gt;redis&lt;/code&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这里我们以 &lt;code&gt;zookeeper&lt;/code&gt; 为例。&lt;code&gt;zookeeper&lt;/code&gt; 可以单机版也就是 standalone模式运行，也可以使用集群方式运行。为了实现高可用，本例采用集群方式部署，需要保证至少半数以上的机器存活，所以至少为3台机器。话不多说，让我们开始 &lt;code&gt;zookeeper&lt;/code&gt; 集群的搭建吧：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="java" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/java/"/>
-    
-    
-      <category term="Linux" scheme="http://xkcoding.com/tags/Linux/"/>
-    
-      <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
-    
-      <category term="zookeeper" scheme="http://xkcoding.com/tags/zookeeper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql启动报错问题</title>
-    <link href="http://xkcoding.com/2017/08/31/mysql-start-error.html"/>
-    <id>http://xkcoding.com/2017/08/31/mysql-start-error.html</id>
-    <published>2017-08-31T01:48:10.000Z</published>
-    <updated>2018-01-11T02:15:44.492Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天公司 windows 服务器 &lt;code&gt;MySQL&lt;/code&gt; 数据库启动异常，记录下原因。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="mysql" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/mysql/"/>
-    
-    
-      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="mysql" scheme="http://xkcoding.com/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自定义阻塞队列</title>
-    <link href="http://xkcoding.com/2017/08/02/customize-blocked-queue.html"/>
-    <id>http://xkcoding.com/2017/08/02/customize-blocked-queue.html</id>
-    <published>2017-08-02T07:47:07.000Z</published>
-    <updated>2018-01-11T02:15:39.722Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天重温了下 java 多线程中的 &lt;code&gt;notify()&lt;/code&gt; 方法以及 &lt;code&gt;wait()&lt;/code&gt; 方法，一时兴起，决定通过这俩个方法，实现一个简易的自定义阻塞队列。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="代码片段" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
-    
-      <category term="java" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/java/"/>
-    
-    
-      <category term="java" scheme="http://xkcoding.com/tags/java/"/>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="多线程" scheme="http://xkcoding.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-      <category term="代码片段" scheme="http://xkcoding.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
     
   </entry>
   
