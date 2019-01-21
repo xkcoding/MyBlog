@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2019-01-14T07:30:26.514Z</updated>
+  <updated>2019-01-17T02:56:23.812Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决 Nginx 413 Request Entity Too Large 问题</title>
+    <link href="http://xkcoding.com/2019/01/17/solve-nginx-413-problem.html"/>
+    <id>http://xkcoding.com/2019/01/17/solve-nginx-413-problem.html</id>
+    <published>2019-01-17T02:44:21.000Z</published>
+    <updated>2019-01-17T02:56:23.812Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 Spring Boot 文件上传的时候，前端使用 nginx 代理后端请求，出现如下 &lt;strong&gt;413 Request Entity Too Large&lt;/strong&gt; 这个错误。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://static.xkcoding.com/blog/solve-nginx-413-problem/image-nginx.png&quot; alt=&quot;nginx-413&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="nginx" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/nginx/"/>
+    
+    
+      <category term="nginx" scheme="http://xkcoding.com/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>解决 Mac 安装最新版 minikube 出现的问题</title>
@@ -477,30 +500,6 @@
     
     
       <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dubbo前置知识：dubbo-admin 的安装</title>
-    <link href="http://xkcoding.com/2017/11/08/dubbo-admin-install.html"/>
-    <id>http://xkcoding.com/2017/11/08/dubbo-admin-install.html</id>
-    <published>2017-11-08T07:37:14.000Z</published>
-    <updated>2018-04-17T10:39:33.952Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;dubbo-admin&lt;/code&gt; 是 &lt;code&gt;dubbo&lt;/code&gt; 官方提供的一个的管控台程序，可以对 &lt;code&gt;dubbo&lt;/code&gt; 服务进行&lt;strong&gt;监控&lt;/strong&gt;，还可以对其进行&lt;strong&gt;权重分配&lt;/strong&gt;、&lt;strong&gt;负载均衡策略&lt;/strong&gt;等的调优操作，简而言之，我们可以通过 &lt;code&gt;dubbo-admin&lt;/code&gt;，对我们的 &lt;code&gt;dubbo&lt;/code&gt; 服务进行服务治理及服务监控。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="java" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/java/"/>
-    
-    
-      <category term="dubbo" scheme="http://xkcoding.com/tags/dubbo/"/>
     
   </entry>
   
