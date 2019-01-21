@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xkcoding.com/"/>
-  <updated>2019-01-17T02:56:23.812Z</updated>
+  <updated>2019-01-21T09:25:02.646Z</updated>
   <id>http://xkcoding.com/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>修改 git 提交的时间</title>
+    <link href="http://xkcoding.com/2019/01/21/modify-git-commit-timestamp.html"/>
+    <id>http://xkcoding.com/2019/01/21/modify-git-commit-timestamp.html</id>
+    <published>2019-01-21T09:10:03.000Z</published>
+    <updated>2019-01-21T09:25:02.646Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有时候我们需要修改 &lt;code&gt;git commit&lt;/code&gt; 时间，可以通过下面的方法解决。&lt;/p&gt;
+&lt;p&gt;修改当前本地提交的commit时间&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutte
+    
+    </summary>
+    
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="git" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/git/"/>
+    
+    
+      <category term="git" scheme="http://xkcoding.com/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>解决 Nginx 413 Request Entity Too Large 问题</title>
@@ -242,7 +266,7 @@
     <link href="http://xkcoding.com/2018/02/07/regular-expression-list.html"/>
     <id>http://xkcoding.com/2018/02/07/regular-expression-list.html</id>
     <published>2018-02-07T03:45:02.000Z</published>
-    <updated>2018-02-07T04:02:26.654Z</updated>
+    <updated>2019-01-21T09:20:18.089Z</updated>
     
     <summary type="html">
     
@@ -254,8 +278,6 @@
     
       <category term="regex" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/regex/"/>
     
-    
-      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
     
       <category term="代码片段" scheme="http://xkcoding.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
     
@@ -288,7 +310,7 @@
     <link href="http://xkcoding.com/2018/01/16/db-page-sqls.html"/>
     <id>http://xkcoding.com/2018/01/16/db-page-sqls.html</id>
     <published>2018-01-16T06:07:37.000Z</published>
-    <updated>2018-01-16T06:36:18.267Z</updated>
+    <updated>2019-01-21T09:20:28.617Z</updated>
     
     <summary type="html">
     
@@ -301,8 +323,6 @@
       <category term="sql" scheme="http://xkcoding.com/categories/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/sql/"/>
     
     
-      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
       <category term="代码片段" scheme="http://xkcoding.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
     
       <category term="sql" scheme="http://xkcoding.com/tags/sql/"/>
@@ -314,7 +334,7 @@
     <link href="http://xkcoding.com/2018/01/12/elasticsearch_note.html"/>
     <id>http://xkcoding.com/2018/01/12/elasticsearch_note.html</id>
     <published>2018-01-12T09:11:18.000Z</published>
-    <updated>2018-11-07T07:25:05.913Z</updated>
+    <updated>2019-01-21T09:20:37.151Z</updated>
     
     <summary type="html">
     
@@ -322,7 +342,9 @@
     
     </summary>
     
-      <category term="elasticsearch" scheme="http://xkcoding.com/categories/elasticsearch/"/>
+      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="elasticsearch" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/elasticsearch/"/>
     
     
       <category term="elasticsearch" scheme="http://xkcoding.com/tags/elasticsearch/"/>
@@ -334,7 +356,7 @@
     <link href="http://xkcoding.com/2018/01/11/camelcase-underline-transform.html"/>
     <id>http://xkcoding.com/2018/01/11/camelcase-underline-transform.html</id>
     <published>2018-01-11T01:47:10.000Z</published>
-    <updated>2018-01-11T02:16:46.546Z</updated>
+    <updated>2019-01-21T09:20:54.477Z</updated>
     
     <summary type="html">
     
@@ -349,8 +371,6 @@
     
       <category term="java" scheme="http://xkcoding.com/tags/java/"/>
     
-      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
       <category term="代码片段" scheme="http://xkcoding.com/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
     
   </entry>
@@ -360,7 +380,7 @@
     <link href="http://xkcoding.com/2018/01/04/devops-jenkins.html"/>
     <id>http://xkcoding.com/2018/01/04/devops-jenkins.html</id>
     <published>2018-01-04T05:19:13.000Z</published>
-    <updated>2018-01-04T07:05:26.770Z</updated>
+    <updated>2019-01-21T09:21:05.778Z</updated>
     
     <summary type="html">
     
@@ -373,8 +393,6 @@
       <category term="devops" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/devops/"/>
     
     
-      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
       <category term="devops" scheme="http://xkcoding.com/tags/devops/"/>
     
       <category term="jenkins" scheme="http://xkcoding.com/tags/jenkins/"/>
@@ -386,7 +404,7 @@
     <link href="http://xkcoding.com/2018/01/03/devops-gitlab.html"/>
     <id>http://xkcoding.com/2018/01/03/devops-gitlab.html</id>
     <published>2018-01-03T03:12:37.000Z</published>
-    <updated>2018-01-10T08:23:37.754Z</updated>
+    <updated>2019-01-21T09:21:11.551Z</updated>
     
     <summary type="html">
     
@@ -398,8 +416,6 @@
     
       <category term="devops" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/devops/"/>
     
-    
-      <category term="技术相关" scheme="http://xkcoding.com/tags/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
     
       <category term="gitlab" scheme="http://xkcoding.com/tags/gitlab/"/>
     
@@ -434,7 +450,7 @@
     <link href="http://xkcoding.com/2017/12/05/redux-and-mobx-first.html"/>
     <id>http://xkcoding.com/2017/12/05/redux-and-mobx-first.html</id>
     <published>2017-12-05T09:58:56.000Z</published>
-    <updated>2017-12-05T10:07:36.402Z</updated>
+    <updated>2019-01-21T09:21:32.641Z</updated>
     
     <summary type="html">
     
@@ -446,6 +462,8 @@
     </summary>
     
       <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="前端" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%89%8D%E7%AB%AF/"/>
     
     
       <category term="react" scheme="http://xkcoding.com/tags/react/"/>
@@ -478,28 +496,6 @@
       <category term="mysql" scheme="http://xkcoding.com/tags/mysql/"/>
     
       <category term="Mac" scheme="http://xkcoding.com/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 Druid 加速 oracle 的查询</title>
-    <link href="http://xkcoding.com/2017/11/10/druid-oracle-pscache.html"/>
-    <id>http://xkcoding.com/2017/11/10/druid-oracle-pscache.html</id>
-    <published>2017-11-10T01:06:33.000Z</published>
-    <updated>2018-01-11T02:14:44.005Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h1&gt;&lt;p&gt;最近，公司的 web 应用，查询数据有些慢，数据库使用的是 oracle，连接池采用了阿里巴巴温少开源的 Druid 连接池，于是开始寻找解决办法。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术相关" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-    
-      <category term="oracle" scheme="http://xkcoding.com/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/oracle/"/>
-    
-    
-      <category term="oracle" scheme="http://xkcoding.com/tags/oracle/"/>
     
   </entry>
   

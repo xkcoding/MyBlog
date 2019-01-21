@@ -66,5 +66,7 @@ permalink: /404
 <p class="center"><a href="/">回主页</a> · <a href="/archives">所有文章</a> · <a href="/about">留言板</a></p>
 
 <div style="text-align: center"><br>以下是博主喜欢的一些歌曲，可以听听，稍作休息~<br>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="http://music.163.com/outchain/player?type=0&id=52458825&auto=1&height=430"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="https://music.163.com/outchain/player?type=0&id=135852005&auto=1&height=430"></iframe>
 </div>
+
+<!-- 原先的外链歌单 52458825  -->
