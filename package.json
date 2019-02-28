@@ -23,6 +23,7 @@
     "hexo-renderer-marked": "^0.2.9",
     "hexo-renderer-stylus": "^0.3.0",
     "hexo-server": "^0.1.3",
+    "hexo-symbols-count-time": "^0.4.4",
     "hexo-wordcount": "^3.0.2"
   }
 }
