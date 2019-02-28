@@ -1,3 +1,6 @@
-/.deploy_git
+.deploy_git
 .DS_Store
-/node_modules
+node_modules
+debug.log
+public
+*.lnk
