@@ -52,7 +52,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render: 
+skip_render: README.md
 
 # Writing
 new_post_name: :year-:month-:day.:title.md # File name of new posts
@@ -105,3 +105,9 @@ deploy:
 #    type: git
 #    repository:
 #       github: https://github.com/xkcoding/MyBlog.git,master
+
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true

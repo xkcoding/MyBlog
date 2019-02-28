@@ -208,11 +208,12 @@ github_banner: https://github.com/xkcoding || Follow me on GitHub
 
 # Blog rolls
 links_icon: link
-links_title: Links
-links_layout: block
-# links_layout: inline
+links_title: 友情链接
+# links_layout: block
+links_layout: inline
 links:
-  #Title: http://example.com
+  JFinal: http://www.jfinal.com/
+  hank之路: http://www.ixuhan.cn/
 
 # Sidebar Avatar
 avatar:
@@ -343,11 +344,11 @@ reward:
 related_posts:
   enable: false
   title: # custom header, leave empty to use the default one
-  display_in_home: false
+  display_in_home: true
   params:
     maxCount: 5
     #PPMixingRate: 0.0
-    #isDate: false
+    # isDate: false
     #isImage: false
     #isExcerpt: false
 
@@ -723,7 +724,7 @@ firestore:
 # Show Views / Visitors of the website / page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi
 busuanzi_count:
-  enable: false
+  enable: true
   total_visitors: true
   total_visitors_icon: user
   total_views: true
@@ -1083,3 +1084,8 @@ vendors:
 css: css
 js: js
 images: images
+
+
+daovoice:
+  enable: true
+  appId: 80a62a84
