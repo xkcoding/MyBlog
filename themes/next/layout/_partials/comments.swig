@@ -31,7 +31,7 @@
 
   {% elif theme.changyan.enable and theme.changyan.appid and theme.changyan.appkey %}
     <div class="comments" id="comments">
-      <div id="SOHUCS" sid="{{ page.title }}"></div>
+      <div id="SOHUCS"></div>
     </div>
 
   {% elif theme.gitment.enable %}
