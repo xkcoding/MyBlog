@@ -2,7 +2,7 @@
 pipeline {
     agent any
     environment {
-        BLOG_NAME = "MyBlog"
+        CONFIG_FILE = "_config.yml"
         BLOG_DIR = "/data/xkcoding.com"
         GIT_REPO = "https://github.com/xkcoding/MyBlog.git"
         GIT_REPO_URL = "https://github.com/xkcoding/MyBlog"
@@ -15,12 +15,12 @@ pipeline {
                 echo "Git仓库代码: ${GIT_REPO}"
                 echo "校验是否已存在代码"
                 script {
-                    if (fileExists(file:"${BLOG_NAME}")) {
+                    if (fileExists(file:"${CONFIG_FILE}")) {
                         echo "项目存在，准备更新代码"
-                        sh "cd ${BLOG_NAME} && git pull"
+                        sh "git pull"
                     }else{
                         echo "项目不存在，准备拉取代码"
-                        sh "git clone ${GIT_REPO}"
+                        git 'https://github.com/xkcoding/MyBlog.git'
                     }
                 }
             }
@@ -29,16 +29,16 @@ pipeline {
         stage("下载依赖") {
             steps {
                 echo "开始下载NPM依赖"
-                sh "cd $workspace/${BLOG_NAME} && npm install"
+                sh "npm install"
             }
         }
 
         stage("打包/压缩博客") {
             steps {
                 echo "开始打包Hexo博客"
-                sh "cd $workspace/${BLOG_NAME} && hexo g"
+                sh "hexo g"
                 echo "开始压缩Hexo博客"
-                sh "cd $workspace/${BLOG_NAME} && export PATH=/apps/node-v8.0.0-linux-x64/bin:$PATH &&  gulp"
+                sh "export PATH=/apps/node-v8.0.0-linux-x64/bin:$PATH && gulp"
             }
         }
 
@@ -47,7 +47,7 @@ pipeline {
                 echo "删除旧目录"
                 sh "rm -rf ${BLOG_DIR}"
                 echo "部署静态页面到nginx目录"
-                sh "mv $workspace/${BLOG_NAME}/public ${BLOG_DIR}"
+                sh "mv public ${BLOG_DIR}"
             }
         }
 
