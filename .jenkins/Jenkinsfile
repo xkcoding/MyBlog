@@ -1,0 +1,159 @@
+#!groovy
+pipeline {
+    agent any
+    environment {
+        BLOG_NAME = "MyBlog"
+        BLOG_DIR = "/data/xkcoding.com"
+        GIT_REPO = "https://github.com/xkcoding/MyBlog.git"
+        GIT_REPO_URL = "https://github.com/xkcoding/MyBlog"
+        USERMAIL = "237497819@qq.com"
+    }
+
+    stages {
+        stage("获取/更新代码代码") {
+            steps {
+                echo "Git仓库代码: ${GIT_REPO}"
+                echo "校验是否已存在代码"
+                script {
+                    if (fileExists(file:"${BLOG_NAME}")) {
+                        echo "项目存在，准备更新代码"
+                        sh "cd ${BLOG_NAME} && git pull"
+                    }else{
+                        echo "项目不存在，准备拉取代码"
+                        sh "git clone ${GIT_REPO}"
+                    }
+                }
+            }
+        }
+
+        stage("下载依赖") {
+            steps {
+                echo "开始下载NPM依赖"
+                sh "cd $workspace/${BLOG_NAME} && npm install"
+            }
+        }
+
+        stage("打包/压缩博客") {
+            steps {
+                echo "开始打包Hexo博客"
+                sh "cd $workspace/${BLOG_NAME} && hexo g"
+                echo "开始压缩Hexo博客"
+                sh "cd $workspace/${BLOG_NAME} && export PATH=/apps/node-v8.0.0-linux-x64/bin:$PATH &&  gulp"
+            }
+        }
+
+        stage("部署") {
+            steps {
+                echo "删除旧目录"
+                sh "rm -rf ${BLOG_DIR}"
+                echo "部署静态页面到nginx目录"
+                sh "mv $workspace/${BLOG_NAME}/public ${BLOG_DIR}"
+            }
+        }
+
+        stage("上线") {
+            steps {
+                echo "重启Nginx"
+                sh "nginx -s reload"
+            }
+        }
+    }
+
+    post {
+        aborted {
+            setBuildStatus("Build Aborted", "ABORTED");
+        }
+        unstable {
+            setBuildStatus("Build ERROR", "UNSTABLE");
+        }
+        failure {
+            setBuildStatus("Build complete", "FAILURE");
+        }
+        success {
+            setBuildStatus("Build complete", "SUCCESS");
+        }
+        always {
+            emailext (
+                subject: '''构建通知：${JOB_NAME} [${BUILD_NUMBER}] ${BUILD_STATUS}''',
+                body: '''
+                <!DOCTYPE html>
+                    <html>
+                    <head>
+                    <meta charset="UTF-8">
+                    <title>${JOB_NAME}-第${BUILD_NUMBER}次构建日志</title>
+                    </head>
+                    <body leftmargin="8" marginwidth="0" topmargin="8" marginheight="4" offset="0">
+                        <table width="95%" cellpadding="0" cellspacing="0" style="font-size: 11pt; font-family: Tahoma, Arial, Helvetica, sans-serif">
+                            <tr>
+                                <td>(本邮件是程序自动下发的，请勿回复！)</td>
+                            </tr>
+                            <tr>
+                                <td><h2>
+                                        <font color="#0000FF">构建结果 - ${BUILD_STATUS}</font>
+                                    </h2></td>
+                            </tr>
+                            <tr>
+                                <td><br />
+                                <b><font color="#0B610B">构建信息</font></b>
+                                <hr size="2" width="100%" align="center" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>项目名称： ${JOB_NAME}</li>
+                                        <li>构建编号： 第${BUILD_NUMBER}次构建</li>
+                                        <li>构建状态： ${BUILD_STATUS}</li>
+                                        <li>构建日志： <a href="${BUILD_URL}console">${BUILD_URL}console</a></li>
+                                        <li>构建Url： <a href="${BUILD_URL}">${BUILD_URL}</a></li>
+                                        <li>工作目录： <a href="${BUILD_URL}ws">${BUILD_URL}ws</a></li>
+                                        <li>项目Url： <a href="${PROJECT_URL}">${PROJECT_URL}</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b><font color="#0B610B">Changes Since Last Successful Build:</font></b>
+                                <hr size="2" width="100%" align="center" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>历史变更记录 : <a href="${PROJECT_URL}changes">${PROJECT_URL}changes</a></li>
+                                    </ul> ${CHANGES_SINCE_LAST_SUCCESS,reverse=true, format="Changes for Build #%n:<br />%c<br />",showPaths=true,changesFormat="<pre>[%a]<br />%m</pre>",pathFormat="    %p"}  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Test Informations</b>
+                                <hr size="2" width="100%" align="center" /></td>
+                            </tr>
+                            <tr>
+                                <td><pre style="font-size: 11pt; font-family: Tahoma, Arial, Helvetica, sans-serif">Total:${TEST_COUNTS,var="total"},Pass:${TEST_COUNTS,var="pass"},Failed:${TEST_COUNTS,var="fail"},Skiped:${TEST_COUNTS,var="skip"}</pre>
+                                    <br /></td>
+                            </tr>
+                            <tr>
+                                <td><b><font color="#0B610B">构建日志 (最后 100行):</font></b>
+                                <hr size="2" width="100%" align="center" /></td>
+                            </tr>
+                            <tr>
+                                <td><textarea cols="80" rows="30" readonly="readonly" style="font-family: Courier New">${BUILD_LOG, maxLines=100}</textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </body>
+                </html>
+                ''',
+                to: "${USERMAIL}",                          
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+            )
+        }
+    }
+}
+
+void setBuildStatus(String message, String state) {
+    step([
+        $class: "GitHubCommitStatusSetter",
+        reposSource: [$class: "ManuallyEnteredRepositorySource", url: "${GIT_REPO_URL}"],
+        contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+        errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+        statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
+    ]);
+}
