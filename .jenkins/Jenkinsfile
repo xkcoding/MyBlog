@@ -48,6 +48,8 @@ pipeline {
                 sh "rm -rf ${BLOG_DIR}"
                 echo "部署静态页面到nginx目录"
                 sh "mv public ${BLOG_DIR}"
+                echo "删除依赖目录"
+                sh "rm -rf node_modules"
             }
         }
 
