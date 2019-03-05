@@ -638,16 +638,16 @@ needmoreshare2:
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters
-#google_site_verification:
+google_site_verification: 1QzehZlTl5aSnOCNs73zcBTKES4VP3lD03D9KydmKEE
 
 # Google Analytics
-# google_analytics:
-#   tracking_id:
+google_analytics:
+  tracking_id: UA-118899932-2
 #   localhost_ignored: true
 
 # Bing Webmaster tools verification setting
 # See: https://www.bing.com/webmaster
-#bing_site_verification:
+bing_site_verification: 8BF7F99E04BB8024BEA713E231B70D39
 
 # Yandex Webmaster tools verification setting
 # See: https://webmaster.yandex.ru
@@ -655,10 +655,10 @@ needmoreshare2:
 
 # Baidu Webmaster tools verification setting
 # See: https://ziyuan.baidu.com/site
-#baidu_site_verification:
+baidu_site_verification: GQoVEswEhI
 
 # CNZZ count
-#cnzz_siteid:
+cnzz_siteid: 1276392011
 
 # Application Insights
 # See: https://azure.microsoft.com/en-us/services/application-insights
