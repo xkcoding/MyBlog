@@ -1,7 +1,38 @@
 // Custom styles.
 // Custom styles.
 code {
-    color: #ff7600;
-    background: #fbf7f8;
-    margin: 2px;
+  margin: 2px;
+  background: #fbf7f8;
+  color: #ff7600;
+}
+
+.inline-img {
+  .exturl {
+    border: none;
+
+    a {
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        border-bottom: none;
+      }
+    }
+
+    .fancybox {
+      img {
+        display: inline !important;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: none;
+        vertical-align: middle;
+      }
+    }
+
+    i.fa {
+      margin-left: 0;
+      font-size: 0;
+    }
+  }
 }
