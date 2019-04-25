@@ -98,7 +98,7 @@ deploy:
   type: git
   repo:
 	  github: https://github.com/xkcoding/xkcoding.github.io.git,master
-	  coding: https://git.coding.net/xkcoding/xkcoding.git,master
+	  coding: https://git.dev.tencent.com/xkcoding/xkcoding.git,master
 
 #backup
 #backup:
