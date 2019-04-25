@@ -25,4 +25,4 @@ after_script:
 env:
   global:
     - GITHUB_PAGE: github.com/xkcoding/xkcoding.github.io.git
-    - CODING_PAGE: git.coding.net/xkcoding/xkcoding.git,master
+    - CODING_PAGE: git.coding.net/xkcoding/xkcoding.git
