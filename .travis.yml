@@ -21,7 +21,7 @@ after_script:
   # Github Pages
   - git push --force --quiet "https://${GITHUB_TOKEN}@${GITHUB_PAGE}" master:master 
   # Coding Pages
-  - git push --force --quiet "https://237497819@qq.com:${CODING_TOKEN}@${CODING_PAGE}" master:master
+  - git push --force --quiet "https://xkcoding:${CODING_TOKEN}@${CODING_PAGE}" master:master
 env:
   global:
     - GITHUB_PAGE: github.com/xkcoding/xkcoding.github.io.git
