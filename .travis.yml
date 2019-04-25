@@ -26,3 +26,10 @@ env:
   global:
     - GITHUB_PAGE: github.com/xkcoding/xkcoding.github.io.git
     - CODING_PAGE: git.coding.net/xkcoding/xkcoding.git
+# 通知
+notifications:
+  email:
+    recipients:
+      - 237497819@qq.com
+    on_success: always # default: change
+    on_failure: always # default: always
