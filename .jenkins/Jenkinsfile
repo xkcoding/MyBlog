@@ -17,7 +17,7 @@ pipeline {
                 script {
                     if (fileExists(file:"${CONFIG_FILE}")) {
                         echo "项目存在，准备更新代码"
-                        sh "git pull"
+                        sh "git pull origin master"
                     }else{
                         echo "项目不存在，准备拉取代码"
                         git 'https://github.com/xkcoding/MyBlog.git'
