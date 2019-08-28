@@ -36,7 +36,7 @@ pipeline {
         stage("打包/压缩博客") {
             steps {
                 echo "开始打包Hexo博客"
-                sh "hexo g"
+                sh "hexo clean && hexo g"
                 echo "开始压缩Hexo博客"
                 sh "export PATH=/apps/node-v8.0.0-linux-x64/bin:$PATH && gulp"
             }
