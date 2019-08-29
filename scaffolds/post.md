@@ -6,10 +6,9 @@ categories:
 comments: true
 fancybox: false
 description: 
-toc: false
+toc: true
 permalink: 
 top: 
 ---
 <h2 id="intro">前言</h2>
-
 <!--more-->
