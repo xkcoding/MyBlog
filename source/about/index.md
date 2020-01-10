@@ -21,15 +21,17 @@ toc: false
 
 后来大三了，随着视野的拓宽，开始逐渐了解到静态博客网站，然后便开始了「`Jekyll + GitHub Pages`」的组合拳，感受就是，原来写博客的体验这么轻松加愉快，markdown 简直就是文档编辑利器！后面因为 GitHub 国内的访问速度太慢，于是又折腾了「`Jekyll + GitHub Pages + Coding.net`」的搭配，在 DNS 解析的时候，国内解析到 GitHub，国内解析到 Coding，「`Coding.net `」现在也已经改名叫做「`腾讯云开发平台`」了。
 
-再到后面，就是 hexo 了，主要还是喜欢 hexo 各式各样的主题，好在 Jekyll 迁移到 hexo 几乎不费任何成本。
+再到后面，就是 Hexo 了，本站使用的就是「Hexo + Next 主题」，主要还是喜欢 Hexo 各式各样的主题，好在 Jekyll 迁移到 Hexo 几乎不费任何成本。
 
 hexo 的折腾丝毫不少，比如：
 
 - 评论，多说退出历史舞台，导致找了很久评论的替代品，最终还是选择了 `Disqus`
-- 16 年更换了 Mac，window 和 Mac 的 hexo 环境迁移
+- 16 年更换了 Mac，window 和 Mac 的 Hexo 环境迁移
 - hexo 的搜索
 - 部署在自己服务器，同时也折腾了 CI 和 CD，享受写文章的乐趣，其余的交给机器搞定
 - ......
+
+最后，也尝试过 [基于GitBook搭建的面经](https://docs.xkcoding.com/) 和 [基于VuePress搭建的笔记](https://note.xkcoding.com/) 以及语雀的文档编辑，「路漫漫其修远兮，吾将上下而求索」~
 
 ## 关于 xkcoding
 
