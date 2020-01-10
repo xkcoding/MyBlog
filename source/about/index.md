@@ -50,8 +50,9 @@ hexo 的折腾丝毫不少，比如：
 
 <hr>
 * [MailMe(邮件联系)](mailto:237497819@qq.com)
+* [GitHub](https://github.com/xkcoding/)
 * [QQ](http://wpa.qq.com/msgrd?v=3&uin=237497819&site=qq&menu=yes)
 * <a href="/resume.html" target="_blank">查看我的完整简历</a>
 
-与我一起，聆听这首 Beyond 的《海阔天空》，感受内心深处的触动 ~<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=28875146&auto=0&height=66"></iframe>
+送你们一首李荣浩 的《麻雀》 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1407551413&auto=1&height=66"></iframe>
 
