@@ -22,7 +22,7 @@ toc: false
 
 后来大三了，随着视野的拓宽，开始逐渐了解到静态博客网站，然后便开始了「`Jekyll + GitHub Pages`」的组合拳，感受就是，原来写博客的体验这么轻松加愉快，markdown 简直就是文档编辑利器！后面因为 GitHub 国内的访问速度太慢，于是又折腾了「`Jekyll + GitHub Pages + Coding.net`」的搭配，在 DNS 解析的时候，国内解析到 GitHub，国内解析到 Coding，「`Coding.net `」现在也已经改名叫做「`腾讯云开发平台`」了。
 
-再到后面，就是 hexo 了，主要还是喜欢 hexo 各式各样的主题，好在 jekyll 迁移到 hexo 几乎不费任何成本。
+再到后面，就是 hexo 了，主要还是喜欢 hexo 各式各样的主题，好在 Jekyll 迁移到 hexo 几乎不费任何成本。
 
 hexo 的折腾丝毫不少，比如：
 
@@ -35,6 +35,9 @@ hexo 的折腾丝毫不少，比如：
 ## 关于 xkcoding
 
 <hr>我叫「`沈扬凯`」，大学的兄嘚们喊我「`小凯`」，代码里的注释我会写「`Yangkai.Shen`」，网络上我叫「`xkcoding`」，而我是个 Java 开发工程师，所以翻译过来就是「`小凯编程`」。
+
+我热爱游戏，但我是个黑铁玩家，热爱编程，却不敢尝试大厂，热爱[开源](https://github.com/xkcoding)，也才有点成绩，不过爱[妞妞](https://love.xkcoding.com)，却改变了我的整个世界！
+
 我 17 年毕业，「湖北文理学院」，是「二本」，学的是「物联网工程专业」，16 年大三下，前往北京参加工作，「图迹科技」是我入职的第一家公司，认识到一帮相交甚好的朋友，感恩！
 
 18 年年初，回到杭州，现在「杭州美创」打杂，欢迎约饭、畅聊！
@@ -48,7 +51,6 @@ hexo 的折腾丝毫不少，比如：
 * [MailMe(邮件联系)](mailto:237497819@qq.com)
 * [QQ](http://wpa.qq.com/msgrd?v=3&uin=237497819&site=qq&menu=yes)
 * <a href="/resume.html" target="_blank">查看我的完整简历</a>
-
 
 与我一起，聆听这首 Beyond 的《海阔天空》，感受内心深处的触动 ~<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=28875146&auto=0&height=66"></iframe>
 
