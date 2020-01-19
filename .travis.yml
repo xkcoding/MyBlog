@@ -1,4 +1,4 @@
-anguage: node_js
+language: node_js
 node_js: stable
 cache:
   directories:
@@ -11,7 +11,7 @@ install:
 script:
   - hexo clean
   - hexo g && gulp
-after_script:
+after_success:
   - cd ./public
   - git init
   - git config user.name "Yangkai.Shen"
