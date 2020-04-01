@@ -62,18 +62,6 @@ pipeline {
     }
 
     post {
-        aborted {
-            setBuildStatus("Build Aborted", "ABORTED");
-        }
-        unstable {
-            setBuildStatus("Build ERROR", "UNSTABLE");
-        }
-        failure {
-            setBuildStatus("Build complete", "FAILURE");
-        }
-        success {
-            setBuildStatus("Build complete", "SUCCESS");
-        }
         always {
             emailext (
                 subject: '''构建通知：${JOB_NAME} [${BUILD_NUMBER}] ${BUILD_STATUS}''',
@@ -148,14 +136,4 @@ pipeline {
             )
         }
     }
-}
-
-void setBuildStatus(String message, String state) {
-    step([
-        $class: "GitHubCommitStatusSetter",
-        reposSource: [$class: "ManuallyEnteredRepositorySource", url: "${GIT_REPO_URL}"],
-        contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
-        errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
-        statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
-    ]);
 }
