@@ -150,6 +150,7 @@ menu:
   sitemap: /atom.xml || sitemap
   # commonweal: /404/ || heartbeat
   代码仓库: https://git.xkcoding.com || code
+  友链: /links || link
 
 # Enable/Disable menu icons / item badges.
 menu_settings:
@@ -213,8 +214,15 @@ links_title: 友情链接
 # links_layout: block
 links_layout: inline
 links:
-  JFinal: http://www.jfinal.com/
-  hank之路: http://www.ixuhan.cn/
+mylinks:
+  - title: 张亚东博客
+    favicon: https://static.zhyd.me/static/img/favicon.ico
+    site: https://www.zhyd.me/
+    info: 一个程序员的个人博客，心之所向，无所不能
+  - title: hank之路
+    favicon: https://avatar.csdnimg.cn/F/E/6/3_a445849497.jpg
+    site: http://www.ixuhan.cn/
+    info: 不可预估编程，玄学调试
 
 # Sidebar Avatar
 avatar:
