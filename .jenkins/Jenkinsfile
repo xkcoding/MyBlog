@@ -4,8 +4,7 @@ pipeline {
     environment {
         CONFIG_FILE = "_config.yml"
         BLOG_DIR = "/data/xkcoding.com"
-        GIT_REPO = "https://github.com/xkcoding/MyBlog.git"
-        GIT_REPO_URL = "https://github.com/xkcoding/MyBlog"
+        GIT_REPO = "https://git.xkcoding.com/xkcoding/myblog.git"
         USERMAIL = "237497819@qq.com"
     }
 
