@@ -6,6 +6,9 @@ services:
     networks:
       - traefik
     deploy:
+      placement:
+        constraints:
+          - "node.labels.deploy==common"
       labels:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik"
