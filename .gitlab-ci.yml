@@ -2,7 +2,7 @@ variables:
   DOCKER_REGION: "registry.cn-hangzhou.aliyuncs.com"
   DOCKER_NAMESPACE: "xkcoding"
   APP_NAME: "myblog"
-  BUILD_IMAGE: "$DOCKER_REGION/$DOCKER_NAMESPACE/nodebuild:14.3.0-alpine3.11"
+  BUILD_IMAGE: "$DOCKER_REGION/$DOCKER_NAMESPACE/nodebuild:8.17.0-alpine3.11"
   IMAGE_NAME: "$DOCKER_REGION/$DOCKER_NAMESPACE/$APP_NAME:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
   DOCKER_FILE_PATH: "./Dockerfile"
   APP_DOMAIN: "xkcoding.com"
