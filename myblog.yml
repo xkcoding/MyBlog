@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: __IMAGE_NAME__
+    networks:
+      - traefik
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik"
+        - "traefik.http.routers.__APP_NAME__0.middlewares=https-redirect@file"
+        - "traefik.http.routers.__APP_NAME__0.entrypoints=http"
+        - "traefik.http.routers.__APP_NAME__0.rule=Host(`__APP_DOMAIN__`)"
+        - "traefik.http.routers.__APP_NAME__1.middlewares=content-compress@file"
+        - "traefik.http.routers.__APP_NAME__1.entrypoints=https"
+        - "traefik.http.routers.__APP_NAME__1.tls=true"
+        - "traefik.http.routers.__APP_NAME__1.rule=Host(`__APP_DOMAIN__`)"
+        - "traefik.http.services.__APP_NAME__backend.loadbalancer.server.scheme=http"
+        - "traefik.http.services.__APP_NAME__backend.loadbalancer.server.port=__CONTAINER_PORT__"
+networks:
+  traefik:
+    external: true
