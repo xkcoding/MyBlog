@@ -149,7 +149,7 @@ menu:
   # schedule: /schedule/ || calendar
   sitemap: /atom.xml || sitemap
   # commonweal: /404/ || heartbeat
-  代码仓库: https://git.xkcoding.com || code
+  # 代码仓库: https://git.xkcoding.com || code
   友链: /links || link
 
 # Enable/Disable menu icons / item badges.
