@@ -216,11 +216,11 @@ links_layout: inline
 links:
 mylinks:
   - title: 张亚东博客
-    favicon: https://static.zhyd.me/static/img/favicon.ico
+    favicon: https://static.xkcoding.com/blog/links/zhyd_favicon.ico
     site: https://www.zhyd.me/
     info: 一个程序员的个人博客，心之所向，无所不能
   - title: hank之路
-    favicon: https://avatar.csdnimg.cn/F/E/6/3_a445849497.jpg
+    favicon: https://static.xkcoding.com/blog/links/ixuhan_favicon.jpg
     site: http://www.ixuhan.cn/
     info: 不可预估编程，玄学调试
 
