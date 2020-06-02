@@ -7,12 +7,16 @@ services:
       - traefik
     deploy:
       mode: replicated
+      # 2个副本
       replicas: 2
+      # 更新策略
       update_config:
+        # 同时只能更新一个节点
         parallelism: 1
         delay: 10s
         order: stop-first
       placement:
+        # 每个节点最多副本数量为 1
         max_replicas_per_node: 1
         constraints:
           - "node.labels.deploy==common"
