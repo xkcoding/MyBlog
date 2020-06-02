@@ -143,6 +143,22 @@
             </div>
           {% endif %}
 
+        <!--   公众号  start   -->
+        {% if theme.mp.enable %}
+        <div class="site-author motion-element">
+          {% if theme.mp.image %}
+          <img class="mp-image"
+               src="{{ url_for( theme.mp.image) }}"
+               alt="{{ theme.mp.name }}"/>
+          {% endif %}
+          <p class="site-author-name" >{{ theme.mp.name }}</p>
+          <p class="site-description motion-element">{#
+            #}{{ theme.mp.desc }}{#
+            #}</p>
+        </div>
+        {% endif %}
+      <!--   公众号  end   -->
+
           {% if theme.custom_file_path.sidebar %}
             {% set custom_sidebar = '../../../../' + theme.custom_file_path.sidebar %}
           {% else %}

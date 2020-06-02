@@ -30,6 +30,7 @@ hexo 的折腾丝毫不少，比如：
 - 16 年更换了 Mac，window 和 Mac 的 Hexo 环境迁移
 - hexo 的搜索
 - 部署在自己服务器，同时也折腾了 CI 和 CD，享受写文章的乐趣，其余的交给机器搞定
+- 容器化部署
 - ......
 
 最后，也尝试过 [基于GitBook搭建的面经](https://docs.xkcoding.com/) 和 [基于VuePress搭建的笔记](https://note.xkcoding.com/) 以及语雀的文档编辑，「路漫漫其修远兮，吾将上下而求索」~
