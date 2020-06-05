@@ -269,7 +269,8 @@ sidebar:
   #  - always  expand for all pages automatically.
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  totally remove sidebar including sidebar toggle.
-  display: post
+  #  display: post
+  display: always
 
   # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
   offset: 12
