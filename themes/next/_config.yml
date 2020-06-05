@@ -222,14 +222,18 @@ mp:
   desc: 欢迎来我的公众号逛逛！
 
 mylinks:
-  - title: 张亚东博客
-    favicon: https://static.xkcoding.com/blog/links/zhyd_favicon.ico
-    site: https://www.zhyd.me/
-    info: 一个程序员的个人博客，心之所向，无所不能
   - title: hank之路
     favicon: https://static.xkcoding.com/blog/links/ixuhan_favicon.jpg
     site: http://www.ixuhan.cn/
     info: 不可预估编程，玄学调试
+  - title: 张亚东博客
+    favicon: https://static.xkcoding.com/blog/links/zhyd_favicon.ico
+    site: https://www.zhyd.me/
+    info: 一个程序员的个人博客，心之所向，无所不能
+  - title: 小公举
+    favicon: https://static.xkcoding.com/blog/links/loveyatou_favicon.ico
+    site: https://loveyatou.top/
+    info: 想你想你想你。
 
 # Sidebar Avatar
 avatar:
