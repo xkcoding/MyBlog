@@ -24,6 +24,7 @@
     "hexo-generator-searchdb": "^1.0.7",
     "hexo-generator-tag": "^0.2.0",
     "hexo-git-backup": "~0.1.2",
+    "hexo-leancloud-counter-security": "^1.5.0",
     "hexo-pdf": "^1.1.1",
     "hexo-related-popular-posts": "^3.0.3",
     "hexo-renderer-ejs": "^0.1.1",

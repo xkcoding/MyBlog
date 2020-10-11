@@ -111,3 +111,11 @@ symbols_count_time:
   time: true
   total_symbols: true
   total_time: true
+
+leancloud_counter_security:
+  enable_sync: true
+  app_id: igdqTfV9rbtm7WF3pmcBo0fM-gzGzoHsz
+  app_key: qJ9XOC1VMiPdYow77o4YVWMN
+  server_url: https://analyse.xkcoding.com
+  username: xkcoding
+  password: leancloud_counter!
