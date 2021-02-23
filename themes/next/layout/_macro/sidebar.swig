@@ -151,7 +151,7 @@
                src="{{ url_for( theme.mp.image) }}"
                alt="{{ theme.mp.name }}"/>
           {% endif %}
-          <p class="site-author-name" >{{ theme.mp.name }}</p>
+          <p class="site-description" >{{ theme.mp.name }}</p>
           <p class="site-description motion-element">{#
             #}{{ theme.mp.desc }}{#
             #}</p>

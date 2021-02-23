@@ -18,7 +18,7 @@ cache:
 # For example, you want to put your custom styles file
 # outside theme directory in root `source/_data`, set
 # `styles: source/_data/styles.styl`
-#custom_file_path:
+custom_file_path:
   # Default paths: layout/_custom/*
   #head: source/_data/head.swig
   #header: source/_data/header.swig
@@ -29,7 +29,7 @@ cache:
   # Default path: source/css/_mixins/custom.styl
   #mixins: source/_data/mixins.styl
   # Default path: source/css/_custom/custom.styl
-  #styles: source/_data/styles.styl
+  styles: source/_data/styles.styl
 
 
 # ---------------------------------------------------------------
@@ -163,8 +163,8 @@ menu_settings:
 # ---------------------------------------------------------------
 
 # Schemes
-# scheme: Muse
-scheme: Mist
+scheme: Muse
+#scheme: Mist
 # scheme: Pisces
 # scheme: Gemini
 
@@ -407,7 +407,7 @@ custom_logo:
 # Code Highlight theme
 # Available values: normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: night eighties
+highlight_theme: normal
 
 # Enable "cheers" for archive page.
 cheers_enabled: true
