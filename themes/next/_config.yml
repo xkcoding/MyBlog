@@ -563,7 +563,7 @@ disqus:
   enable: true
   shortname: dai-ma-ri-ji
   count: true
-  lazyload: false
+  lazyload: true
 
 # Changyan
 changyan:
