@@ -218,7 +218,7 @@ links:
 mp:
   enable: true
   name: xkcoding小凯扣丁
-  image: /images/xkcoding_qrcode.jpg
+  image: /images/qrcode_for_xkcoding.jpg
   desc: 欢迎来我的公众号逛逛！
 
 mylinks:
@@ -351,7 +351,7 @@ codeblock:
 # Wechat Subscriber
 wechat_subscriber:
   enabled: true
-  qcode: /images/xkcoding_qrcode.jpg
+  qcode: /images/qrcode_for_xkcoding.jpg
   description: 欢迎来我的公众号「xkcoding小凯扣丁」逛逛
 
 # Reward
