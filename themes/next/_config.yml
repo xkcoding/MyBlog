@@ -333,6 +333,10 @@ symbols_count_time:
   wpm: 275
 
 codeblock:
+  # Code Highlight theme
+  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic
+  # https://github.com/chriskempson/tomorrow-theme
+  highlight_theme: normal
   # Manual define the border radius in codeblock
   # Leave it empty for the default 1
   border_radius: 12
@@ -341,8 +345,8 @@ codeblock:
     enable: true
     # Show text copy result
     show_result: true
-    # Style: only 'flat' is currently available, leave it blank if you prefer default theme
-    style: flat
+    # Style: flat | mac
+    style: mac
 
 # Wechat Subscriber
 wechat_subscriber:
@@ -403,11 +407,6 @@ android_chrome_color: "#222"
 custom_logo:
   enabled: false
   # image: /favicon.png
-
-# Code Highlight theme
-# Available values: normal | night | night eighties | night blue | night bright
-# https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
 
 # Enable "cheers" for archive page.
 cheers_enabled: true

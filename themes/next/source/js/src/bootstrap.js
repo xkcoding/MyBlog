@@ -35,6 +35,9 @@ $(document).ready(function() {
   CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
   CONFIG.tabs && NexT.utils.registerTabsTag();
 
+  // CONFIG.copycode.enable && NexT.utils.registerCopyCode();
+  NexT.utils.wrapTableWithBox();
+
   NexT.utils.embeddedVideoTransformer();
 
   // Define Motion Sequence.

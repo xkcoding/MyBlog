@@ -117,6 +117,7 @@
     scheme: '{{ theme.scheme }}',
     version: '{{ version }}',
     sidebar: {{ theme.sidebar | json_encode }},
+    copycode: {{ theme.codeblock.copy_button | json_encode }},
     fancybox: {{ theme.fancybox }},
     fastclick: {{ theme.fastclick }},
     lazyload: {{ theme.lazyload }},

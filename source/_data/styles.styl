@@ -12,14 +12,21 @@ h6 {
   color: #2e405b;
 }
 
+p {
+  margin: 20px 0;
+}
+
 body {
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACFJREFUeNpiZGBg4GegAsBlCD8TqSYNQg2Mo6FEBAAIMACdPABtrSW/IQAAAABJRU5ErkJggg==");
-  background-repeat: repeat;
-  background-attachment: fixed;
+  //background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACFJREFUeNpiZGBg4GegAsBlCD8TqSYNQg2Mo6FEBAAIMACdPABtrSW/IQAAAABJRU5ErkJggg==");
+  //background-repeat: repeat;
+  //background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   min-height: 100vh;
   margin: 0;
+  background-image: linear-gradient(90deg, rgba(50, 0, 0, 0.06) 3%, rgba(0, 0, 0, 0) 3%), linear-gradient(360deg, rgba(50, 0, 0, 0.06) 3%, rgba(0, 0, 0, 0) 3%);
+  background-size: 20px 20px;
+  background-position: center center;
 }
 
 .sidebar-inner, .comments, .post-block, .sidebar, .header-inner{
@@ -71,8 +78,17 @@ body {
   margin-top: 0px;
   margin-bottom: 0px;
   padding: 5px;
-  box-shadow: 0px 3px 3px 0px #2e405b;
+  box-shadow: 1px 2px 2px 2px #2e405b;
 }
+
+.menu:hover {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 5px;
+  box-shadow: 2px 4px 4px 4px #2e405b;
+}
+
 // 菜单超链接字体大小
 .menu .menu-item a {
   font-size: 14px;
@@ -199,7 +215,11 @@ code {
   border-radius: 5px;
 }
 .highlight, code, pre {
-  border: 1px solid #d6d6d6;
+  //border: 1px solid #d6d6d6;
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+  border-left: none;
+  border-right: none;
 }
 
 blockquote{
@@ -209,6 +229,7 @@ blockquote{
   background-color: rgb(227, 242, 253);
   /* border-top-right-radius: 3px;
   border-bottom-right-radius: 3px; */
+  margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 3px
 }
@@ -300,7 +321,7 @@ blockquote{
 // 二级标题(正常显示器分辨率)
 // 其实要在左下角和右下角加上一个折角、翻折的效果（一个三角形）
 .post-body h2 {
-  padding-left: 1.7%;
+  padding-left: 2%;
   color: #2e405b;
   position: relative;
 }
@@ -321,12 +342,12 @@ blockquote{
 // 二级标题(移动终端分辨率)
 @media (min-width: 768px) and (max-width: 991px) {
   .main .post-body h2 {
-    margin: 20px -23px 15px -28px;
+    margin: 20px -23px 15px 0;
   }
 }
 @media (max-width: 767px) {
   .main .post-body h2 {
-    margin: 20px -15px 15px -18px;
+    margin: 20px -15px 15px 0;
   }
 }
 
