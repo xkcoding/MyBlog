@@ -24,6 +24,7 @@ cache:
 下载依赖:
   stage: 下载依赖
   image: ${BUILD_IMAGE}
+  retry: 2
   tags:
     - docker
   script:
@@ -37,6 +38,7 @@ cache:
 编译构建:
   stage: 编译构建
   image: ${BUILD_IMAGE}
+  retry: 2
   tags:
     - docker
   script:
