@@ -350,9 +350,9 @@ codeblock:
 
 # Wechat Subscriber
 wechat_subscriber:
-  #enabled: true
-  #qcode: /path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg
-  #description: e.g. subscribe to my blog by scanning my public wechat account
+  enabled: true
+  qcode: /images/xkcoding_qrcode.jpg
+  description: 欢迎来我的公众号「xkcoding小凯扣丁」逛逛
 
 # Reward
 # If true, reward would be displayed in every article by default.
