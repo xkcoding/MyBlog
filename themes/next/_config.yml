@@ -562,7 +562,7 @@ baidu_analytics: 521f6d48d3fa40ce529ba993fc1a46b4
 disqus:
   enable: true
   shortname: dai-ma-ri-ji
-  count: true
+  count: false
   lazyload: true
 
 # Changyan
