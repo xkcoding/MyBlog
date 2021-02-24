@@ -677,7 +677,7 @@ bing_site_verification: 8BF7F99E04BB8024BEA713E231B70D39
 baidu_site_verification: GQoVEswEhI
 
 # CNZZ count
-cnzz_siteid: 1276392011
+#cnzz_siteid: 1276392011
 
 # Application Insights
 # See: https://azure.microsoft.com/en-us/services/application-insights
@@ -754,7 +754,7 @@ busuanzi_count:
   post_views_icon: eye
 
 # Tencent analytics ID
-tencent_analytics: 62574797
+#tencent_analytics: 62574797
 
 # Tencent MTA ID
 #tencent_mta:
