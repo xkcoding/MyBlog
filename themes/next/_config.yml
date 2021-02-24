@@ -359,7 +359,7 @@ wechat_subscriber:
 # You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
 reward:
   enable: true
-  comment: o(╯□╰)o我只要一毛钱的鼓励~~
+  comment: o(╯□╰)o 赞助一杯咖啡 ~~
   wechatpay: /resources/wechat-reward-image.png
   alipay: /resources/alipay-reward-image.png
   #bitcoin: /images/bitcoin.jpg
