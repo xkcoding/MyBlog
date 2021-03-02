@@ -150,6 +150,7 @@ menu:
   sitemap: /atom.xml || sitemap
   # commonweal: /404/ || heartbeat
   wiki: https://xkcoding.wiki || code
+  阅读: https://reading.xkcoding.com || book
   友链: /links || link
 
 # Enable/Disable menu icons / item badges.

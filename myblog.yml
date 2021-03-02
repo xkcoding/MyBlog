@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  nginx:
+  __APP_NAME__:
     image: __IMAGE_NAME__
     networks:
       - traefik
