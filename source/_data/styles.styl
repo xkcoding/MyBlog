@@ -9,6 +9,7 @@ h3,
 h4,
 h5,
 h6 {
+  //font-family: lato,pingfang sc,microsoft yahei,sans-serif;
   color: #2e405b;
 }
 
@@ -153,7 +154,7 @@ del {
 }
 
 /* 去掉图片边框 */
-.posts-expand .post-body img {
+.posts-expand .content img {
   border: none;
   padding: 0px;
 }
@@ -199,7 +200,23 @@ table td, table th {
 }
 
 // 文章内链接文本样式
-.post-body p a {
+.content p a {
+  color: #0593d3;
+  border-bottom: none;
+  border-bottom: 1px solid #0593d3;
+
+  &:hover {
+    color: #fc6423;
+    border-bottom: none;
+    border-bottom: 1px solid #fc6423;
+  }
+}
+
+.post {
+  font-family: roboto mono, lato, pingfang sc, microsoft yahei, sans-serif;
+}
+
+.post span.exturl {
   color: #0593d3;
   border-bottom: none;
   border-bottom: 1px solid #0593d3;
@@ -319,7 +336,7 @@ blockquote {
 }
 
 // 文章内标题样式（左边的竖线）
-.post-body h2, .post-body h3, .post-body h4, .post-body h5, .post-body h6 {
+.content h2, .content h3, .content h4, .content h5, .content h6 {
   border-left: 4px solid #f27c8d;
   //margin-left: -40px;
   padding-left: 32px;
@@ -334,40 +351,44 @@ blockquote {
 
 // 二级标题(正常显示器分辨率)
 // 其实要在左下角和右下角加上一个折角、翻折的效果（一个三角形）
-.post-body h2 {
+.content h2 {
   padding-left: 2%;
   color: #2e405b;
   position: relative;
 }
 
+h2.post-title {
+  border: none;
+}
+
 // 三级标题
-.post-body h3 {
+.content h3 {
   border-bottom: 1px solid #cfd8dc;
   padding-bottom: 0.3em;
   color: #49b1f5;
   position: relative;
 }
 
-.post-body h4 {
+.content h4 {
   color: #555;
   position: relative;
 }
 
 // 二级标题(移动终端分辨率)
 @media (min-width: 768px) and (max-width: 991px) {
-  .main .post-body h2 {
+  .main .content h2 {
     margin: 20px -23px 15px 0;
   }
 }
 
 @media (max-width: 767px) {
-  .main .post-body h2 {
+  .main .content h2 {
     margin: 20px -15px 15px 0;
   }
 }
 
 // 图片底下的描述性文字
-.post-body .image-caption, .post-body .figure .caption {
+.content .image-caption, .content .figure .caption {
   text-align: left;
 }
 
