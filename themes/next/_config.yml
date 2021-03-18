@@ -231,6 +231,10 @@ mylinks:
     favicon: https://static.xkcoding.com/blog/links/zhyd_favicon.ico
     site: https://www.zhyd.me/
     info: 一个程序员的个人博客，心之所向，无所不能
+  - title: 送命或寻欢
+    favicon: https://static.xkcoding.com/blog/links/lxh_favicon.png
+    site: https://lxh.io
+    info: 江湖走马飞刀钝，前庭花落梦寻欢
   - title: 小公举
     favicon: https://static.xkcoding.com/blog/links/loveyatou_favicon.ico
     site: https://loveyatou.top/
