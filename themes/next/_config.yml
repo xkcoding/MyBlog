@@ -239,6 +239,9 @@ mylinks:
     favicon: https://static.xkcoding.com/blog/links/loveyatou_favicon.ico
     site: https://loveyatou.top/
     info: 想你想你想你。
+  - title: 2B博客
+    favicon: https://www.213.name/favicon.ico
+    site: https://www.213.name/
 
 # Sidebar Avatar
 avatar:
