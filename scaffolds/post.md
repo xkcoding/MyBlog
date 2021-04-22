@@ -7,8 +7,10 @@ comments: true
 fancybox: false
 description: 
 toc: true
-permalink: 
+permalink: {{ title }}
 top: 
 ---
-<h2 id="intro">前言</h2>
+## 前言
+
 <!--more-->
+
