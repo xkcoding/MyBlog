@@ -1,4 +1,5 @@
 variables:
+  GIT_SSL_NO_VERIFY: "true"
   DOCKER_REGION: "registry.cn-hangzhou.aliyuncs.com"
   DOCKER_NAMESPACE: "xkcoding"
   APP_NAME: "myblog"
