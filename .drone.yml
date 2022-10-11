@@ -1,0 +1,229 @@
+kind: pipeline
+type: docker
+name: build
+
+steps:
+  - name: restore-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: blog-node-cache
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - ./node_modules
+
+  - name: install
+    image: registry.dev.xkcoding.com/nodebuild:8.17.0-alpine3.11
+    pull: if-not-exists
+    commands:
+      - npm install
+
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: blog-node-cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
+
+  - name: build
+    image: registry.dev.xkcoding.com/nodebuild:8.17.0-alpine3.11
+    pull: if-not-exists
+    commands:
+      - echo "开始打包Hexo博客"
+      - hexo clean && hexo g
+      - echo "开始压缩Hexo博客"
+      - gulp
+      - ls -a public/
+
+  - name: build-image-dev
+    image: plugins/docker
+    settings:
+      registry: registry.dev.xkcoding.com
+      repo: registry.dev.xkcoding.com/${DRONE_REPO}
+      tags: ${DRONE_COMMIT_SHA:0:8}
+
+  - name: deploy-to-dev
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        from_secret: dev_host
+      user:
+        from_secret: dev_user
+      password:
+        from_secret: dev_password
+      port: 10022
+      command_timeout: 10m
+      script:
+        - echo "=======开始部署======="
+        - cd /root/apps/myblog
+        - echo "=======下线服务======="
+        - docker compose down
+        - echo "=======历史镜像版本备份======="
+        - cp .env .env.bak
+        - cat .env.bak
+        - echo "=======删除历史镜像======="
+        - docker rmi $(cat .env.bak | grep 'IMAGE=' | cut -d '=' -f 2)
+        - echo "=======新镜像版本======="
+        - echo IMAGE=registry.dev.xkcoding.com/${DRONE_REPO}:${DRONE_COMMIT_SHA:0:8} > .env
+        - cat .env
+        - echo "=======拉取新镜像======="
+        - docker pull registry.dev.xkcoding.com/${DRONE_REPO}:${DRONE_COMMIT_SHA:0:8}
+        - echo "=======启动服务======="
+        - docker compose up -d
+        - echo "=======部署成功======="
+
+  - name: notification-success
+    image: yakumioto/drone-serverchan:2.0.0
+    settings:
+      key:
+        from_secret: sc_key
+      text: "[CI通知]-[blog]✅"
+      desp: "仓库：${DRONE_REPO} 分支：`${DRONE_COMMIT_BRANCH}`\n\n💬 状态：开发环境部署成功\n\n🌐 详情：[CI地址](${DRONE_BUILD_LINK})\n\n📄 预览：[blog](https://blog.dev.xkcoding.com)"
+    when:
+      status:
+        - success
+
+  - name: notification-failure
+    image: yakumioto/drone-serverchan:2.0.0
+    settings:
+      key:
+        from_secret: sc_key
+      text: "[CI通知]-[blog]❌"
+      desp: "仓库：${DRONE_REPO} 分支：`${DRONE_COMMIT_BRANCH}`\n\n💬 状态：开发环境部署失败\n\n🌐 详情：[CI地址](${DRONE_BUILD_LINK})\n\n📄 内容：[diff](${DRONE_COMMIT_LINK})"
+    when:
+      status:
+        - failure
+
+trigger:
+  event:
+    - push
+
+volumes:
+  - name: blog-node-cache
+    host:
+      path: /tmp/cache
+
+---
+kind: pipeline
+type: docker
+name: release
+
+steps:
+  - name: restore-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: blog-node-cache
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - ./node_modules
+
+  - name: install
+    image: registry.dev.xkcoding.com/nodebuild:8.17.0-alpine3.11
+    pull: if-not-exists
+    commands:
+      - npm install
+
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: blog-node-cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
+
+  - name: build
+    image: registry.dev.xkcoding.com/nodebuild:8.17.0-alpine3.11
+    pull: if-not-exists
+    commands:
+      - echo "开始打包Hexo博客"
+      - hexo clean && hexo g
+      - echo "开始压缩Hexo博客"
+      - gulp
+      - ls -a public/
+
+  - name: build-image-prod
+    image: plugins/docker
+    settings:
+      registry: registry.cn-hangzhou.aliyuncs.com
+      repo: registry.cn-hangzhou.aliyuncs.com/xkcoding/myblog
+      tags: ${DRONE_COMMIT_SHA:0:8}
+
+  - name: deploy-to-prod
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        from_secret: prod_host
+      user:
+        from_secret: prod_user
+      password:
+        from_secret: prod_password
+      port: 10022
+      command_timeout: 10m
+      script:
+        - echo "=======开始部署======="
+        - cd /root/apps/myblog
+        - echo "=======下线服务======="
+        - docker compose down
+        - echo "=======历史镜像版本备份======="
+        - cp .env .env.bak
+        - cat .env.bak
+        - echo "=======删除历史镜像======="
+        - docker rmi $(cat .env.bak | grep 'IMAGE=' | cut -d '=' -f 2)
+        - echo "=======新镜像版本======="
+        - echo IMAGE=registry.cn-hangzhou.aliyuncs.com/xkcoding/myblog:${DRONE_COMMIT_SHA:0:8} > .env
+        - cat .env
+        - echo "=======拉取新镜像======="
+        - docker pull registry.cn-hangzhou.aliyuncs.com/xkcoding/myblog:${DRONE_COMMIT_SHA:0:8}
+        - echo "=======启动服务======="
+        - docker compose up -d
+        - echo "=======部署成功======="
+
+  - name: push-github
+    image: appleboy/drone-git-push:0.2.2
+    settings:
+      branch: ${DRONE_BRANCH}
+      remote: git@github.com:xkcoding/MyBlog.git
+      path: public/
+      ssh_key:
+        from_secret: ssh_key
+      force: true
+      commit: true
+      commit_message: ${DRONE_COMMIT_MESSAGE}
+      author_name: ${DRONE_COMMIT_AUTHOR_NAME}
+      author_email: ${DRONE_COMMIT_AUTHOR_EMAIL}
+
+  - name: notification-success
+    image: yakumioto/drone-serverchan:2.0.0
+    settings:
+      key:
+        from_secret: sc_key
+      text: "[CI通知]-[blog]✅"
+      desp: "仓库：${DRONE_REPO} 分支：`${DRONE_COMMIT_BRANCH}`\n\n💬 状态：线上环境部署成功\n\n🌐 详情：[CI地址](${DRONE_BUILD_LINK})\n\n📄 预览：[blog](https://xkcoding.com)"
+    when:
+      status:
+        - success
+
+  - name: notification-failure
+    image: yakumioto/drone-serverchan:2.0.0
+    settings:
+      key:
+        from_secret: sc_key
+      text: "[CI通知]-[blog]❌"
+      desp: "仓库：${DRONE_REPO} 分支：`${DRONE_COMMIT_BRANCH}`\n\n💬 状态：线上环境部署失败\n\n🌐 详情：[CI地址](${DRONE_BUILD_LINK})\n\n📄 内容：[diff](${DRONE_COMMIT_LINK})"
+    when:
+      status:
+        - failure
+
+trigger:
+  event:
+    - promote
+  target:
+    - release
