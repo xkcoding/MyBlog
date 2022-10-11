@@ -155,6 +155,10 @@ steps:
       registry: registry.cn-hangzhou.aliyuncs.com
       repo: registry.cn-hangzhou.aliyuncs.com/xkcoding/myblog
       tags: ${DRONE_COMMIT_SHA:0:8}
+      username:
+        from_secret: aliyun_docker_user
+      password:
+        from_secret: aliyun_docker_password
 
   - name: deploy-to-prod
     image: appleboy/drone-ssh
