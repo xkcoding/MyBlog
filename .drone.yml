@@ -195,7 +195,6 @@ steps:
     settings:
       branch: ${DRONE_BRANCH}
       remote: git@github.com:xkcoding/MyBlog.git
-      path: public/
       ssh_key:
         from_secret: ssh_key
       force: true
