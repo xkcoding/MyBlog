@@ -223,9 +223,9 @@ mp:
   desc: 欢迎来我的公众号逛逛！
 
 mylinks:
-  - title: hank之路
+  - title: Hank涵
     favicon: https://static.xkcoding.com/blog/links/ixuhan_favicon.jpg
-    site: http://www.ixuhan.cn/
+    site: https://blog.csdn.net/a445849497
     info: 不可预估编程，玄学调试
   - title: 张亚东博客
     favicon: https://static.xkcoding.com/blog/links/zhyd_favicon.ico
