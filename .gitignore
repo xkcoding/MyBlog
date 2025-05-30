@@ -6,3 +6,4 @@ public
 *.lnk
 db.json
 .idea/
+.history/
