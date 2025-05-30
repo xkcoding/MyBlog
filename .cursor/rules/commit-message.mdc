@@ -1,0 +1,96 @@
+# Commit Message 规则
+
+## 规则说明
+- 提交信息必须包含 emoji
+- 提交信息必须使用中文
+- emoji 必须放在提交信息的最前面
+- emoji 后面空一格，然后写具体的提交信息
+- 如果提交包含多个改动，使用最相关的 emoji
+- 保持提交信息简洁明了
+
+## 常用 Emoji 说明
+
+| Emoji | 代码 | 说明 |
+|-------|------|------|
+| 🎨 | `:art:` | 改进代码结构/格式 |
+| ⚡️ | `:zap:` | 提升性能 |
+| 🔥 | `:fire:` | 移除代码或文件 |
+| 🐛 | `:bug:` | 修复 bug |
+| 🚑 | `:ambulance:` | 重要补丁 |
+| ✨ | `:sparkles:` | 新功能 |
+| 📝 | `:memo:` | 文档更新 |
+| 🚀 | `:rocket:` | 部署相关 |
+| 💄 | `:lipstick:` | 更新 UI 和样式文件 |
+| 🎉 | `:tada:` | 初始化提交 |
+| ✅ | `:white_check_mark:` | 添加测试 |
+| 🔒 | `:lock:` | 修复安全问题 |
+| 🔧 | `:wrench:` | 修改配置文件 |
+| 🔨 | `:hammer:` | 重构代码 |
+| 🌐 | `:globe_with_meridians:` | 国际化与本地化 |
+| 📦 | `:package:` | 更新编译的文件或包 |
+| 👷 | `:construction_worker:` | 添加 CI 配置 |
+| 📈 | `:chart_with_upwards_trend:` | 添加分析或跟踪代码 |
+| ♻️ | `:recycle:` | 代码重构 |
+| 🗑️ | `:wastebasket:` | 删除废弃代码 |
+| 🔀 | `:twisted_rightwards_arrows:` | 合并分支 |
+| 📋 | `:clipboard:` | 添加或更新许可证 |
+| 🔍 | `:magnifying_glass_tilted_left:` | 改进代码搜索 |
+| 🏷️ | `:label:` | 添加或更新类型 |
+| 🚨 | `:rotating_light:` | 移除 linter 警告 |
+| 🚧 | `:construction:` | 工作进行中 |
+| 💚 | `:green_heart:` | 修复 CI 构建 |
+| ⬇️ | `:arrow_down:` | 降级依赖 |
+| ⬆️ | `:arrow_up:` | 升级依赖 |
+| 📌 | `:pushpin:` | 将依赖项固定到特定版本 |
+| 👽️ | `:alien:` | 由于外部 API 更改而更新代码 |
+| 🚚 | `:truck:` | 移动或重命名文件 |
+| 📄 | `:page_facing_up:` | 添加或更新许可证 |
+| 💥 | `:collision:` | 重大更改 |
+| 🗃️ | `:card_file_box:` | 执行与数据库相关的更改 |
+| 🔊 | `:loud_sound:` | 添加日志 |
+| 🔇 | `:mute:` | 删除日志 |
+| 👥 | `:busts_in_silhouette:` | 添加贡献者 |
+| 🚸 | `:children_crossing:` | 改善用户体验/可用性 |
+| 🏗️ | `:building_construction:` | 进行架构更改 |
+| 📱 | `:mobile_phone:` | 响应式设计相关 |
+| 🤡 | `:clown_face:` | 添加或更新模拟数据 |
+| 🥚 | `:egg:` | 添加或更新彩蛋 |
+| 🙈 | `:see_no_evil:` | 添加或更新 .gitignore |
+| 📸 | `:camera_flash:` | 添加或更新快照 |
+| ⚗️ | `:alembic:` | 实验新功能 |
+| 🔍 | `:mag:` | 改进 SEO |
+| 🏷️ | `:label:` | 添加或更新类型 |
+| 🌱 | `:seedling:` | 添加或更新种子文件 |
+| 🚩 | `:triangular_flag_on_post:` | 添加、更新或删除功能标志 |
+| 🥅 | `:goal_net:` | 捕获异常 |
+| 💫 | `:dizzy:` | 添加或更新动画和过渡 |
+| 🗑️ | `:wastebasket:` | 弃用需要清理的代码 |
+| 🛂 | `:passport_control:` | 处理与授权、角色和权限相关的代码 |
+| 🩹 | `:adhesive_bandage:` | 对非关键问题的简单修复 |
+| 🧐 | `:monocle_face:` | 数据探索/检查 |
+| ⚰️ | `:coffin:` | 删除死代码 |
+| 🧪 | `:test_tube:` | 添加失败的测试 |
+| 👔 | `:necktie:` | 添加或更新业务逻辑 |
+| 🩺 | `:stethoscope:` | 添加或更新健康检查 |
+| 🧱 | `:bricks:` | 基础设施相关更改 |
+| 🧑‍💻 | `:technologist:` | 改进开发人员体验 |
+| 💸 | `:money_with_wings:` | 添加赞助或与资金相关的基础设施 |
+| 🧠 | `:brain:` | 改进认知和人工智能 |
+| 🦺 | `:safety_vest:` | 添加与验证相关的代码或测试 |
+
+## 使用示例
+
+```
+✨ feat: 添加用户认证功能
+🐛 fix: 修复登录页面样式问题
+📝 docs: 更新 API 文档
+♻️ refactor: 重构用户服务模块
+```
+
+## 注意事项
+1. 提交信息必须使用中文
+2. 提交信息必须包含 emoji
+3. emoji 必须放在提交信息的最前面
+4. emoji 后面空一格，然后写具体的提交信息
+5. 如果提交包含多个改动，使用最相关的 emoji
+6. 保持提交信息简洁明了 
