@@ -1,9 +1,10 @@
-# Hugo 迁移计划
+# 🚀 feat: 迁移到 Hugo
 
 ## 变更说明
 - 添加 Hugo 迁移任务清单，规划迁移步骤和任务
 - 添加 commit emoji 规范，统一提交信息格式
 - 更新 .gitignore 配置
+- 更新 FixIt 主题文档链接，指向 GitHub 仓库 README
 
 ## 迁移计划
 1. 环境准备
