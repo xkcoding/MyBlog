@@ -48,6 +48,6 @@
 
 ## 相关链接
 - [Hugo 官方文档](https://gohugo.io/documentation/)
-- [FixIt 主题文档](https://hugo-theme-fixit.github.io/zh-cn/)
+- [FixIt 主题文档](https://github.com/hugo-fixit/FixIt/blob/main/README.zh-cn.md)
 - [迁移任务清单](.cursor/todo.md)
 - [Commit Emoji 规范](.cursor/commit-emoji.md) 
