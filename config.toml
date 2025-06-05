@@ -1,0 +1,252 @@
+baseURL = "https://xkcoding.com/"
+title = "CodingDiary"
+subtitle = "代码日记"
+description = "xkcoding的代码成长日记"
+author = "xkcoding"
+timezone = "Asia/Shanghai"
+
+# Hugo 模块配置
+[module]
+  [[module.imports]]
+    path = "github.com/hugo-fixit/FixIt"
+
+# 网站语言，仅在这里设置
+defaultContentLanguage = "zh-cn"
+
+# 是否自动检测内容语言
+enableContentLanguageInURL = true
+enableContentLanguageInDir = true
+
+# 是否在菜单中显示语言切换器
+enableLanguageSwitcher = true
+
+# 是否显示文章目录
+enableTOC = true
+
+# 是否自动展开文章目录
+tocOpen = true
+
+# 是否启用搜索
+enableSearch = true
+
+# 是否启用代码复制
+enableCodeCopy = true
+
+# 是否启用图片点击放大
+enableImageZoom = true
+
+# 是否启用 emoji
+enableEmoji = true
+
+# 是否启用数学公式
+enableMath = true
+
+# 是否启用流程图
+enableMermaid = true
+
+# 是否启用音乐播放器
+enableMusicPlayer = true
+
+# 是否启用评论系统
+enableComment = true
+
+# 评论系统设置
+[params.comment]
+  type = "giscus"
+  [params.comment.giscus]
+    repo = "xkcoding/MyBlog"
+    repoId = "R_kgDOGxK4Yw"
+    category = "Announcements"
+    categoryId = "DIC_kwDOGxK4Y84CQh1_"
+    mapping = "pathname"
+    strict = "0"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "bottom"
+    theme = "preferred_color_scheme"
+    lang = "zh-CN"
+    loading = "lazy"
+
+# 网站图标设置
+[params.favicon]
+  href = "/favicon.ico"
+
+# 网站 Logo 设置
+[params.logo]
+  src = "/logo.png"
+  title = "xkcoding"
+  link = "/"
+
+# 网站作者设置
+[params.author]
+  name = "xkcoding"
+  link = "https://github.com/xkcoding"
+
+# 网站关键词
+[params.keywords]
+  keywords = ["xkcoding", "blog", "hugo", "fixit"]
+
+# 网站统计设置
+[params.analytics]
+  enable = true
+  google = "UA-XXXXXXXXX-X"
+
+# 网站 SEO 设置
+[params.seo]
+  # 图片 URL
+  images = ["/logo.png"]
+  # 出版者信息
+  [params.seo.publisher]
+    "@type" = "Organization"
+    name = "xkcoding"
+    logo = "/logo.png"
+
+# 网站社交链接
+[params.social]
+  GitHub = "https://github.com/xkcoding"
+  Email = "mailto:yangkaishen@gmail.com"
+
+# 网站菜单设置
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "文章"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "标签"
+    url = "/tags/"
+    weight = 20
+  [[menu.main]]
+    identifier = "categories"
+    name = "分类"
+    url = "/categories/"
+    weight = 30
+  [[menu.main]]
+    identifier = "about"
+    name = "关于"
+    url = "/about/"
+    weight = 40
+
+# 网站版权信息
+[params.footer]
+  since = 2018
+  customText = ""
+
+# 网站主题设置
+[params.appearance]
+  # 主题模式
+  theme = "auto"
+  # 默认主题模式
+  defaultTheme = "light"
+  # 是否显示返回顶部按钮
+  backToTop = true
+  # 是否显示面包屑导航
+  breadcrumb = true
+  # 是否显示文章字数统计
+  wordCount = true
+  # 是否显示文章阅读时间
+  readingTime = true
+  # 是否显示文章最后修改时间
+  lastMod = true
+  # 是否显示文章作者
+  author = true
+  # 是否显示文章日期
+  date = true
+  # 是否显示文章分类
+  categories = true
+  # 是否显示文章标签
+  tags = true
+  # 是否显示文章分享按钮
+  share = true
+  # 是否显示文章评论
+  comment = true
+  # 是否显示文章目录
+  toc = true
+  # 是否显示文章目录自动展开
+  tocOpen = true
+  # 是否显示文章目录数字
+  tocNumber = true
+  # 是否显示文章目录图标
+  tocIcon = true
+  # 是否显示文章目录滚动
+  tocScroll = true
+  # 是否显示文章目录固定
+  tocFixed = true
+  # 是否显示文章目录最小化
+  tocMinimize = true
+  # 是否显示文章目录最小化按钮
+  tocMinimizeButton = true
+  # 是否显示文章目录最小化按钮图标
+  tocMinimizeButtonIcon = true
+  # 是否显示文章目录最小化按钮文本
+  tocMinimizeButtonText = true
+  # 是否显示文章目录最小化按钮提示
+  tocMinimizeButtonTooltip = true
+  # 是否显示文章目录最小化按钮位置
+  tocMinimizeButtonPosition = "right"
+  # 是否显示文章目录最小化按钮动画
+  tocMinimizeButtonAnimation = true
+  # 是否显示文章目录最小化按钮动画时间
+  tocMinimizeButtonAnimationDuration = 200
+  # 是否显示文章目录最小化按钮动画延迟
+  tocMinimizeButtonAnimationDelay = 0
+  # 是否显示文章目录最小化按钮动画曲线
+  tocMinimizeButtonAnimationCurve = "ease-in-out"
+  # 是否显示文章目录最小化按钮动画方向
+  tocMinimizeButtonAnimationDirection = "normal"
+  # 是否显示文章目录最小化按钮动画填充模式
+  tocMinimizeButtonAnimationFillMode = "forwards"
+  # 是否显示文章目录最小化按钮动画迭代次数
+  tocMinimizeButtonAnimationIterationCount = 1
+  # 是否显示文章目录最小化按钮动画播放状态
+  tocMinimizeButtonAnimationPlayState = "running"
+  # 是否显示文章目录最小化按钮动画时间函数
+  tocMinimizeButtonAnimationTimingFunction = "ease-in-out"
+  # 是否显示文章目录最小化按钮动画属性
+  tocMinimizeButtonAnimationProperties = ["transform", "opacity"]
+  # 是否显示文章目录最小化按钮动画值
+  tocMinimizeButtonAnimationValues = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（最小化状态）
+  tocMinimizeButtonAnimationValuesMinimized = ["translateX(100%)", "0"]
+  # 是否显示文章目录最小化按钮动画值（展开状态）
+  tocMinimizeButtonAnimationValuesExpanded = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（悬停状态）
+  tocMinimizeButtonAnimationValuesHover = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（激活状态）
+  tocMinimizeButtonAnimationValuesActive = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（焦点状态）
+  tocMinimizeButtonAnimationValuesFocus = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（禁用状态）
+  tocMinimizeButtonAnimationValuesDisabled = ["translateX(0)", "0.5"]
+  # 是否显示文章目录最小化按钮动画值（选中状态）
+  tocMinimizeButtonAnimationValuesSelected = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（检查状态）
+  tocMinimizeButtonAnimationValuesChecked = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（无效状态）
+  tocMinimizeButtonAnimationValuesInvalid = ["translateX(0)", "0.5"]
+  # 是否显示文章目录最小化按钮动画值（有效状态）
+  tocMinimizeButtonAnimationValuesValid = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（只读状态）
+  tocMinimizeButtonAnimationValuesReadOnly = ["translateX(0)", "0.5"]
+  # 是否显示文章目录最小化按钮动画值（必需状态）
+  tocMinimizeButtonAnimationValuesRequired = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（可选状态）
+  tocMinimizeButtonAnimationValuesOptional = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（默认状态）
+  tocMinimizeButtonAnimationValuesDefault = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（自定义状态）
+  tocMinimizeButtonAnimationValuesCustom = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（自定义状态）
+  tocMinimizeButtonAnimationValuesCustom2 = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（自定义状态）
+  tocMinimizeButtonAnimationValuesCustom3 = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（自定义状态）
+  tocMinimizeButtonAnimationValuesCustom4 = ["translateX(0)", "1"]
+  # 是否显示文章目录最小化按钮动画值（自定义状态）
+  tocMinimizeButtonAnimationValuesCustom5 = ["translateX(0)", "1"]
+
+# 网站永久链接设置
+[permalinks]
+  posts = "/:year/:month/:day/:slug.html" 
