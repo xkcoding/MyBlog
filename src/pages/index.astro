@@ -24,7 +24,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
   <main id="main-content" data-layout="index" class="app-layout">
     <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        CodingDiary
+        {SITE.title}
       </h1>
       <a
         target="_blank"
@@ -40,6 +40,9 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         />
         <span class="sr-only">RSS Feed</span>
       </a>
+      <p class="text-lg text-muted-foreground italic mt-2 mb-4">
+        {SITE.desc}
+      </p>
 
       <p>
         不积跬步无以至千里，不积小流无以成江海。这里是 xkcoding 的代码成长日记，
@@ -50,13 +53,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         欢迎阅读
         <LinkButton
           class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="/posts/"
+          href="/posts.html"
         >
           全部文章
         </LinkButton> 或了解
         <LinkButton
           class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="/about/"
+          href="/about.html"
         >
           关于我
         </LinkButton>。
@@ -65,7 +68,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         // only display if at least one social link is enabled
         SOCIALS.length > 0 && (
           <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
+            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">社交链接：</div>
             <Socials />
           </div>
         )
@@ -81,7 +84,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
             { "border-b border-border": recentPosts.length > 0 },
           ]}
         >
-          <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
+          <h2 class="text-2xl font-semibold tracking-wide">精选文章</h2>
           <ul>
             {featuredPosts.map(data => (
               <Card variant="h3" {...data} />
@@ -94,7 +97,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
+          <h2 class="text-2xl font-semibold tracking-wide">最新文章</h2>
           <ul>
             {recentPosts.map(
               (data, index) =>
@@ -106,8 +109,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     }
 
     <div class="my-8 text-center">
-      <LinkButton href="/posts/">
-        All Posts
+      <LinkButton href="/posts.html">
+        全部文章
         <IconArrowRight class="inline-block rtl:-rotate-180" />
       </LinkButton>
     </div>

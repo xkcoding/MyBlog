@@ -5,6 +5,7 @@ import IconSearch from "@/assets/icons/IconSearch.svg";
 import IconArchive from "@/assets/icons/IconArchive.svg";
 import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
+import IconLogo from "@/assets/icons/IconLogo.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
 
@@ -44,9 +45,10 @@ const isActive = (path: string) => {
   >
     <a
       href="/"
-      class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
+      class="absolute py-1 whitespace-nowrap sm:static sm:my-auto flex items-center gap-2"
     >
-      {SITE.title}
+      <IconLogo class="size-7 sm:size-8" />
+      <span class="text-xl leading-8 font-semibold sm:text-2xl sm:leading-none">{SITE.title}</span>
     </a>
     <nav
       id="nav-menu"
@@ -72,52 +74,52 @@ const isActive = (path: string) => {
         ]}
       >
         <li class="col-span-2">
-          <a href="/posts" class:list={{ "active-nav": isActive("/posts") }}>
-            Posts
+          <a href="/posts.html" class:list={{ "active-nav": isActive("/posts") }}>
+            文章
           </a>
         </li>
         <li class="col-span-2">
-          <a href="/tags" class:list={{ "active-nav": isActive("/tags") }}>
-            Tags
+          <a href="/tags.html" class:list={{ "active-nav": isActive("/tags") }}>
+            标签
           </a>
         </li>
         <li class="col-span-2">
-          <a href="/about" class:list={{ "active-nav": isActive("/about") }}>
-            About
+          <a href="/about.html" class:list={{ "active-nav": isActive("/about") }}>
+            关于
           </a>
         </li>
         {
           SITE.showArchives && (
             <li class="col-span-2">
               <LinkButton
-                href="/archives"
+                href="/archives.html"
                 class:list={[
                   "focus-outline flex justify-center p-3 sm:p-1",
                   {
                     "active-nav [&>svg]:stroke-accent": isActive("/archives"),
                   },
                 ]}
-                title="Archives"
-                aria-label="archives"
+                title="归档"
+                aria-label="归档"
               >
                 <IconArchive class="hidden sm:inline-block" />
-                <span class="sm:sr-only">Archives</span>
+                <span class="sm:sr-only">归档</span>
               </LinkButton>
             </li>
           )
         }
         <li class="col-span-1 flex items-center justify-center">
           <LinkButton
-            href="/search"
+            href="/search.html"
             class:list={[
               "focus-outline flex p-3 sm:p-1",
               { "[&>svg]:stroke-accent": isActive("/search") },
             ]}
-            title="Search"
-            aria-label="search"
+            title="搜索"
+            aria-label="搜索"
           >
             <IconSearch />
-            <span class="sr-only">Search</span>
+            <span class="sr-only">搜索</span>
           </LinkButton>
         </li>
         {
@@ -126,8 +128,8 @@ const isActive = (path: string) => {
               <button
                 id="theme-btn"
                 class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent"
-                title="Toggles light & dark"
-                aria-label="auto"
+                title="切换亮暗模式"
+                aria-label="切换主题"
                 aria-live="polite"
               >
                 <IconMoon class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
