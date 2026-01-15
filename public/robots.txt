@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xkcoding.com/sitemap-index.xml
