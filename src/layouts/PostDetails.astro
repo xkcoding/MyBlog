@@ -255,9 +255,11 @@ const nextPost =
       // Add language label above code block (outside, as sibling)
       if (lang && !hasFileNameOffset) {
         const langLabel = document.createElement("span");
-        langLabel.className = "text-xs text-foreground/50";
+        langLabel.className = "block text-xs text-foreground/50";
         langLabel.textContent = lang;
         wrapper.appendChild(langLabel);
+        // Remove default margin-top from code block when label exists
+        codeBlock.style.marginTop = "0.25rem";
       }
 
       // Determine the top positioning class for copy button
