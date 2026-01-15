@@ -138,7 +138,7 @@ const nextPost =
           >
             <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
             <div>
-              <span>Previous Post</span>
+              <span>上一篇</span>
               <div class="text-sm text-accent/85">{prevPost.title}</div>
             </div>
           </a>
@@ -151,7 +151,7 @@ const nextPost =
             class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
           >
             <div>
-              <span>Next Post</span>
+              <span>下一篇</span>
               <div class="text-sm text-accent/85">{nextPost.title}</div>
             </div>
             <IconChevronRight class="inline-block flex-none rtl:rotate-180" />
@@ -227,8 +227,7 @@ const nextPost =
   }
   addHeadingLinks();
 
-  /** Attaches copy buttons to code blocks in the document,
-   * allowing users to copy code easily. */
+  /** Attaches copy buttons and language labels to code blocks */
   function attachCopyButtons() {
     const copyButtonLabel = "Copy";
     const codeBlocks = Array.from(document.querySelectorAll("pre"));
@@ -242,10 +241,27 @@ const nextPost =
       const hasFileNameOffset =
         computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
 
-      // Determine the top positioning class
-      const topClass = hasFileNameOffset
-        ? "top-(--file-name-offset)"
-        : "-top-3";
+      // Get language from data-lang attribute
+      const lang = codeBlock.getAttribute("data-lang");
+
+      // Remove any existing language label spans inside code block (cleanup old code)
+      const existingLabels = codeBlock.querySelectorAll("span.select-none");
+      existingLabels.forEach(label => {
+        if (label.textContent === lang) {
+          label.remove();
+        }
+      });
+
+      // Add language label above code block (outside, as sibling)
+      if (lang && !hasFileNameOffset) {
+        const langLabel = document.createElement("span");
+        langLabel.className = "text-xs text-foreground/50";
+        langLabel.textContent = lang;
+        wrapper.appendChild(langLabel);
+      }
+
+      // Determine the top positioning class for copy button
+      const topClass = hasFileNameOffset ? "top-(--file-name-offset)" : "top-2";
 
       const copyButton = document.createElement("button");
       copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;

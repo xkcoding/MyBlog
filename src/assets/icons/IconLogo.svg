@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <style>
+    .logo-bg { fill: var(--accent, #006cac); }
+    .logo-spine { fill: color-mix(in srgb, var(--accent, #006cac) 70%, black); }
+    .logo-content { stroke: #fff; fill: none; }
+    .logo-dot { fill: #fff; }
+    .logo-line { stroke: #fff; }
+  </style>
+  <!-- 日记本背景 -->
+  <rect class="logo-bg" x="20" y="8" width="88" height="112" rx="8" ry="8"/>
+  <!-- 日记本装订线 -->
+  <rect class="logo-spine" x="20" y="8" width="12" height="112" rx="4" ry="4"/>
+  <!-- 装订孔 -->
+  <circle class="logo-dot" cx="26" cy="28" r="4"/>
+  <circle class="logo-dot" cx="26" cy="64" r="4"/>
+  <circle class="logo-dot" cx="26" cy="100" r="4"/>
+  <!-- 代码符号 </> -->
+  <g class="logo-content" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="52,42 40,58 52,74"/>
+    <polyline points="84,42 96,58 84,74"/>
+    <line x1="76" y1="36" x2="60" y2="80"/>
+  </g>
+  <!-- 底部横线 -->
+  <line class="logo-line" x1="44" y1="94" x2="96" y2="94" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <line class="logo-line" x1="44" y1="106" x2="80" y2="106" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+</svg>

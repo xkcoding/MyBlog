@@ -16,11 +16,6 @@ export const transformerFileName = ({
   hideDot = false,
 } = {}) => ({
   pre(node) {
-    // Add CSS custom property to the node
-    const fileNameOffset = style === "v1" ? "0.75rem" : "-0.75rem";
-    node.properties.style =
-      (node.properties.style || "") + `--file-name-offset: ${fileNameOffset};`;
-
     const raw = this.options.meta?.__raw?.split(" ");
 
     if (!raw) return;
@@ -36,6 +31,11 @@ export const transformerFileName = ({
     const file = metaMap.get("file");
 
     if (!file) return;
+
+    // Add CSS custom property to the node (only when file exists)
+    const fileNameOffset = style === "v1" ? "0.75rem" : "-0.75rem";
+    node.properties.style =
+      (node.properties.style || "") + `--file-name-offset: ${fileNameOffset};`;
 
     // Add additional margin to code block
     this.addClassToHast(

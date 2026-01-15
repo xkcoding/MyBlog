@@ -6,14 +6,14 @@ export const SITE = {
   title: "CodingDiary",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
-  postPerIndex: 4,
+  postPerIndex: 8,
   postPerPage: 10,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
   showArchives: true,
   showBackButton: true,
   editPost: {
     enabled: true,
-    text: "Suggest Changes",
+    text: "编辑页面",
     url: "https://github.com/xkcoding/xkcoding.github.io/edit/main/src/data/blog",
   },
   dynamicOgImage: true,

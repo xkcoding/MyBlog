@@ -15,18 +15,30 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
   class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
   {...attrs}
 >
-  <div
-    class:list={[
-      "py-6 sm:py-4",
-      "border-t border-border",
-      "flex flex-col items-center justify-between sm:flex-row-reverse",
-    ]}
-  >
-    <Socials />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>Copyright &#169; {currentYear}</span>
-      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>All rights reserved.</span>
+  <div class="py-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2">
+    <div class="flex items-center gap-1 text-sm text-foreground/70">
+      <span>&#169; {currentYear} xkcoding</span>
+      <span class="text-foreground/40">·</span>
+      <span>保留所有权利</span>
+    </div>
+    <div class="flex items-center gap-2 text-xs text-foreground/50">
+      <a
+        href="https://beian.miit.gov.cn/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="transition-colors hover:text-accent"
+      >
+        浙ICP备15019787号-1
+      </a>
+      <span>|</span>
+      <a
+        href="https://www.beian.gov.cn/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="transition-colors hover:text-accent"
+      >
+        浙公网安备33011002018177号
+      </a>
     </div>
   </div>
 </footer>
