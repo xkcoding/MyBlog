@@ -6,14 +6,28 @@ import Datetime from "./Datetime.astro";
 
 type Props = {
   variant?: "h2" | "h3";
+  class?: string;
+  "data-weight"?: string | number;
+  style?: string;
+  section?: string;
 } & CollectionEntry<"blog">;
 
-const { variant: Heading = "h2", id, data, filePath, body } = Astro.props;
+const {
+  variant: Heading = "h2",
+  id,
+  data,
+  filePath,
+  body,
+  class: className,
+  "data-weight": dataWeight,
+  style,
+  section = "",
+} = Astro.props;
 
-const { title, description, ...props } = data;
+const { title, description, featured, ...props } = data;
 
 // 自动生成摘要：如果 description 为空，从文章内容提取
-function getExcerpt(content: string, maxLength: number = 120): string {
+function getExcerpt(content: string, maxLength: number = 350): string {
   // 移除 frontmatter、HTML 标签、Markdown 语法
   const cleaned = content
     .replace(/---[\s\S]*?---/, "") // 移除 frontmatter
@@ -34,21 +48,29 @@ function getExcerpt(content: string, maxLength: number = 120): string {
 const excerpt = description || (body ? getExcerpt(body) : "");
 ---
 
-<li class="my-6">
-  <a
-    href={getPath(id, filePath)}
-    class:list={[
-      "inline-block text-lg font-medium text-accent",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
-    ]}
-  >
-    <Heading
-      style={{ viewTransitionName: slugifyStr(title.replaceAll(".", "-")) }}
+<li class:list={["my-6", className]} data-weight={dataWeight} style={style}>
+  <div class="flex items-center gap-2">
+    <a
+      href={getPath(id, filePath)}
+      class:list={[
+        "inline-block text-lg font-medium text-accent",
+        "decoration-dashed underline-offset-4 hover:underline",
+        "focus-visible:no-underline focus-visible:underline-offset-0",
+      ]}
     >
-      {title}
-    </Heading>
-  </a>
+      <Heading
+        style={{ viewTransitionName: slugifyStr(section ? `${section}-${id}` : id) }}
+      >
+        {title}
+      </Heading>
+    </a>
+    {featured && (
+      <span class="featured-badge shrink-0 inline-flex items-center gap-0.5 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 px-2 py-0.5 text-xs font-medium text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/30">
+        <span class="animate-pulse">🔥</span>
+        推荐
+      </span>
+    )}
+  </div>
   <Datetime {...props} />
-  {excerpt && <p class="text-foreground/80 mt-1 line-clamp-2">{excerpt}</p>}
+  {excerpt && <p class="text-foreground/80 mt-1 line-clamp-3">{excerpt}</p>}
 </li>

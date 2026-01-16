@@ -16,7 +16,7 @@ const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const recentPosts = sortedPosts;
 ---
 
 <Layout>
@@ -78,16 +78,26 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     {
       featuredPosts.length > 0 && (
         <section
-          id="featured"
+          id="recommended"
           class:list={[
             "pt-12 pb-6",
             { "border-b border-border": recentPosts.length > 0 },
           ]}
         >
-          <h2 class="text-2xl font-semibold tracking-wide">精选文章</h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
+          <h2 class="text-2xl font-semibold tracking-wide">推荐阅读</h2>
+          <ul id="recommended-list">
+            {featuredPosts.map((data, index) => (
+              <Card
+                variant="h3"
+                class="recommended-item"
+                section="featured"
+                data-weight={Math.exp(
+                  -(Date.now() - new Date(data.data.pubDatetime).getTime()) /
+                    (1000 * 60 * 60 * 24 * 180)
+                )}
+                style={index >= 3 ? "display: none;" : ""}
+                {...data}
+              />
             ))}
           </ul>
         </section>
@@ -101,7 +111,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
           <ul>
             {recentPosts.map(
               (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
+                index < SITE.postPerIndex && <Card variant="h3" section="recent" {...data} />
             )}
           </ul>
         </section>
@@ -120,10 +130,51 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset?.layout;
-    if (indexLayout) {
+    const mainContent = document.querySelector("#main-content") as HTMLElement;
+    if (mainContent?.dataset?.layout) {
       sessionStorage.setItem("backUrl", "/");
     }
   });
+</script>
+
+<script is:inline>
+  (function() {
+    const items = Array.from(document.querySelectorAll(".recommended-item"));
+    const SHOW_COUNT = 3;
+
+    if (items.length <= SHOW_COUNT) return;
+
+    function weightedRandomSelect() {
+      items.forEach(item => (item.style.display = "none"));
+
+      const pool = items.map(item => ({
+        el: item,
+        weight: parseFloat(item.dataset.weight || "1"),
+      }));
+
+      for (let i = 0; i < SHOW_COUNT && pool.length > 0; i++) {
+        const total = pool.reduce((sum, p) => sum + p.weight, 0);
+        let rand = Math.random() * total;
+
+        for (let j = 0; j < pool.length; j++) {
+          rand -= pool[j].weight;
+          if (rand <= 0) {
+            pool[j].el.style.display = "";
+            pool.splice(j, 1);
+            break;
+          }
+        }
+      }
+      console.log("[推荐轮换]", new Date().toLocaleTimeString());
+    }
+
+    weightedRandomSelect();
+    const intervalId = setInterval(weightedRandomSelect, 30000);
+
+    // 离开页面时清除定时器
+    document.addEventListener("astro:before-swap", function cleanup() {
+      clearInterval(intervalId);
+      document.removeEventListener("astro:before-swap", cleanup);
+    });
+  })();
 </script>

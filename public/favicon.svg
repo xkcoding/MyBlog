@@ -1,27 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
   <style>
-    .fav-bg { fill: #006cac; }
-    .fav-spine { fill: #004d7a; }
+    .fav-bg { fill: #8b5cf6; }
+    .fav-letter { fill: none; stroke: #fff; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
     @media (prefers-color-scheme: dark) {
       .fav-bg { fill: #ff6b01; }
-      .fav-spine { fill: #cc5500; }
     }
   </style>
-  <!-- 日记本背景 -->
-  <rect class="fav-bg" x="20" y="8" width="88" height="112" rx="8" ry="8"/>
-  <!-- 日记本装订线 -->
-  <rect class="fav-spine" x="20" y="8" width="12" height="112" rx="4" ry="4"/>
-  <!-- 装订孔 -->
-  <circle cx="26" cy="28" r="4" fill="#fff"/>
-  <circle cx="26" cy="64" r="4" fill="#fff"/>
-  <circle cx="26" cy="100" r="4" fill="#fff"/>
-  <!-- 代码符号 </> -->
-  <g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="52,42 40,58 52,74"/>
-    <polyline points="84,42 96,58 84,74"/>
-    <line x1="76" y1="36" x2="60" y2="80"/>
+  <!-- 圆角方形背景 -->
+  <rect class="fav-bg" x="8" y="8" width="112" height="112" rx="22"/>
+  <!-- X 字母 -->
+  <g class="fav-letter">
+    <line x1="24" y1="36" x2="56" y2="92"/>
+    <line x1="56" y1="36" x2="24" y2="92"/>
   </g>
-  <!-- 底部横线代表文字 -->
-  <line x1="44" y1="94" x2="96" y2="94" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
-  <line x1="44" y1="106" x2="80" y2="106" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <!-- K 字母 -->
+  <g class="fav-letter">
+    <line x1="72" y1="36" x2="72" y2="92"/>
+    <line x1="72" y1="64" x2="104" y2="36"/>
+    <line x1="72" y1="64" x2="104" y2="92"/>
+  </g>
 </svg>
