@@ -1,0 +1,80 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { slugifyStr } from "@/utils/slugify";
+import { getPath } from "@/utils/getPath";
+import Datetime from "./Datetime.astro";
+
+type Props = {
+  variant?: "h2" | "h3";
+  class?: string;
+  "data-weight"?: string | number;
+  style?: string;
+  section?: string;
+} & CollectionEntry<"blog">;
+
+const {
+  variant: Heading = "h2",
+  id,
+  data,
+  filePath,
+  body,
+  class: className,
+  "data-weight": dataWeight,
+  style,
+  section = "",
+} = Astro.props;
+
+const { title, description, featured, ...props } = data;
+
+// 自动生成摘要：如果 description 为空，从文章内容提取
+function getExcerpt(content: string, maxLength: number = 350): string {
+  // 移除 frontmatter、HTML 标签、Markdown 语法
+  const cleaned = content
+    .replace(/---[\s\S]*?---/, "") // 移除 frontmatter
+    .replace(/<!--more-->/g, "") // 移除 more 标记
+    .replace(/<[^>]+>/g, "") // 移除 HTML 标签
+    .replace(/!\[.*?\]\(.*?\)/g, "") // 移除图片
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // 保留链接文字
+    .replace(/^#+\s+/gm, "") // 移除标题标记
+    .replace(/[*_`~]/g, "") // 移除强调标记
+    .replace(/>\s+/g, "") // 移除引用标记
+    .replace(/\n+/g, " ") // 换行转空格
+    .trim();
+
+  if (cleaned.length <= maxLength) return cleaned;
+  return cleaned.slice(0, maxLength).trim() + "...";
+}
+
+const excerpt = description || (body ? getExcerpt(body) : "");
+---
+
+<li class:list={["my-6", className]} data-weight={dataWeight} style={style}>
+  <div class="flex items-center gap-2">
+    <a
+      href={getPath(id, filePath)}
+      class:list={[
+        "inline-block text-lg font-medium text-accent",
+        "decoration-dashed underline-offset-4 hover:underline",
+        "focus-visible:no-underline focus-visible:underline-offset-0",
+      ]}
+    >
+      <Heading
+        style={{
+          viewTransitionName: slugifyStr(section ? `${section}-${id}` : id),
+        }}
+      >
+        {title}
+      </Heading>
+    </a>
+    {
+      featured && (
+        <span class="featured-badge inline-flex shrink-0 items-center gap-0.5 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 px-2 py-0.5 text-xs font-medium text-orange-600 ring-1 ring-orange-500/30 dark:text-orange-400">
+          <span class="animate-pulse">🔥</span>
+          推荐
+        </span>
+      )
+    }
+  </div>
+  <Datetime {...props} />
+  {excerpt && <p class="mt-1 line-clamp-3 text-foreground/80">{excerpt}</p>}
+</li>

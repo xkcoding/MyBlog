@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <style>
+    .logo-bg { fill: var(--accent, #8b5cf6); }
+    .logo-letter { fill: none; stroke: #fff; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+  <!-- 圆角方形背景 -->
+  <rect class="logo-bg" x="8" y="8" width="112" height="112" rx="22"/>
+  <!-- X 字母 - 线条风格 -->
+  <g class="logo-letter">
+    <line x1="24" y1="36" x2="56" y2="92"/>
+    <line x1="56" y1="36" x2="24" y2="92"/>
+  </g>
+  <!-- K 字母 - 线条风格 -->
+  <g class="logo-letter">
+    <line x1="72" y1="36" x2="72" y2="92"/>
+    <line x1="72" y1="64" x2="104" y2="36"/>
+    <line x1="72" y1="64" x2="104" y2="92"/>
+  </g>
+</svg>
