@@ -219,9 +219,9 @@ jobs:
             else
               echo "⚠️  未检测到 SSL 证书，使用 HTTP..."
 
-              # 使用普通配置启动
+              # 使用普通配置启动（统一使用 myblog-nginx 容器名，与 SSL 续期工作流保持一致）
               docker run -d \
-                --name ${{ env.CONTAINER_NAME }} \
+                --name ${{ env.CONTAINER_NAME }}-nginx \
                 --restart unless-stopped \
                 -p 80:80 \
                 $IMAGE
