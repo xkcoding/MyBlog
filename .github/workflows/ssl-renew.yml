@@ -100,8 +100,9 @@ jobs:
             echo ""
             echo "📜 当前证书信息："
             docker run --rm \
-              -v /opt/myblog/certbot/etc:/etc/letsencrypt:ro \
-              certbot/certbot certificates
+              -v /opt/myblog/certbot/etc:/etc/letsencrypt \
+              -v /opt/myblog/certbot/var:/var/lib/letsencrypt \
+              certbot/certbot certificates || true
 
       - name: Summary
         run: |
