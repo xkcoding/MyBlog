@@ -1,0 +1,55 @@
+name: SSL Certificate Renew
+
+on:
+  # 每月 1 号和 15 号凌晨 3 点执行
+  schedule:
+    - cron: "0 19 1,15 * *" # UTC 19:00 = 北京时间 03:00
+  # 支持手动触发
+  workflow_dispatch:
+
+jobs:
+  renew:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Renew SSL Certificate
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          key: ${{ secrets.ALIYUN_SSH_KEY }}
+          port: ${{ secrets.ALIYUN_PORT || 22 }}
+          script: |
+            echo "🔐 开始检查 SSL 证书续期..."
+
+            # 执行证书续期
+            docker run --rm \
+              -v /opt/myblog/certbot/etc:/etc/letsencrypt \
+              -v /opt/myblog/certbot/var:/var/lib/letsencrypt \
+              -v /opt/myblog/dist:/var/www/html \
+              certbot/certbot renew --quiet
+
+            # 检查续期结果
+            if [ $? -eq 0 ]; then
+              echo "✅ 证书检查/续期完成"
+
+              # 重启 nginx 以加载新证书
+              docker restart myblog-nginx 2>/dev/null || true
+
+              # 显示证书有效期
+              echo "📜 当前证书信息："
+              docker run --rm \
+                -v /opt/myblog/certbot/etc:/etc/letsencrypt:ro \
+                certbot/certbot certificates
+            else
+              echo "❌ 证书续期失败"
+              exit 1
+            fi
+
+      - name: Renewal Summary
+        run: |
+          echo "## 🔐 SSL 证书续期" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **时间**: $(date +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "- **服务器**: \`${{ secrets.ALIYUN_HOST }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **域名**: xkcoding.com, www.xkcoding.com" >> $GITHUB_STEP_SUMMARY
