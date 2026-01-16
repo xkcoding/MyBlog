@@ -59,18 +59,22 @@ const excerpt = description || (body ? getExcerpt(body) : "");
       ]}
     >
       <Heading
-        style={{ viewTransitionName: slugifyStr(section ? `${section}-${id}` : id) }}
+        style={{
+          viewTransitionName: slugifyStr(section ? `${section}-${id}` : id),
+        }}
       >
         {title}
       </Heading>
     </a>
-    {featured && (
-      <span class="featured-badge shrink-0 inline-flex items-center gap-0.5 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 px-2 py-0.5 text-xs font-medium text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/30">
-        <span class="animate-pulse">🔥</span>
-        推荐
-      </span>
-    )}
+    {
+      featured && (
+        <span class="featured-badge inline-flex shrink-0 items-center gap-0.5 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 px-2 py-0.5 text-xs font-medium text-orange-600 ring-1 ring-orange-500/30 dark:text-orange-400">
+          <span class="animate-pulse">🔥</span>
+          推荐
+        </span>
+      )
+    }
   </div>
   <Datetime {...props} />
-  {excerpt && <p class="text-foreground/80 mt-1 line-clamp-3">{excerpt}</p>}
+  {excerpt && <p class="mt-1 line-clamp-3 text-foreground/80">{excerpt}</p>}
 </li>

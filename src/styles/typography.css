@@ -101,7 +101,6 @@
     @apply bg-(--shiki-dark-bg) text-(--shiki-dark) [&_span]:text-(--shiki-dark);
   }
 
-
   /* Styles for Shiki transformers */
   /* https://shiki.style/packages/transformers */
   .astro-code {
