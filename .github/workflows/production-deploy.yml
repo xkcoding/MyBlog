@@ -145,7 +145,7 @@ jobs:
             # HTTP - 重定向到 HTTPS
             server {
                 listen 80;
-                server_name xkcoding.com www.xkcoding.com;
+                server_name xkcoding.com www.xkcoding.com blog.xkcoding.com;
 
                 location /.well-known/acme-challenge/ {
                     root /usr/share/nginx/html;
@@ -159,7 +159,7 @@ jobs:
             # HTTPS
             server {
                 listen 443 ssl;
-                server_name xkcoding.com www.xkcoding.com;
+                server_name xkcoding.com www.xkcoding.com blog.xkcoding.com;
 
                 ssl_certificate /etc/letsencrypt/live/xkcoding.com/fullchain.pem;
                 ssl_certificate_key /etc/letsencrypt/live/xkcoding.com/privkey.pem;
