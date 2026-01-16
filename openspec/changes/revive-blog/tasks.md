@@ -57,95 +57,98 @@
 - [-] 2016-12-13.elasticsearch-get-start.md
 
 #### 2017 年 (12 篇)
-- [ ] 2017-01-06.connect-oracle11g-rac-url.md
-- [ ] 2017-07-12.jdk-map-source-explore.md
-- [ ] 2017-07-18.win10-download.md
-- [ ] 2017-07-19.spring-boot-mybatis-logback.md
-- [ ] 2017-08-02.customize-blocked-queue.md
-- [ ] 2017-08-31.mysql-start-error.md
-- [ ] 2017-11-01.zookeeper-cluster.md
-- [ ] 2017-11-08.dubbo-admin-install.md
-- [ ] 2017-11-10.druid-oracle-pscache.md
-- [ ] 2017-11-14.mysql-chinese-character-encoding.md
-- [ ] 2017-12-05.redux-and-mobx-first.md
-- [ ] 2017-12-11.tips-for-improve-java-skill.md
+- [x] 2017-01-06.connect-oracle11g-rac-url.md
+- [x] 2017-07-12.jdk-map-source-explore.md
+- [x] 2017-07-18.win10-download.md
+- [x] 2017-07-19.spring-boot-mybatis-logback.md
+- [x] 2017-08-02.customize-blocked-queue.md
+- [x] 2017-08-31.mysql-start-error.md
+- [x] 2017-11-01.zookeeper-cluster.md
+- [x] 2017-11-08.dubbo-admin-install.md
+- [x] 2017-11-10.druid-oracle-pscache.md
+- [x] 2017-11-14.mysql-chinese-character-encoding.md
+- [x] 2017-12-05.redux-and-mobx-first.md
+- [x] 2017-12-11.tips-for-improve-java-skill.md
 
 #### 2018 年 (13 篇)
-- [ ] 2018-01-03.devops-gitlab.md
-- [ ] 2018-01-04.devops-jenkins.md
-- [ ] 2018-01-11.camelcase-underline-transform.md
-- [ ] 2018-01-12.elasticsearch-note.md
-- [ ] 2018-01-16.db-page-sqls.md
-- [ ] 2018-02-05.osx-software-lists.md
-- [ ] 2018-02-07.regular-expression-list.md
-- [ ] 2018-07-30.java8-learning.md
-- [ ] 2018-08-20.spring-boot-global-exception-handler.md
-- [ ] 2018-09-18.how-to-update-the-fork-project.md
-- [ ] 2018-09-20.query-language-differences-between-neo4j-and-mysql.md
-- [ ] 2018-09-28.run-node-service-in-background.md
-- [ ] 2018-11-07.spring-boot-start.md
+- [x] 2018-01-03.devops-gitlab.md
+- [x] 2018-01-04.devops-jenkins.md
+- [x] 2018-01-11.camelcase-underline-transform.md
+- [x] 2018-01-12.elasticsearch-note.md
+- [x] 2018-01-16.db-page-sqls.md
+- [x] 2018-02-05.osx-software-lists.md
+- [x] 2018-02-07.regular-expression-list.md
+- [x] 2018-07-30.java8-learning.md
+- [x] 2018-08-20.spring-boot-global-exception-handler.md
+- [x] 2018-09-18.how-to-update-the-fork-project.md
+- [x] 2018-09-20.query-language-differences-between-neo4j-and-mysql.md
+- [x] 2018-09-28.run-node-service-in-background.md
+- [x] 2018-11-07.spring-boot-start.md
 
 #### 2019 年 (28 篇)
-- [ ] 2019-01-01.bye2018-hello2019.md
-- [ ] 2019-01-14.solve-mac-install-minikube-problem.md
-- [ ] 2019-01-17.solve-nginx-413-problem.md
-- [ ] 2019-01-21.modify-git-commit-timestamp.md
-- [ ] 2019-01-30.spring-boot-request-use-enums-params.md
-- [ ] 2019-02-04.use-maven-manage-spring-boot-profile.md
-- [ ] 2019-02-13.design-pattern-simple-factory.md
-- [ ] 2019-02-15.design-pattern-factory-method.md
-- [ ] 2019-02-18.use-mybatis-dynamic-sql-to-build-common-custom-advance-query.md
-- [ ] 2019-03-12.scaffold-doc.md
-- [ ] 2019-04-24.use-vagrant-build-linux-virtual-machine.md
-- [ ] 2019-05-22.spring-boot-login-with-oauth.md
-- [ ] 2019-07-17.jfinal-login-with-oauth.md
-- [ ] 2019-08-06.use-justauth-integration-wechat-enterprise.md
-- [ ] 2019-08-10.design-pattern-abstract-factory.md
-- [ ] 2019-08-12.design-pattern-singleton.md
-- [ ] 2019-08-14.design-pattern-prototype.md
-- [ ] 2019-08-20.design-pattern-proxy.md
-- [ ] 2019-08-27.design-pattern-delegate.md
-- [ ] 2019-08-29.early-experience-about-github-actions.md
-- [ ] 2019-09-03.design-pattern-strategy.md
-- [ ] 2019-09-13.design-pattern-adapter.md
-- [ ] 2019-10-08.docker-easy-mock.md
-- [ ] 2019-10-14.easy-mock-syntax.md
-- [ ] 2019-10-16.design-pattern-template.md
-- [ ] 2019-10-25.design-pattern-observer.md
-- [ ] 2019-11-11.design-pattern-decorator.md
-- [ ] 2019-12-26.xkcoding-simple-http.md
+- [x] 2019-01-01.bye2018-hello2019.md
+- [x] 2019-01-14.solve-mac-install-minikube-problem.md
+- [x] 2019-01-17.solve-nginx-413-problem.md
+- [x] 2019-01-21.modify-git-commit-timestamp.md
+- [x] 2019-01-30.spring-boot-request-use-enums-params.md
+- [x] 2019-02-04.use-maven-manage-spring-boot-profile.md
+- [x] 2019-02-13.design-pattern-simple-factory.md
+- [x] 2019-02-15.design-pattern-factory-method.md
+- [x] 2019-02-18.use-mybatis-dynamic-sql-to-build-common-custom-advance-query.md
+- [x] 2019-03-12.scaffold-doc.md
+- [x] 2019-04-24.use-vagrant-build-linux-virtual-machine.md
+- [x] 2019-05-22.spring-boot-login-with-oauth.md
+- [x] 2019-07-17.jfinal-login-with-oauth.md
+- [x] 2019-08-06.use-justauth-integration-wechat-enterprise.md
+- [x] 2019-08-10.design-pattern-abstract-factory.md
+- [x] 2019-08-12.design-pattern-singleton.md
+- [x] 2019-08-14.design-pattern-prototype.md
+- [x] 2019-08-20.design-pattern-proxy.md
+- [x] 2019-08-27.design-pattern-delegate.md
+- [x] 2019-08-29.early-experience-about-github-actions.md
+- [x] 2019-09-03.design-pattern-strategy.md
+- [x] 2019-09-13.design-pattern-adapter.md
+- [x] 2019-10-08.docker-easy-mock.md
+- [x] 2019-10-14.easy-mock-syntax.md
+- [x] 2019-10-16.design-pattern-template.md
+- [x] 2019-10-25.design-pattern-observer.md
+- [x] 2019-11-11.design-pattern-decorator.md
+- [x] 2019-12-26.xkcoding-simple-http.md
 
 #### 2020 年 (14 篇)
-- [ ] 2020-01-01.bye2019-hello2020.md
-- [ ] 2020-04-01.somewords-about-dissmission-2020.md
-- [ ] 2020-04-20.how-to-design-your-own-rpc-framework-1.md
-- [ ] 2020-05-12.how-to-design-your-own-rpc-framework-2.md
-- [ ] 2020-05-26.how-to-design-your-own-rpc-framework-3.md
-- [ ] 2020-06-01.how-does-my-blog-integrate-cicd.md
-- [ ] 2020-06-05.fix-quartz-job-cannot-autowired-spring-beans.md
-- [ ] 2020-06-28.video-tutorial-of-spring-boot-demo.md
-- [ ] 2020-07-28.mourning-grandpa.md
-- [ ] 2020-08-31.justauth-spring-boot-starter-publish-1-3-4-beta.md
-- [ ] 2020-09-13.what-i-like-to-do-0.md
-- [ ] 2020-10-01.Q2-Q3-2020.md
-- [ ] 2020-10-11.how-to-use-strategy-design-pattern-in-spring.md
-- [ ] 2020-11-02.quick-run-you-own-yiyan.md
+- [x] 2020-01-01.bye2019-hello2020.md
+- [x] 2020-04-01.somewords-about-dissmission-2020.md
+- [x] 2020-04-20.how-to-design-your-own-rpc-framework-1.md
+- [x] 2020-05-12.how-to-design-your-own-rpc-framework-2.md
+- [x] 2020-05-26.how-to-design-your-own-rpc-framework-3.md
+- [x] 2020-06-01.how-does-my-blog-integrate-cicd.md
+- [x] 2020-06-05.fix-quartz-job-cannot-autowired-spring-beans.md
+- [x] 2020-06-28.video-tutorial-of-spring-boot-demo.md
+- [x] 2020-07-28.mourning-grandpa.md
+- [x] 2020-08-31.justauth-spring-boot-starter-publish-1-3-4-beta.md
+- [x] 2020-09-13.what-i-like-to-do-0.md
+- [x] 2020-10-01.Q2-Q3-2020.md
+- [x] 2020-10-11.how-to-use-strategy-design-pattern-in-spring.md
+- [x] 2020-11-02.quick-run-you-own-yiyan.md
 
-#### 2021 年 (10 篇)
-- [ ] 2021-01-18.Q4-2020-and-year-summary.md
-- [ ] 2021-02-24.reading-notes-about-fubabaqiongbaba.md
-- [ ] 2021-03-06.reading-notes-about-meitian5fenzhongwanzhuankubernetes.md
-- [ ] 2021-03-10.fix-error-about-python-package-install-on-big-sur.md
-- [ ] 2021-03-15.run-local-k8s-cluster-quickly.md
-- [ ] 2021-03-16.reading-notes-about-shidifuqiaobusizhuan.md
-- [ ] 2021-04-14.run-local-zookeeper-cluster-with-docker.md
-- [ ] 2021-04-15.reading-notes-about-xiaoshihouzhensha-juranpanzhezhangda.md
-- [ ] 2021-04-22.when-lombok-met-mapstruct.md
-- [ ] 2021-05-01.happy-dev-run-local-dns-server.md
-- [ ] 2021-05-06.reading-notes-about-flinkrumenyushizhan.md
+#### 2021 年 (11 篇)
+- [x] 2021-01-18.Q4-2020-and-year-summary.md
+- [x] 2021-02-24.reading-notes-about-fubabaqiongbaba.md
+- [x] 2021-03-06.reading-notes-about-meitian5fenzhongwanzhuankubernetes.md
+- [x] 2021-03-10.fix-error-about-python-package-install-on-big-sur.md
+- [x] 2021-03-15.run-local-k8s-cluster-quickly.md
+- [x] 2021-03-16.reading-notes-about-shidifuqiaobusizhuan.md
+- [x] 2021-04-14.run-local-zookeeper-cluster-with-docker.md
+- [x] 2021-04-15.reading-notes-about-xiaoshihouzhensha-juranpanzhezhangda.md
+- [x] 2021-04-22.when-lombok-met-mapstruct.md
+- [x] 2021-05-01.happy-dev-run-local-dns-server.md
+- [x] 2021-05-06.reading-notes-about-flinkrumenyushizhan.md
 
 #### 2022 年 (1 篇)
-- [ ] 2022-01-04.fix-error-about-jd-gui-on-big-sur.md
+- [x] 2022-01-04.fix-error-about-jd-gui-on-big-sur.md
+
+#### 2026 年 (1 篇)
+- [x] 2026-01-07.firecrawl-web-scraping-for-llm.md
 
 ## 3. 文章迁移
 
@@ -171,15 +174,15 @@
 - [x] 3.3.1 本地运行 `pnpm run dev`
 - [x] 3.3.2 构建测试通过（163 页面）
 - [x] 3.3.3 检查代码块高亮是否正常
-- [ ] 3.3.4 检查图片是否正常显示（需部署后验证）
-- [ ] 3.3.5 检查表格渲染是否正常（需部署后验证）
+- [x] 3.3.4 检查图片是否正常显示（需部署后验证）
+- [x] 3.3.5 检查表格渲染是否正常（需部署后验证）
 - [ ] 3.3.6 修复发现的渲染问题
 
 ## 4. 功能配置
 
 ### 4.1 搜索功能
 - [x] 4.1.1 验证 Pagefind 搜索正常工作（89 篇文章已索引）
-- [ ] 4.1.2 测试中文搜索效果（需部署后验证）
+- [x] 4.1.2 测试中文搜索效果（需部署后验证）
 
 ### 4.2 SEO 配置
 - [x] 4.2.1 更新 `public/robots.txt`
@@ -197,11 +200,11 @@
 ### 5.1 本地验证
 - [x] 5.1.1 完整构建测试 `pnpm run build`（163 页面，157s）
 - [x] 5.1.2 预览构建结果 `pnpm run preview`
-- [ ] 5.1.3 检查所有页面渲染正常
-- [ ] 5.1.4 验证深色模式切换
+- [x] 5.1.3 检查所有页面渲染正常
+- [x] 5.1.4 验证深色模式切换
 - [ ] 5.1.5 验证响应式布局（移动端）
-- [ ] 5.1.6 验证搜索功能
-- [ ] 5.1.7 验证 RSS 订阅
+- [x] 5.1.6 验证搜索功能
+- [x] 5.1.7 验证 RSS 订阅
 
 ### 5.2 性能测试
 - [ ] 5.2.1 运行 Lighthouse 测试
