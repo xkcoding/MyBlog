@@ -49,6 +49,11 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },
+    server: {
+      watch: {
+        ignored: ["**/openspec/**", "**/hexo-backup/**"],
+      },
+    },
   },
   image: {
     responsiveStyles: true,
