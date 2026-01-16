@@ -35,6 +35,8 @@ jobs:
 
       - name: Build with Astro
         uses: withastro/action@v3
+        env:
+          BASE_PATH: /MyBlog
 
   deploy:
     needs: build
