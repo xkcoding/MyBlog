@@ -123,16 +123,42 @@ jobs:
             # 拉取最新镜像
             docker pull $IMAGE
 
-            # 停止并删除旧容器（如果存在）
-            docker stop ${{ env.CONTAINER_NAME }} 2>/dev/null || true
-            docker rm ${{ env.CONTAINER_NAME }} 2>/dev/null || true
+            # 创建部署目录
+            mkdir -p /opt/myblog/dist
 
-            # 启动新容器
-            docker run -d \
-              --name ${{ env.CONTAINER_NAME }} \
-              --restart unless-stopped \
-              -p 80:80 \
-              $IMAGE
+            # 停止并删除旧容器（如果存在）
+            docker stop ${{ env.CONTAINER_NAME }} ${{ env.CONTAINER_NAME }}-nginx 2>/dev/null || true
+            docker rm ${{ env.CONTAINER_NAME }} ${{ env.CONTAINER_NAME }}-nginx 2>/dev/null || true
+
+            # 从镜像中提取静态文件
+            docker create --name temp-extract $IMAGE
+            docker cp temp-extract:/usr/share/nginx/html/. /opt/myblog/dist/
+            docker rm temp-extract
+
+            # 检查是否有 SSL 证书
+            if [ -d "/opt/myblog/certbot/etc/live/xkcoding.com" ]; then
+              echo "🔐 检测到 SSL 证书，启用 HTTPS..."
+
+              # 使用 SSL 配置启动 nginx
+              docker run -d \
+                --name ${{ env.CONTAINER_NAME }}-nginx \
+                --restart unless-stopped \
+                -p 80:80 \
+                -p 443:443 \
+                -v /opt/myblog/dist:/usr/share/nginx/html:ro \
+                -v /opt/myblog/nginx-ssl.conf:/etc/nginx/conf.d/default.conf:ro \
+                -v /opt/myblog/certbot/etc:/etc/letsencrypt:ro \
+                nginx:alpine
+            else
+              echo "⚠️  未检测到 SSL 证书，使用 HTTP..."
+
+              # 使用普通配置启动
+              docker run -d \
+                --name ${{ env.CONTAINER_NAME }} \
+                --restart unless-stopped \
+                -p 80:80 \
+                $IMAGE
+            fi
 
             # 清理旧镜像
             docker image prune -f
