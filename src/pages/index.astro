@@ -1,0 +1,181 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Socials from "@/components/Socials.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Card from "@/components/Card.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import IconRss from "@/assets/icons/IconRss.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import { SITE } from "@/config";
+import { SOCIALS } from "@/constants";
+
+const posts = await getCollection("blog");
+
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts;
+---
+
+<Layout>
+  <Header />
+  <main id="main-content" data-layout="index" class="app-layout">
+    <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
+      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
+        {SITE.title}
+      </h1>
+      <a
+        target="_blank"
+        href="/rss.xml"
+        class="inline-block"
+        aria-label="rss feed"
+        title="RSS Feed"
+      >
+        <IconRss
+          width={20}
+          height={20}
+          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
+        />
+        <span class="sr-only">RSS Feed</span>
+      </a>
+      <p class="text-muted-foreground mt-2 mb-4 text-lg italic">
+        {SITE.desc}
+      </p>
+
+      <p>
+        不积跬步无以至千里，不积小流无以成江海。这里是 xkcoding 的代码成长日记，
+        记录技术学习与实践的点滴，分享设计模式、Spring Boot、Java
+        等领域的心得体会。
+      </p>
+      <p class="mt-2">
+        欢迎阅读
+        <LinkButton
+          class="underline decoration-dashed underline-offset-4 hover:text-accent"
+          href="/posts.html"
+        >
+          全部文章
+        </LinkButton> 或了解
+        <LinkButton
+          class="underline decoration-dashed underline-offset-4 hover:text-accent"
+          href="/about.html"
+        >
+          关于我
+        </LinkButton>。
+      </p>
+      {
+        // only display if at least one social link is enabled
+        SOCIALS.length > 0 && (
+          <div class="mt-4 flex max-sm:flex-col sm:items-center">
+            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">社交链接：</div>
+            <Socials />
+          </div>
+        )
+      }
+    </section>
+
+    {
+      featuredPosts.length > 0 && (
+        <section
+          id="recommended"
+          class:list={[
+            "pt-12 pb-6",
+            { "border-b border-border": recentPosts.length > 0 },
+          ]}
+        >
+          <h2 class="text-2xl font-semibold tracking-wide">推荐阅读</h2>
+          <ul id="recommended-list">
+            {featuredPosts.map((data, index) => (
+              <Card
+                variant="h3"
+                class="recommended-item"
+                section="featured"
+                data-weight={Math.exp(
+                  -(Date.now() - new Date(data.data.pubDatetime).getTime()) /
+                    (1000 * 60 * 60 * 24 * 180)
+                )}
+                style={index >= 3 ? "display: none;" : ""}
+                {...data}
+              />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      recentPosts.length > 0 && (
+        <section id="recent-posts" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">最新文章</h2>
+          <ul>
+            {recentPosts.map(
+              (data, index) =>
+                index < SITE.postPerIndex && (
+                  <Card variant="h3" section="recent" {...data} />
+                )
+            )}
+          </ul>
+        </section>
+      )
+    }
+
+    <div class="my-8 text-center">
+      <LinkButton href="/posts.html">
+        全部文章
+        <IconArrowRight class="inline-block rtl:-rotate-180" />
+      </LinkButton>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const mainContent = document.querySelector("#main-content") as HTMLElement;
+    if (mainContent?.dataset?.layout) {
+      sessionStorage.setItem("backUrl", "/");
+    }
+  });
+</script>
+
+<script is:inline>
+  (function () {
+    const items = Array.from(document.querySelectorAll(".recommended-item"));
+    const SHOW_COUNT = 3;
+
+    if (items.length <= SHOW_COUNT) return;
+
+    function weightedRandomSelect() {
+      items.forEach(item => (item.style.display = "none"));
+
+      const pool = items.map(item => ({
+        el: item,
+        weight: parseFloat(item.dataset.weight || "1"),
+      }));
+
+      for (let i = 0; i < SHOW_COUNT && pool.length > 0; i++) {
+        const total = pool.reduce((sum, p) => sum + p.weight, 0);
+        let rand = Math.random() * total;
+
+        for (let j = 0; j < pool.length; j++) {
+          rand -= pool[j].weight;
+          if (rand <= 0) {
+            pool[j].el.style.display = "";
+            pool.splice(j, 1);
+            break;
+          }
+        }
+      }
+    }
+
+    weightedRandomSelect();
+    const intervalId = setInterval(weightedRandomSelect, 30000);
+
+    // 离开页面时清除定时器
+    document.addEventListener("astro:before-swap", function cleanup() {
+      clearInterval(intervalId);
+      document.removeEventListener("astro:before-swap", cleanup);
+    });
+  })();
+</script>

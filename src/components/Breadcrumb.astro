@@ -1,0 +1,71 @@
+---
+// Remove current url path and remove trailing slash if exists
+const currentUrlPath = Astro.url.pathname.replace(/\/+$/, "");
+
+// Get url array from path
+// eg: /tags/tailwindcss => ['tags', 'tailwindcss']
+const breadcrumbList = currentUrlPath.split("/").slice(1);
+
+// 路径名称映射
+const pathNameMap: Record<string, string> = {
+  posts: "文章",
+  tags: "标签",
+  about: "关于",
+  archives: "归档",
+  search: "搜索",
+};
+
+// if breadcrumb is 首页 > 文章 > 1 <etc>
+// replace 文章 with 文章 (第 X 页)
+if (breadcrumbList[0] === "posts") {
+  const page = Number(breadcrumbList[1]) || 1;
+  breadcrumbList.splice(0, 2, `文章${page > 1 ? ` (第 ${page} 页)` : ""}`);
+}
+
+// if breadcrumb is 首页 > 标签 > [tag] > [page] <etc>
+// replace [tag] > [page] with [tag] (第 X 页)
+if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
+  breadcrumbList.splice(
+    1,
+    3,
+    `${breadcrumbList[1]}${Number(breadcrumbList[2]) === 1 ? "" : " (第 " + breadcrumbList[2] + " 页)"}`
+  );
+}
+
+// 获取显示名称
+function getDisplayName(path: string): string {
+  return pathNameMap[path] || path;
+}
+---
+
+<nav class="app-layout mt-8 mb-1" aria-label="breadcrumb">
+  <ul
+    class="font-light [&>li]:inline [&>li:not(:last-child)>a]:hover:opacity-100"
+  >
+    <li>
+      <a href="/" class="opacity-80">首页</a>
+      <span aria-hidden="true" class="opacity-80">&raquo;</span>
+    </li>
+    {
+      breadcrumbList.map((breadcrumb, index) =>
+        index + 1 === breadcrumbList.length ? (
+          <li>
+            <span
+              class:list={["opacity-75", { lowercase: index > 0 }]}
+              aria-current="page"
+            >
+              {decodeURIComponent(getDisplayName(breadcrumb))}
+            </span>
+          </li>
+        ) : (
+          <li>
+            <a href={`/${breadcrumb}.html`} class="opacity-70">
+              {getDisplayName(breadcrumb)}
+            </a>
+            <span aria-hidden="true">&raquo;</span>
+          </li>
+        )
+      )
+    }
+  </ul>
+</nav>
