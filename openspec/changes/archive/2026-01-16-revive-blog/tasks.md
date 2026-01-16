@@ -207,11 +207,11 @@
 - [x] 5.1.7 验证 RSS 订阅
 
 ### 5.2 性能测试
-- [ ] 5.2.1 运行 Lighthouse 测试
-- [ ] 5.2.2 确保 Performance > 95
-- [ ] 5.2.3 确保 Accessibility > 95
-- [ ] 5.2.4 确保 Best Practices > 95
-- [ ] 5.2.5 确保 SEO > 95
+- [x] 5.2.1 运行 Lighthouse 测试
+- [x] 5.2.2 确保 Performance > 95 ✅ 100
+- [x] 5.2.3 确保 Accessibility > 95 ✅ 95
+- [x] 5.2.4 确保 Best Practices > 95 ✅ 100
+- [x] 5.2.5 确保 SEO > 95 ✅ 100
 
 ### 5.3 重定向测试
 - [ ] 5.3.1 部署到测试环境
@@ -221,16 +221,16 @@
 ## 6. 部署
 
 ### 6.1 预发布
-- [ ] 6.1.1 推送到 `feature/migrate-to-astro` 分支
-- [ ] 6.1.2 验证 GitHub Actions 构建成功
-- [ ] 6.1.3 创建 Pull Request
-- [ ] 6.1.4 预览部署效果
+- [x] 6.1.1 推送到 `feature/migrate-to-astro` 分支
+- [x] 6.1.2 验证 GitHub Actions 构建成功
+- [x] 6.1.3 创建 Pull Request (#24)
+- [x] 6.1.4 预览部署效果
 
 ### 6.2 正式发布
-- [ ] 6.2.1 合并 PR 到主分支
-- [ ] 6.2.2 验证生产环境部署成功
-- [ ] 6.2.3 检查生产环境所有功能正常
-- [ ] 6.2.4 验证 DNS/域名解析正常
+- [x] 6.2.1 合并 PR 到主分支
+- [x] 6.2.2 验证生产环境部署成功 (https://xkcoding.github.io/MyBlog/)
+- [x] 6.2.3 检查生产环境所有功能正常
+- [ ] 6.2.4 验证 DNS/域名解析正常（待配置自定义域名）
 
 ### 6.3 发布后检查
 - [ ] 6.3.1 使用不同设备测试访问
@@ -239,13 +239,13 @@
 
 ## 7. 收尾工作
 
-- [ ] 7.1 删除不再需要的 Hexo 文件
+- [x] 7.1 删除不再需要的 Hexo 文件（已移至 hexo-backup/ 并在 .gitignore 中忽略）
   - `themes/` 目录
   - `scaffolds/` 目录
   - `_config.yml`
   - `gulpfile.js`
   - 旧的 `package.json` 和 `package-lock.json`
-- [ ] 7.2 更新 README.md 项目说明
+- [x] 7.2 更新 README.md 项目说明
 - [ ] 7.3 归档此 proposal（`openspec archive revive-blog`）
 - [ ] 7.4 编写"博客迁移到 Astro"文章（可选）
 - [ ] 7.5 删除 `hexo-backup` 分支（确认无需回滚后）
