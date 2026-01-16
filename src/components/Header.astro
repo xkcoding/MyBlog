@@ -8,6 +8,7 @@ import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import IconLogo from "@/assets/icons/IconLogo.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
+import { getUrl } from "@/utils/getUrl";
 
 const { pathname } = Astro.url;
 
@@ -44,7 +45,7 @@ const isActive = (path: string) => {
     ]}
   >
     <a
-      href="/"
+      href={getUrl("/")}
       class="absolute flex items-center gap-2 py-1 whitespace-nowrap sm:static sm:my-auto"
     >
       <IconLogo class="size-7 sm:size-8" />
@@ -77,20 +78,23 @@ const isActive = (path: string) => {
       >
         <li class="col-span-2">
           <a
-            href="/posts.html"
+            href={getUrl("/posts.html")}
             class:list={{ "active-nav": isActive("/posts") }}
           >
             文章
           </a>
         </li>
         <li class="col-span-2">
-          <a href="/tags.html" class:list={{ "active-nav": isActive("/tags") }}>
+          <a
+            href={getUrl("/tags.html")}
+            class:list={{ "active-nav": isActive("/tags") }}
+          >
             标签
           </a>
         </li>
         <li class="col-span-2">
           <a
-            href="/about.html"
+            href={getUrl("/about.html")}
             class:list={{ "active-nav": isActive("/about") }}
           >
             关于
@@ -100,7 +104,7 @@ const isActive = (path: string) => {
           SITE.showArchives && (
             <li class="col-span-2">
               <LinkButton
-                href="/archives.html"
+                href={getUrl("/archives.html")}
                 class:list={[
                   "focus-outline flex justify-center p-3 sm:p-1",
                   {
@@ -118,7 +122,7 @@ const isActive = (path: string) => {
         }
         <li class="col-span-1 flex items-center justify-center">
           <LinkButton
-            href="/search.html"
+            href={getUrl("/search.html")}
             class:list={[
               "focus-outline flex p-3 sm:p-1",
               { "[&>svg]:stroke-accent": isActive("/search") },

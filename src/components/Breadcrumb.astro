@@ -36,6 +36,8 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
 function getDisplayName(path: string): string {
   return pathNameMap[path] || path;
 }
+
+import { getUrl } from "@/utils/getUrl";
 ---
 
 <nav class="app-layout mt-8 mb-1" aria-label="breadcrumb">
@@ -43,7 +45,7 @@ function getDisplayName(path: string): string {
     class="font-light [&>li]:inline [&>li:not(:last-child)>a]:hover:opacity-100"
   >
     <li>
-      <a href="/" class="opacity-80">首页</a>
+      <a href={getUrl("/")} class="opacity-80">首页</a>
       <span aria-hidden="true" class="opacity-80">&raquo;</span>
     </li>
     {
@@ -59,7 +61,7 @@ function getDisplayName(path: string): string {
           </li>
         ) : (
           <li>
-            <a href={`/${breadcrumb}.html`} class="opacity-70">
+            <a href={getUrl(`/${breadcrumb}.html`)} class="opacity-70">
               {getDisplayName(breadcrumb)}
             </a>
             <span aria-hidden="true">&raquo;</span>

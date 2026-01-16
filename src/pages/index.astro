@@ -11,6 +11,7 @@ import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
+import { getUrl } from "@/utils/getUrl";
 
 const posts = await getCollection("blog");
 
@@ -28,7 +29,7 @@ const recentPosts = sortedPosts;
       </h1>
       <a
         target="_blank"
-        href="/rss.xml"
+        href={getUrl("/rss.xml")}
         class="inline-block"
         aria-label="rss feed"
         title="RSS Feed"
@@ -53,13 +54,13 @@ const recentPosts = sortedPosts;
         欢迎阅读
         <LinkButton
           class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="/posts.html"
+          href={getUrl("/posts.html")}
         >
           全部文章
         </LinkButton> 或了解
         <LinkButton
           class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="/about.html"
+          href={getUrl("/about.html")}
         >
           关于我
         </LinkButton>。
@@ -121,7 +122,7 @@ const recentPosts = sortedPosts;
     }
 
     <div class="my-8 text-center">
-      <LinkButton href="/posts.html">
+      <LinkButton href={getUrl("/posts.html")}>
         全部文章
         <IconArrowRight class="inline-block rtl:-rotate-180" />
       </LinkButton>

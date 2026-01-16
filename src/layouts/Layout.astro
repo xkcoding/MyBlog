@@ -3,6 +3,7 @@ import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
+import { getUrl } from "@/utils/getUrl";
 import "@/styles/global.css";
 
 type Props = {
@@ -57,7 +58,7 @@ const structuredData = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={getUrl("/favicon.svg")} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
@@ -72,7 +73,7 @@ const structuredData = {
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href={getUrl("/sitemap-index.xml")} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={title} />
