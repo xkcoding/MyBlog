@@ -30,7 +30,6 @@ public/pagefind
 .deploy_git
 db.json
 *.lnk
-.claude/
 hexo-backup/
 .history/
 .specstory/
