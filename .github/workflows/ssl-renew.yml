@@ -62,22 +62,22 @@ jobs:
               docker stop myblog myblog-nginx nginx-temp 2>/dev/null || true
               docker rm myblog myblog-nginx nginx-temp 2>/dev/null || true
 
-              # 启动临时 nginx 用于验证
+              # 启动临时 nginx 用于验证（使用默认 root 路径）
               docker run -d --name nginx-temp \
                 -p 80:80 \
-                -v /opt/myblog/dist:/var/www/html \
+                -v /opt/myblog/dist:/usr/share/nginx/html \
                 nginx:alpine
 
               sleep 3
 
-              # 申请新证书
+              # 申请新证书（webroot 写入宿主机目录，nginx 能访问到）
               docker run --rm \
                 -v /opt/myblog/certbot/etc:/etc/letsencrypt \
                 -v /opt/myblog/certbot/var:/var/lib/letsencrypt \
-                -v /opt/myblog/dist:/var/www/html \
+                -v /opt/myblog/dist:/webroot \
                 certbot/certbot certonly \
                 --webroot \
-                --webroot-path=/var/www/html \
+                --webroot-path=/webroot \
                 --email "$EMAIL" \
                 --agree-tos \
                 --no-eff-email \
