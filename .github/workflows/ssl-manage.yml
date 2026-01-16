@@ -6,6 +6,12 @@ on:
     - cron: "0 19 1,15 * *" # UTC 19:00 = 北京时间 03:00
   # 支持手动触发
   workflow_dispatch:
+    inputs:
+      force_renew:
+        description: "强制重新申请证书（添加新域名时使用）"
+        required: false
+        type: boolean
+        default: false
 
 env:
   DOMAINS: "xkcoding.com,www.xkcoding.com,blog.xkcoding.com"
@@ -32,6 +38,16 @@ jobs:
 
             echo "🔐 检查 SSL 证书状态..."
             echo "📋 域名列表: $DOMAINS"
+
+            # 强制重新申请时删除旧证书
+            FORCE_RENEW="${{ github.event.inputs.force_renew }}"
+            if [ "$FORCE_RENEW" = "true" ] && [ -d "$CERT_PATH" ]; then
+              echo "🗑️  强制模式：删除旧证书..."
+              rm -rf /opt/myblog/certbot/etc/live/xkcoding.com
+              rm -rf /opt/myblog/certbot/etc/archive/xkcoding.com
+              rm -rf /opt/myblog/certbot/etc/renewal/xkcoding.com.conf
+              echo "✅ 旧证书已删除"
+            fi
 
             # 创建必要目录
             mkdir -p /opt/myblog/dist
