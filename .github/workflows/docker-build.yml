@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "镜像标签 (如: latest, v1.0.0)"
+        description: "自定义标签 (留空则使用时间戳)"
         required: false
-        default: "latest"
+        default: ""
 
 env:
   REGISTRY: ghcr.io
@@ -51,14 +51,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Generate timestamp tag
+        id: timestamp
+        run: echo "tag=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
+
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=${{ github.event.inputs.tag }}
-            type=sha,prefix=
+            type=raw,value=${{ github.event.inputs.tag || steps.timestamp.outputs.tag }}
+            type=raw,value=latest
+            type=sha,prefix=sha-
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -72,11 +77,16 @@ jobs:
 
       - name: Output image info
         run: |
+          VERSION_TAG="${{ github.event.inputs.tag || steps.timestamp.outputs.tag }}"
           echo "🎉 Docker 镜像构建完成！"
           echo ""
-          echo "📦 镜像地址："
-          echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.tag }}"
+          echo "📦 推送的标签："
+          echo "  - ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION_TAG}"
+          echo "  - ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
+          echo "  - ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${GITHUB_SHA::7}"
           echo ""
-          echo "🚀 部署命令："
-          echo "docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.tag }}"
-          echo "docker run -d -p 80:80 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.tag }}"
+          echo "🚀 部署命令（推荐使用版本标签）："
+          echo "docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION_TAG}"
+          echo "docker run -d -p 80:80 --name myblog ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION_TAG}"
+          echo ""
+          echo "💡 提示：使用具体版本标签而非 latest，确保每次部署获取正确版本"
