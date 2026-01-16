@@ -2,6 +2,7 @@
 import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
+import { IS_PREVIEW } from "astro:env/server";
 import { SITE } from "@/config";
 import { getUrl } from "@/utils/getUrl";
 import EnvBadge from "@/components/EnvBadge.astro";
@@ -75,6 +76,9 @@ const structuredData = {
     <meta name="description" content={description} />
     <meta name="author" content={author} />
     <link rel="sitemap" href={getUrl("/sitemap-index.xml")} />
+
+    <!-- 预发环境禁止搜索引擎索引 -->
+    {IS_PREVIEW && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={title} />
