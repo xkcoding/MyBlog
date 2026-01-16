@@ -14,7 +14,9 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
   class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
   {...attrs}
 >
-  <div class="py-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2">
+  <div
+    class="flex flex-col items-center justify-between gap-2 border-t border-border py-4 sm:flex-row"
+  >
     <div class="flex items-center gap-1 text-sm text-foreground/70">
       <span>&#169; {currentYear} xkcoding</span>
       <span class="text-foreground/40">·</span>

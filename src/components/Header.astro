@@ -45,10 +45,12 @@ const isActive = (path: string) => {
   >
     <a
       href="/"
-      class="absolute py-1 whitespace-nowrap sm:static sm:my-auto flex items-center gap-2"
+      class="absolute flex items-center gap-2 py-1 whitespace-nowrap sm:static sm:my-auto"
     >
       <IconLogo class="size-7 sm:size-8" />
-      <span class="text-xl leading-8 font-semibold sm:text-2xl sm:leading-none">{SITE.title}</span>
+      <span class="text-xl leading-8 font-semibold sm:text-2xl sm:leading-none"
+        >{SITE.title}</span
+      >
     </a>
     <nav
       id="nav-menu"
@@ -74,7 +76,10 @@ const isActive = (path: string) => {
         ]}
       >
         <li class="col-span-2">
-          <a href="/posts.html" class:list={{ "active-nav": isActive("/posts") }}>
+          <a
+            href="/posts.html"
+            class:list={{ "active-nav": isActive("/posts") }}
+          >
             文章
           </a>
         </li>
@@ -84,7 +89,10 @@ const isActive = (path: string) => {
           </a>
         </li>
         <li class="col-span-2">
-          <a href="/about.html" class:list={{ "active-nav": isActive("/about") }}>
+          <a
+            href="/about.html"
+            class:list={{ "active-nav": isActive("/about") }}
+          >
             关于
           </a>
         </li>

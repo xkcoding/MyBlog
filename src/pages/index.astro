@@ -40,7 +40,7 @@ const recentPosts = sortedPosts;
         />
         <span class="sr-only">RSS Feed</span>
       </a>
-      <p class="text-lg text-muted-foreground italic mt-2 mb-4">
+      <p class="text-muted-foreground mt-2 mb-4 text-lg italic">
         {SITE.desc}
       </p>
 
@@ -111,7 +111,9 @@ const recentPosts = sortedPosts;
           <ul>
             {recentPosts.map(
               (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" section="recent" {...data} />
+                index < SITE.postPerIndex && (
+                  <Card variant="h3" section="recent" {...data} />
+                )
             )}
           </ul>
         </section>
@@ -138,7 +140,7 @@ const recentPosts = sortedPosts;
 </script>
 
 <script is:inline>
-  (function() {
+  (function () {
     const items = Array.from(document.querySelectorAll(".recommended-item"));
     const SHOW_COUNT = 3;
 

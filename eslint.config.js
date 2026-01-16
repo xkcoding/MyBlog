@@ -14,5 +14,13 @@ export default [
     },
   },
   { rules: { "no-console": "error" } },
-  { ignores: ["dist/**", ".astro", "public/pagefind/**", "hexo-backup/**", "openspec/**"] },
+  {
+    ignores: [
+      "dist/**",
+      ".astro",
+      "public/pagefind/**",
+      "hexo-backup/**",
+      "openspec/**",
+    ],
+  },
 ];

@@ -21,11 +21,11 @@ title: "关于"
 
 ## 🚀 开源项目
 
-| 项目 | 描述 |
-| --- | --- |
+| 项目                                                             | 描述                                       |
+| ---------------------------------------------------------------- | ------------------------------------------ |
 | [spring-boot-demo](https://github.com/xkcoding/spring-boot-demo) | Spring Boot 深度学习实战，涵盖 60+ 个 Demo |
-| [JustAuth](https://github.com/justauth/JustAuth) | 第三方登录开箱即用组件，支持 20+ 平台 |
-| [mica](https://github.com/lets-mica/mica) | Spring Cloud 微服务开发核心工具集 |
+| [JustAuth](https://github.com/justauth/JustAuth)                 | 第三方登录开箱即用组件，支持 20+ 平台      |
+| [mica](https://github.com/lets-mica/mica)                        | Spring Cloud 微服务开发核心工具集          |
 
 ## 📝 关于本站
 

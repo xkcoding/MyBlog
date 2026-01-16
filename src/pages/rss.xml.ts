@@ -39,7 +39,8 @@ export async function GET() {
     items: sortedPosts.map(({ data, id, filePath, body }) => ({
       link: getPath(id, filePath),
       title: data.title,
-      description: truncate(data.description, 350) || getExcerpt(body || "", 350),
+      description:
+        truncate(data.description, 350) || getExcerpt(body || "", 350),
       content: getExcerpt(body || "", 500),
       pubDate: new Date(data.modDatetime ?? data.pubDatetime),
     })),
