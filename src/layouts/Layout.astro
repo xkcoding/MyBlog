@@ -141,6 +141,17 @@ const structuredData = {
       )
     }
 
+    <!-- Cloudflare Web Analytics (仅生产环境) -->
+    {
+      !IS_PREVIEW && (
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "e179550d61ff4287a8e894efef492aad"}'
+        />
+      )
+    }
+
     <ClientRouter />
 
     <!-- Minimal inline script to prevent FOUC - sets theme immediately -->
