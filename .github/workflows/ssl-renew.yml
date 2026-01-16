@@ -43,17 +43,22 @@ jobs:
             if [ -d "$CERT_PATH" ]; then
               echo "📜 证书已存在，执行续期检查..."
 
-              # 执行续期
+              # 停止 nginx 释放端口 80（standalone 模式续期需要）
+              echo "⏹️  停止 nginx 以释放端口..."
+              docker stop myblog-nginx 2>/dev/null || true
+
+              # 执行续期（standalone 模式需要 -p 80:80）
               docker run --rm \
+                -p 80:80 \
                 -v /opt/myblog/certbot/etc:/etc/letsencrypt \
                 -v /opt/myblog/certbot/var:/var/lib/letsencrypt \
-                -v /opt/myblog/dist:/var/www/html \
                 certbot/certbot renew
 
               echo "✅ 证书续期检查完成"
 
               # 重启 nginx 加载新证书
-              docker restart myblog-nginx 2>/dev/null || true
+              echo "🚀 重启 nginx..."
+              docker start myblog-nginx 2>/dev/null || true
 
             else
               echo "🆕 证书不存在，开始初始化申请..."
