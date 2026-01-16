@@ -139,7 +139,8 @@ jobs:
             if [ -d "/opt/myblog/certbot/etc/live/xkcoding.com" ]; then
               echo "🔐 检测到 SSL 证书，启用 HTTPS..."
 
-              # 创建 nginx SSL 配置文件
+              # 删除可能存在的错误目录，创建 nginx SSL 配置文件
+              rm -rf /opt/myblog/nginx-ssl.conf
               cat > /opt/myblog/nginx-ssl.conf << 'NGINX_CONF'
             # HTTP - 重定向到 HTTPS
             server {
