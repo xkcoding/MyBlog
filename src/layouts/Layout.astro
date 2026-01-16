@@ -4,6 +4,7 @@ import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
 import { getUrl } from "@/utils/getUrl";
+import EnvBadge from "@/components/EnvBadge.astro";
 import "@/styles/global.css";
 
 type Props = {
@@ -169,6 +170,7 @@ const structuredData = {
     </script>
   </head>
   <body>
+    <EnvBadge />
     <slot />
 
     <!-- Load full theme logic -->

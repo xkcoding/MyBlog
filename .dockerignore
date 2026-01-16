@@ -1,0 +1,31 @@
+# 依赖目录
+node_modules/
+
+# 源代码（只需要 dist）
+src/
+public/
+
+# 构建配置
+*.config.ts
+*.config.js
+tsconfig.json
+package.json
+pnpm-lock.yaml
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# OpenSpec
+openspec/
+
+# 其他
+*.md
+*.log
+.env*
+.claude/
+claudedocs/

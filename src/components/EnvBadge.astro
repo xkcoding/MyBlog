@@ -1,0 +1,79 @@
+---
+/**
+ * 环境徽标组件
+ * 仅在预发环境（BASE_URL !== "/"）显示斜向角标
+ */
+const isPreview = import.meta.env.BASE_URL !== "/";
+---
+
+{
+  isPreview && (
+    <div class="env-badge" aria-label="预发环境" role="status">
+      <span>Preview</span>
+    </div>
+  )
+}
+
+<style>
+  .env-badge {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+
+    /* 角标尺寸 */
+    width: 100px;
+    height: 100px;
+
+    /* 裁剪为三角形 */
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+
+    /* 渐变背景 - 亮色模式使用紫色 */
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+
+    /* 阴影效果 */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  /* 暗色模式使用橙色（与博客 accent 一致） */
+  :global([data-theme="dark"]) .env-badge {
+    background: linear-gradient(135deg, #ea580c 0%, #ff6b01 100%);
+  }
+
+  .env-badge span {
+    position: absolute;
+    top: 28px;
+    left: -8px;
+
+    /* 文字旋转 -45度 */
+    transform: rotate(-45deg);
+
+    /* 文字样式 */
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+    /* 确保文字清晰 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 响应式 - 移动端缩小 */
+  @media (max-width: 640px) {
+    .env-badge {
+      width: 70px;
+      height: 70px;
+    }
+
+    .env-badge span {
+      top: 20px;
+      left: -5px;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+    }
+  }
+</style>
