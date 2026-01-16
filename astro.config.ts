@@ -15,6 +15,7 @@ import { SITE } from "./src/config";
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  base: process.env.BASE_PATH || "/",
   trailingSlash: "never",
   build: {
     format: "file",
