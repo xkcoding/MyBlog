@@ -36,7 +36,10 @@ jobs:
       - name: Build with Astro
         uses: withastro/action@v3
         env:
-          BASE_PATH: /MyBlog
+          # 使用自定义域名后 BASE_PATH 为 /
+          BASE_PATH: /
+          # 标识为预发环境，显示 Preview 徽标
+          IS_PREVIEW: true
 
   deploy:
     needs: build

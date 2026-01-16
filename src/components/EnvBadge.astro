@@ -1,9 +1,11 @@
 ---
 /**
  * 环境徽标组件
- * 仅在预发环境（BASE_URL !== "/"）显示斜向条带
+ * 仅在预发环境显示斜向条带
+ * 通过 IS_PREVIEW 环境变量判断
  */
-const isPreview = import.meta.env.BASE_URL !== "/";
+import { IS_PREVIEW } from "astro:env/server";
+const isPreview = IS_PREVIEW;
 ---
 
 {

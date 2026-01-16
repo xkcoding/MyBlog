@@ -67,6 +67,12 @@ export default defineConfig({
         context: "client",
         optional: true,
       }),
+      IS_PREVIEW: envField.boolean({
+        access: "public",
+        context: "server",
+        optional: true,
+        default: false,
+      }),
     },
   },
   experimental: {
