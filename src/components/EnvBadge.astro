@@ -1,7 +1,7 @@
 ---
 /**
  * 环境徽标组件
- * 仅在预发环境（BASE_URL !== "/"）显示斜向角标
+ * 仅在预发环境（BASE_URL !== "/"）显示斜向条带
  */
 const isPreview = import.meta.env.BASE_URL !== "/";
 ---
@@ -17,23 +17,24 @@ const isPreview = import.meta.env.BASE_URL !== "/";
 <style>
   .env-badge {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 12px;
+    left: -32px;
     z-index: 9999;
     pointer-events: none;
 
-    /* 角标尺寸 */
-    width: 100px;
-    height: 100px;
+    /* 条带样式 */
+    width: 120px;
+    padding: 5px 0;
+    text-align: center;
 
-    /* 裁剪为三角形 */
-    clip-path: polygon(0 0, 100% 0, 0 100%);
+    /* 旋转 -45度 */
+    transform: rotate(-45deg);
 
     /* 渐变背景 - 亮色模式使用紫色 */
     background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
 
     /* 阴影效果 */
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   /* 暗色模式使用橙色（与博客 accent 一致） */
@@ -42,13 +43,6 @@ const isPreview = import.meta.env.BASE_URL !== "/";
   }
 
   .env-badge span {
-    position: absolute;
-    top: 28px;
-    left: -8px;
-
-    /* 文字旋转 -45度 */
-    transform: rotate(-45deg);
-
     /* 文字样式 */
     font-size: 11px;
     font-weight: 700;
@@ -65,13 +59,13 @@ const isPreview = import.meta.env.BASE_URL !== "/";
   /* 响应式 - 移动端缩小 */
   @media (max-width: 640px) {
     .env-badge {
-      width: 70px;
-      height: 70px;
+      top: 22px;
+      left: -38px;
+      width: 120px;
+      padding: 5px 0;
     }
 
     .env-badge span {
-      top: 20px;
-      left: -5px;
       font-size: 9px;
       letter-spacing: 0.5px;
     }
