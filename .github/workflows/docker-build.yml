@@ -15,7 +15,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  # 镜像名必须小写
+  IMAGE_NAME: xkcoding/myblog
   CONTAINER_NAME: myblog
 
 jobs:
