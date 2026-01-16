@@ -88,8 +88,8 @@ jobs:
                 --email "$EMAIL" \
                 --agree-tos \
                 --no-eff-email \
-                -d "$DOMAIN" \
-                -d "$WWW_DOMAIN"
+                -d "$DOMAIN"
+                # -d "$WWW_DOMAIN"  # 暂时注释，等 DNS 修复后再启用
 
               echo "✅ 证书申请成功！"
               echo ""
