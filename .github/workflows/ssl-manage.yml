@@ -107,6 +107,9 @@ jobs:
           cp "$CERT_PATH/fullchain.cer" $GITHUB_WORKSPACE/certs/fullchain.pem
           cp "$CERT_PATH/ca.cer" $GITHUB_WORKSPACE/certs/chain.pem 2>/dev/null || cp "$CERT_PATH/fullchain.cer" $GITHUB_WORKSPACE/certs/chain.pem
 
+          # 设置权限让 SCP action 可以读取
+          chmod 644 $GITHUB_WORKSPACE/certs/*
+
           echo "✅ 证书文件已准备"
           ls -la $GITHUB_WORKSPACE/certs/
 
