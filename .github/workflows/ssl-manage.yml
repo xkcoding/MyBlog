@@ -16,7 +16,7 @@ on:
 env:
   DOMAINS: "xkcoding.com www.xkcoding.com blog.xkcoding.com"
   EMAIL: "237497819@qq.com"
-  CERT_PATH: "/opt/myblog/certbot/etc/live/xkcoding.com"
+  SERVER_CERT_PATH: "/opt/myblog/certbot/etc/live/xkcoding.com"
 
 jobs:
   ssl-manage:
@@ -66,25 +66,20 @@ jobs:
 
       - name: Deploy Certificate to Server
         uses: appleboy/ssh-action@v1.2.0
-        env:
-          CERT_CONTENT: ${{ env.CERT_CONTENT }}
-          KEY_CONTENT: ${{ env.KEY_CONTENT }}
-          CA_CONTENT: ${{ env.CA_CONTENT }}
         with:
           host: ${{ secrets.ALIYUN_HOST }}
           username: ${{ secrets.ALIYUN_USER }}
           key: ${{ secrets.ALIYUN_SSH_KEY }}
           port: ${{ secrets.ALIYUN_PORT || 22 }}
-          envs: CERT_CONTENT,KEY_CONTENT,CA_CONTENT
           script: |
             echo "🚀 部署证书到服务器..."
 
             # 创建证书目录
-            CERT_DIR="/opt/myblog/certbot/etc/live/xkcoding.com"
+            CERT_DIR="${{ env.SERVER_CERT_PATH }}"
             mkdir -p "$CERT_DIR"
 
             # 证书将通过 SCP 传输（下一步）
-            echo "✅ 证书目录已准备"
+            echo "✅ 证书目录已准备: $CERT_DIR"
 
       - name: Prepare Certificate Files
         run: |
@@ -123,7 +118,7 @@ jobs:
           key: ${{ secrets.ALIYUN_SSH_KEY }}
           port: ${{ secrets.ALIYUN_PORT || 22 }}
           source: "/tmp/certs/*"
-          target: "/opt/myblog/certbot/etc/live/xkcoding.com/"
+          target: "${{ env.SERVER_CERT_PATH }}/"
           strip_components: 2
 
       - name: Reload Nginx
@@ -137,7 +132,7 @@ jobs:
             echo "🔄 重新加载 Nginx 配置..."
 
             # 检查证书文件
-            CERT_DIR="/opt/myblog/certbot/etc/live/xkcoding.com"
+            CERT_DIR="${{ env.SERVER_CERT_PATH }}"
             if [ -f "$CERT_DIR/fullchain.pem" ] && [ -f "$CERT_DIR/privkey.pem" ]; then
               echo "✅ 证书文件已就位"
               ls -la "$CERT_DIR/"
