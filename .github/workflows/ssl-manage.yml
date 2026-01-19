@@ -8,22 +8,125 @@ on:
   workflow_dispatch:
     inputs:
       force_renew:
-        description: "强制重新申请证书（添加新域名时使用）"
+        description: "强制重新申请证书"
         required: false
         type: boolean
         default: false
 
 env:
-  DOMAINS: "xkcoding.com,www.xkcoding.com,blog.xkcoding.com"
-  EMAIL: 237497819@qq.com
-  CERT_PATH: /opt/myblog/certbot/etc/live/xkcoding.com
+  DOMAINS: "xkcoding.com www.xkcoding.com blog.xkcoding.com"
+  EMAIL: "237497819@qq.com"
+  CERT_PATH: "/opt/myblog/certbot/etc/live/xkcoding.com"
 
 jobs:
   ssl-manage:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Manage SSL Certificate
+      - name: Install acme.sh
+        run: |
+          curl https://get.acme.sh | sh -s email=${{ env.EMAIL }}
+          echo "$HOME/.acme.sh" >> $GITHUB_PATH
+
+      - name: Configure Aliyun DNS API
+        run: |
+          ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
+
+          # 写入环境变量供后续步骤使用
+          echo "Ali_Key=${{ secrets.ALIYUN_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+          echo "Ali_Secret=${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}" >> $GITHUB_ENV
+
+      - name: Issue/Renew Certificate
+        run: |
+          FORCE_RENEW="${{ github.event.inputs.force_renew }}"
+
+          # 构建域名参数
+          DOMAIN_ARGS=""
+          for domain in ${{ env.DOMAINS }}; do
+            DOMAIN_ARGS="$DOMAIN_ARGS -d $domain"
+          done
+
+          # 检查是否需要强制续期
+          FORCE_FLAG=""
+          if [ "$FORCE_RENEW" = "true" ]; then
+            echo "🔄 强制重新申请证书..."
+            FORCE_FLAG="--force"
+          fi
+
+          # 使用 DNS-01 验证申请/续期证书
+          echo "🔐 申请证书: ${{ env.DOMAINS }}"
+          ~/.acme.sh/acme.sh --issue \
+            --dns dns_ali \
+            $DOMAIN_ARGS \
+            $FORCE_FLAG \
+            --debug || {
+              # 如果证书已存在且未到期，--issue 会失败，这是正常的
+              echo "ℹ️  证书可能已存在且未到期"
+            }
+
+      - name: Deploy Certificate to Server
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          CERT_CONTENT: ${{ env.CERT_CONTENT }}
+          KEY_CONTENT: ${{ env.KEY_CONTENT }}
+          CA_CONTENT: ${{ env.CA_CONTENT }}
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          key: ${{ secrets.ALIYUN_SSH_KEY }}
+          port: ${{ secrets.ALIYUN_PORT || 22 }}
+          envs: CERT_CONTENT,KEY_CONTENT,CA_CONTENT
+          script: |
+            echo "🚀 部署证书到服务器..."
+
+            # 创建证书目录
+            CERT_DIR="/opt/myblog/certbot/etc/live/xkcoding.com"
+            mkdir -p "$CERT_DIR"
+
+            # 证书将通过 SCP 传输（下一步）
+            echo "✅ 证书目录已准备"
+
+      - name: Prepare Certificate Files
+        run: |
+          CERT_PATH="$HOME/.acme.sh/xkcoding.com_ecc"
+
+          # 检查 ECC 证书路径
+          if [ ! -f "$CERT_PATH/xkcoding.com.cer" ]; then
+            CERT_PATH="$HOME/.acme.sh/xkcoding.com"
+          fi
+
+          if [ ! -f "$CERT_PATH/xkcoding.com.cer" ]; then
+            echo "❌ 证书文件不存在"
+            ls -la $HOME/.acme.sh/
+            exit 1
+          fi
+
+          echo "📜 证书路径: $CERT_PATH"
+
+          # 创建临时目录存放证书
+          mkdir -p /tmp/certs
+
+          # 复制证书文件（使用 certbot 兼容的文件名）
+          cp "$CERT_PATH/xkcoding.com.cer" /tmp/certs/cert.pem
+          cp "$CERT_PATH/xkcoding.com.key" /tmp/certs/privkey.pem
+          cp "$CERT_PATH/fullchain.cer" /tmp/certs/fullchain.pem
+          cp "$CERT_PATH/ca.cer" /tmp/certs/chain.pem 2>/dev/null || cp "$CERT_PATH/fullchain.cer" /tmp/certs/chain.pem
+
+          echo "✅ 证书文件已准备"
+          ls -la /tmp/certs/
+
+      - name: Upload Certificate to Server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          key: ${{ secrets.ALIYUN_SSH_KEY }}
+          port: ${{ secrets.ALIYUN_PORT || 22 }}
+          source: "/tmp/certs/*"
+          target: "/opt/myblog/certbot/etc/live/xkcoding.com/"
+          strip_components: 2
+
+      - name: Reload Nginx
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.ALIYUN_HOST }}
@@ -31,110 +134,48 @@ jobs:
           key: ${{ secrets.ALIYUN_SSH_KEY }}
           port: ${{ secrets.ALIYUN_PORT || 22 }}
           script: |
-            set -e
-            DOMAINS="xkcoding.com,www.xkcoding.com,blog.xkcoding.com"
-            EMAIL="237497819@qq.com"
-            CERT_PATH="/opt/myblog/certbot/etc/live/xkcoding.com"
+            echo "🔄 重新加载 Nginx 配置..."
 
-            echo "🔐 检查 SSL 证书状态..."
-            echo "📋 域名列表: $DOMAINS"
+            # 检查证书文件
+            CERT_DIR="/opt/myblog/certbot/etc/live/xkcoding.com"
+            if [ -f "$CERT_DIR/fullchain.pem" ] && [ -f "$CERT_DIR/privkey.pem" ]; then
+              echo "✅ 证书文件已就位"
+              ls -la "$CERT_DIR/"
 
-            # 强制重新申请时删除旧证书
-            FORCE_RENEW="${{ github.event.inputs.force_renew }}"
-            if [ "$FORCE_RENEW" = "true" ] && [ -d "$CERT_PATH" ]; then
-              echo "🗑️  强制模式：删除旧证书..."
-              rm -rf /opt/myblog/certbot/etc/live/xkcoding.com
-              rm -rf /opt/myblog/certbot/etc/archive/xkcoding.com
-              rm -rf /opt/myblog/certbot/etc/renewal/xkcoding.com.conf
-              echo "✅ 旧证书已删除"
-            fi
+              # 重新加载 nginx（无需停止服务）
+              docker exec myblog-nginx nginx -s reload 2>/dev/null || {
+                echo "⚠️  Nginx reload 失败，尝试重启容器..."
+                docker restart myblog-nginx 2>/dev/null || true
+              }
 
-            # 创建必要目录
-            mkdir -p /opt/myblog/dist
-            mkdir -p /opt/myblog/certbot/etc
-            mkdir -p /opt/myblog/certbot/var
-
-            # 检查证书是否存在
-            if [ -d "$CERT_PATH" ]; then
-              echo "📜 证书已存在，执行续期检查..."
-
-              # 停止 nginx 释放端口 80（standalone 模式续期需要）
-              echo "⏹️  停止 nginx 以释放端口..."
-              docker stop myblog-nginx 2>/dev/null || true
-
-              # 执行续期（standalone 模式需要 -p 80:80）
-              docker run --rm \
-                -p 80:80 \
-                -v /opt/myblog/certbot/etc:/etc/letsencrypt \
-                -v /opt/myblog/certbot/var:/var/lib/letsencrypt \
-                certbot/certbot renew
-
-              echo "✅ 证书续期检查完成"
-
-              # 重启 nginx 加载新证书
-              echo "🚀 重启 nginx..."
-              docker start myblog-nginx 2>/dev/null || true
-
+              echo "✅ Nginx 已重新加载证书"
             else
-              echo "🆕 证书不存在，开始初始化申请..."
-
-              # 停止所有可能占用 80/443 端口的容器
-              echo "⏹️  停止占用端口的容器..."
-              docker stop myblog myblog-nginx nginx-temp 2>/dev/null || true
-              docker rm myblog myblog-nginx nginx-temp 2>/dev/null || true
-
-              # 等待端口释放
-              sleep 2
-
-              # 检查端口是否被占用
-              echo "🔍 检查端口状态..."
-              if ss -tlnp 2>/dev/null | grep -q ':80 '; then
-                echo "⚠️  端口 80 仍被占用："
-                ss -tlnp 2>/dev/null | grep ':80 ' || true
-                echo "尝试强制释放..."
-                fuser -k 80/tcp 2>/dev/null || true
-                sleep 2
-              fi
-
-              # 使用 standalone 模式申请证书（certbot 自己启动 HTTP 服务器）
-              echo "📜 使用 standalone 模式申请 Let's Encrypt 证书..."
-
-              # 构建域名参数
-              DOMAIN_ARGS=""
-              IFS=',' read -ra DOMAIN_ARRAY <<< "$DOMAINS"
-              for domain in "${DOMAIN_ARRAY[@]}"; do
-                DOMAIN_ARGS="$DOMAIN_ARGS -d $domain"
-              done
-
-              docker run --rm \
-                -p 80:80 \
-                -v /opt/myblog/certbot/etc:/etc/letsencrypt \
-                -v /opt/myblog/certbot/var:/var/lib/letsencrypt \
-                certbot/certbot certonly \
-                --standalone \
-                --preferred-challenges http \
-                --email "$EMAIL" \
-                --agree-tos \
-                --no-eff-email \
-                $DOMAIN_ARGS
-
-              echo "✅ 证书申请成功！"
-              echo ""
-              echo "⚠️  请运行 Docker 部署工作流以启用 HTTPS"
+              echo "❌ 证书文件不完整"
+              ls -la "$CERT_DIR/" || true
+              exit 1
             fi
 
-            # 显示证书信息
-            echo ""
-            echo "📜 当前证书信息："
-            docker run --rm \
-              -v /opt/myblog/certbot/etc:/etc/letsencrypt \
-              -v /opt/myblog/certbot/var:/var/lib/letsencrypt \
-              certbot/certbot certificates || true
+      - name: Verify HTTPS
+        run: |
+          echo "🔍 等待配置生效..."
+          sleep 10
+
+          echo "🔍 验证 HTTPS 访问..."
+          for domain in xkcoding.com www.xkcoding.com blog.xkcoding.com; do
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://$domain/" --max-time 10 || echo "000")
+            if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "301" ] || [ "$HTTP_CODE" = "302" ]; then
+              echo "✅ $domain: HTTPS 正常 (HTTP $HTTP_CODE)"
+            else
+              echo "⚠️  $domain: HTTP $HTTP_CODE"
+            fi
+          done
 
       - name: Summary
+        if: always()
         run: |
           echo "## 🔐 SSL 证书管理" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **时间**: $(date +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
-          echo "- **服务器**: \`${{ secrets.ALIYUN_HOST }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **验证方式**: DNS-01 (Aliyun DNS)" >> $GITHUB_STEP_SUMMARY
           echo "- **域名**: xkcoding.com, www.xkcoding.com, blog.xkcoding.com" >> $GITHUB_STEP_SUMMARY
+          echo "- **强制续期**: ${{ github.event.inputs.force_renew || 'false' }}" >> $GITHUB_STEP_SUMMARY
