@@ -113,6 +113,7 @@ jobs:
           username: ${{ secrets.ALIYUN_USER }}
           key: ${{ secrets.ALIYUN_SSH_KEY }}
           port: ${{ secrets.ALIYUN_PORT || 22 }}
+          command_timeout: 15m
           envs: IMAGE
           script: |
             echo "🚀 开始部署 $IMAGE"
@@ -171,8 +172,6 @@ jobs:
                 ssl_session_cache shared:SSL:10m;
                 ssl_session_tickets off;
 
-                add_header Strict-Transport-Security "max-age=63072000" always;
-
                 root /usr/share/nginx/html;
                 index index.html;
 
@@ -183,15 +182,36 @@ jobs:
                 gzip_min_length 1000;
                 gzip_types text/plain text/css text/xml text/javascript application/javascript application/json application/xml application/rss+xml image/svg+xml;
 
+                # ==================== 安全头（全局） ====================
+                # HSTS - 强制 HTTPS，包含子域名
+                add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+                # 强制升级不安全请求
+                add_header Content-Security-Policy "upgrade-insecure-requests" always;
+                # 防止点击劫持
+                add_header X-Frame-Options "SAMEORIGIN" always;
+                # 防止 MIME 类型嗅探
+                add_header X-Content-Type-Options "nosniff" always;
+                # XSS 防护
+                add_header X-XSS-Protection "1; mode=block" always;
+                # Referrer 策略
+                add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
                 location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
                     expires 1y;
-                    add_header Cache-Control "public, immutable";
+                    add_header Cache-Control "public, immutable" always;
+                    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+                    add_header Content-Security-Policy "upgrade-insecure-requests" always;
+                    add_header X-Content-Type-Options "nosniff" always;
                     access_log off;
                 }
 
                 location ~* \.html$ {
                     expires -1;
-                    add_header Cache-Control "no-store, no-cache, must-revalidate";
+                    add_header Cache-Control "no-store, no-cache, must-revalidate" always;
+                    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+                    add_header Content-Security-Policy "upgrade-insecure-requests" always;
+                    add_header X-Frame-Options "SAMEORIGIN" always;
+                    add_header X-Content-Type-Options "nosniff" always;
                 }
 
                 location / {
@@ -199,10 +219,6 @@ jobs:
                 }
 
                 error_page 404 /404.html;
-
-                add_header X-Frame-Options "SAMEORIGIN" always;
-                add_header X-Content-Type-Options "nosniff" always;
-                add_header X-XSS-Protection "1; mode=block" always;
             }
             NGINX_CONF
 
@@ -219,7 +235,7 @@ jobs:
             else
               echo "⚠️  未检测到 SSL 证书，使用 HTTP..."
 
-              # 使用普通配置启动（统一使用 myblog-nginx 容器名，与 SSL 续期工作流保持一致）
+              # 使用普通配置启动
               docker run -d \
                 --name ${{ env.CONTAINER_NAME }}-nginx \
                 --restart unless-stopped \
@@ -227,8 +243,23 @@ jobs:
                 $IMAGE
             fi
 
-            # 清理旧镜像
+            # ==================== 清理 Docker 资源 ====================
+            echo "🧹 清理 Docker 资源..."
+
+            # 清理未使用的镜像（无标签的悬空镜像）
             docker image prune -f
+
+            # 清理旧版本的 myblog 镜像，只保留最新的 3 个
+            echo "📦 清理旧版本镜像..."
+            docker images ghcr.io/xkcoding/myblog --format "{{.ID}} {{.CreatedAt}}" | \
+              sort -k2 -r | \
+              tail -n +4 | \
+              awk '{print $1}' | \
+              xargs -r docker rmi -f 2>/dev/null || true
+
+            # 显示当前镜像状态
+            echo "📊 当前 Docker 镜像："
+            docker images ghcr.io/xkcoding/myblog --format "table {{.Repository}}:{{.Tag}}\t{{.Size}}\t{{.CreatedAt}}"
 
             echo "✅ 部署完成！"
 
