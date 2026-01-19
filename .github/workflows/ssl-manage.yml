@@ -98,17 +98,17 @@ jobs:
 
           echo "📜 证书路径: $CERT_PATH"
 
-          # 创建临时目录存放证书
-          mkdir -p /tmp/certs
+          # 创建工作区目录存放证书（SCP action 可以访问）
+          mkdir -p $GITHUB_WORKSPACE/certs
 
           # 复制证书文件（使用 certbot 兼容的文件名）
-          cp "$CERT_PATH/xkcoding.com.cer" /tmp/certs/cert.pem
-          cp "$CERT_PATH/xkcoding.com.key" /tmp/certs/privkey.pem
-          cp "$CERT_PATH/fullchain.cer" /tmp/certs/fullchain.pem
-          cp "$CERT_PATH/ca.cer" /tmp/certs/chain.pem 2>/dev/null || cp "$CERT_PATH/fullchain.cer" /tmp/certs/chain.pem
+          cp "$CERT_PATH/xkcoding.com.cer" $GITHUB_WORKSPACE/certs/cert.pem
+          cp "$CERT_PATH/xkcoding.com.key" $GITHUB_WORKSPACE/certs/privkey.pem
+          cp "$CERT_PATH/fullchain.cer" $GITHUB_WORKSPACE/certs/fullchain.pem
+          cp "$CERT_PATH/ca.cer" $GITHUB_WORKSPACE/certs/chain.pem 2>/dev/null || cp "$CERT_PATH/fullchain.cer" $GITHUB_WORKSPACE/certs/chain.pem
 
           echo "✅ 证书文件已准备"
-          ls -la /tmp/certs/
+          ls -la $GITHUB_WORKSPACE/certs/
 
       - name: Upload Certificate to Server
         uses: appleboy/scp-action@v0.1.7
@@ -117,9 +117,9 @@ jobs:
           username: ${{ secrets.ALIYUN_USER }}
           key: ${{ secrets.ALIYUN_SSH_KEY }}
           port: ${{ secrets.ALIYUN_PORT || 22 }}
-          source: "/tmp/certs/*"
+          source: "certs/*"
           target: "${{ env.SERVER_CERT_PATH }}/"
-          strip_components: 2
+          strip_components: 1
 
       - name: Reload Nginx
         uses: appleboy/ssh-action@v1.2.0
