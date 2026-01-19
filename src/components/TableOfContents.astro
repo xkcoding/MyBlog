@@ -1,0 +1,125 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+// 只保留 h2-h4 层级
+const filteredHeadings = headings.filter(h => h.depth >= 2 && h.depth <= 4);
+---
+
+<nav class="toc-sidebar" aria-label="目录">
+  <h2 class="toc-title">目录</h2>
+  <ul class="toc-list">
+    {
+      filteredHeadings.map(heading => (
+        <li
+          class:list={[
+            "toc-item",
+            { "toc-h3": heading.depth === 3 },
+            { "toc-h4": heading.depth === 4 },
+          ]}
+        >
+          <a href={`#${heading.slug}`} data-heading-slug={heading.slug}>
+            {heading.text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script is:inline data-astro-rerun>
+  function initTocHighlight() {
+    const tocLinks = document.querySelectorAll(
+      ".toc-sidebar a[data-heading-slug]"
+    );
+    if (tocLinks.length === 0) return;
+
+    const headingElements = Array.from(tocLinks)
+      .map(link => {
+        const slug = link.getAttribute("data-heading-slug");
+        return document.getElementById(slug);
+      })
+      .filter(Boolean);
+
+    if (headingElements.length === 0) return;
+
+    let currentActive = null;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        // 找到第一个进入视口的标题
+        const visibleEntry = entries.find(entry => entry.isIntersecting);
+
+        if (visibleEntry) {
+          const id = visibleEntry.target.id;
+          setActiveLink(id);
+        } else {
+          // 如果没有标题在视口中，找最近的一个已经滚过的标题
+          const scrollTop = window.scrollY;
+          let closestHeading = null;
+          let closestDistance = Infinity;
+
+          headingElements.forEach(heading => {
+            if (!heading) return;
+            const rect = heading.getBoundingClientRect();
+            const headingTop = rect.top + scrollTop;
+
+            if (headingTop <= scrollTop + 100) {
+              const distance = scrollTop - headingTop;
+              if (distance < closestDistance) {
+                closestDistance = distance;
+                closestHeading = heading;
+              }
+            }
+          });
+
+          if (closestHeading) {
+            setActiveLink(closestHeading.id);
+          }
+        }
+      },
+      {
+        rootMargin: "-80px 0px -80% 0px",
+        threshold: 0,
+      }
+    );
+
+    function setActiveLink(id) {
+      if (currentActive === id) return;
+      currentActive = id;
+
+      tocLinks.forEach(link => {
+        const slug = link.getAttribute("data-heading-slug");
+        if (slug === id) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    }
+
+    // 观察所有标题
+    headingElements.forEach(heading => {
+      if (heading) observer.observe(heading);
+    });
+
+    // 初始化时设置第一个为激活状态
+    if (headingElements[0]) {
+      setActiveLink(headingElements[0].id);
+    }
+
+    // 清理函数
+    document.addEventListener("astro:before-swap", () => {
+      observer.disconnect();
+    });
+  }
+
+  // 页面加载和切换时初始化
+  initTocHighlight();
+  document.addEventListener("astro:after-swap", initTocHighlight);
+</script>
