@@ -15,7 +15,7 @@ export const SITE = {
   editPost: {
     enabled: true,
     text: "编辑页面",
-    url: "https://github.com/xkcoding/xkcoding.github.io/edit/main/src/data/blog",
+    url: "https://github.com/xkcoding/MyBlog/edit/master/",
   },
   dynamicOgImage: true,
   dir: "ltr",
