@@ -14,7 +14,7 @@ export const SITE = {
   showToc: true, // 显示侧边栏目录
   editPost: {
     enabled: true,
-    text: "发现错误？帮我勘误",
+    text: "内容有误？点此修正",
     url: "https://github.com/xkcoding/MyBlog/edit/master/",
   },
   dynamicOgImage: true,
