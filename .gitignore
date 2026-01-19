@@ -35,3 +35,10 @@ hexo-backup/
 .specstory/
 .cursorindexingignore
 resources/
+
+# image migration temp files
+scripts/migrate-images/temp/
+scripts/migrate-images/reports/
+
+# ossutil output
+ossutil_output/

@@ -1,0 +1,142 @@
+name: CDN SSL Certificate Management
+
+on:
+  # 每月 1 号和 15 号凌晨 4 点执行（错开博客 SSL 续期时间）
+  schedule:
+    - cron: "0 20 1,15 * *" # UTC 20:00 = 北京时间 04:00
+  # 支持手动触发
+  workflow_dispatch:
+    inputs:
+      force_renew:
+        description: "强制重新申请证书"
+        required: false
+        type: boolean
+        default: false
+
+env:
+  DOMAIN: "cdn.xkcoding.com"
+  EMAIL: "237497819@qq.com"
+
+jobs:
+  cdn-ssl-manage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install acme.sh
+        run: |
+          curl https://get.acme.sh | sh -s email=${{ env.EMAIL }}
+          echo "$HOME/.acme.sh" >> $GITHUB_PATH
+
+      - name: Configure Aliyun DNS API
+        run: |
+          export Ali_Key="${{ secrets.ALI_ACCESS_KEY_ID }}"
+          export Ali_Secret="${{ secrets.ALI_ACCESS_KEY_SECRET }}"
+
+          # 保存到 acme.sh 账户配置
+          ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
+
+          # 写入环境变量供后续步骤使用
+          echo "Ali_Key=${{ secrets.ALI_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+          echo "Ali_Secret=${{ secrets.ALI_ACCESS_KEY_SECRET }}" >> $GITHUB_ENV
+
+      - name: Issue/Renew Certificate
+        run: |
+          FORCE_RENEW="${{ github.event.inputs.force_renew }}"
+
+          # 检查是否需要强制续期
+          FORCE_FLAG=""
+          if [ "$FORCE_RENEW" = "true" ]; then
+            echo "🔄 强制重新申请证书..."
+            FORCE_FLAG="--force"
+          fi
+
+          # 使用 DNS-01 验证申请/续期证书
+          echo "🔐 申请证书: ${{ env.DOMAIN }}"
+          ~/.acme.sh/acme.sh --issue \
+            --dns dns_ali \
+            -d ${{ env.DOMAIN }} \
+            $FORCE_FLAG \
+            --debug || {
+              # 如果证书已存在且未到期，--issue 会失败，这是正常的
+              echo "ℹ️  证书可能已存在且未到期"
+            }
+
+      - name: Install Aliyun CLI
+        run: |
+          # 下载并安装阿里云 CLI
+          curl -Lo aliyun-cli.tgz https://aliyuncli.alicdn.com/aliyun-cli-linux-latest-amd64.tgz
+          tar -xzf aliyun-cli.tgz
+          sudo mv aliyun /usr/local/bin/
+
+          # 配置 CLI
+          aliyun configure set \
+            --profile default \
+            --mode AK \
+            --region cn-hangzhou \
+            --access-key-id ${{ secrets.ALI_ACCESS_KEY_ID }} \
+            --access-key-secret ${{ secrets.ALI_ACCESS_KEY_SECRET }}
+
+      - name: Deploy Certificate to CDN
+        run: |
+          CERT_PATH="$HOME/.acme.sh/${{ env.DOMAIN }}_ecc"
+
+          # 检查证书是否存在
+          if [ ! -f "$CERT_PATH/${{ env.DOMAIN }}.cer" ]; then
+            # 尝试非 ECC 路径
+            CERT_PATH="$HOME/.acme.sh/${{ env.DOMAIN }}"
+          fi
+
+          if [ ! -f "$CERT_PATH/${{ env.DOMAIN }}.cer" ]; then
+            echo "❌ 证书文件不存在"
+            ls -la $HOME/.acme.sh/
+            exit 1
+          fi
+
+          echo "📜 证书路径: $CERT_PATH"
+
+          # 读取证书内容
+          CERT_CONTENT=$(cat "$CERT_PATH/${{ env.DOMAIN }}.cer" "$CERT_PATH/ca.cer" 2>/dev/null || cat "$CERT_PATH/fullchain.cer")
+          KEY_CONTENT=$(cat "$CERT_PATH/${{ env.DOMAIN }}.key")
+
+          # 生成证书名称（包含时间戳）
+          CERT_NAME="cdn-xkcoding-$(date +%Y%m%d%H%M%S)"
+
+          echo "🚀 部署证书到 CDN..."
+          echo "   证书名称: $CERT_NAME"
+          echo "   域名: ${{ env.DOMAIN }}"
+
+          # 使用阿里云 CDN API 设置域名证书
+          aliyun cdn SetDomainServerCertificate \
+            --DomainName ${{ env.DOMAIN }} \
+            --CertName "$CERT_NAME" \
+            --CertType upload \
+            --ServerCertificateStatus on \
+            --ServerCertificate "$CERT_CONTENT" \
+            --PrivateKey "$KEY_CONTENT" \
+            --ForceSet 1
+
+          echo "✅ 证书部署成功！"
+
+      - name: Verify HTTPS
+        run: |
+          echo "🔍 等待 CDN 配置生效..."
+          sleep 30
+
+          echo "🔍 验证 HTTPS 访问..."
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://${{ env.DOMAIN }}/2017-07-12-14998277900006.jpg" || echo "000")
+
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "✅ HTTPS 验证成功！"
+          else
+            echo "⚠️  HTTPS 返回状态码: $HTTP_CODE"
+            echo "   CDN 可能需要更多时间生效，请稍后手动验证"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## 🔐 CDN SSL 证书管理" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **时间**: $(date +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "- **域名**: \`${{ env.DOMAIN }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **强制续期**: ${{ github.event.inputs.force_renew || 'false' }}" >> $GITHUB_STEP_SUMMARY
