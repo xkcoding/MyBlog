@@ -11,6 +11,7 @@ export const SITE = {
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
   showArchives: true,
   showBackButton: true,
+  showToc: true, // 显示侧边栏目录
   editPost: {
     enabled: true,
     text: "编辑页面",

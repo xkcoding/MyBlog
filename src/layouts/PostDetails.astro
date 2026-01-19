@@ -9,6 +9,7 @@ import EditPost from "@/components/EditPost.astro";
 import ShareLinks from "@/components/ShareLinks.astro";
 import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
 import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
@@ -33,9 +34,16 @@ const {
   timezone,
   tags,
   hideEditPost,
+  hideToc,
 } = post.data;
 
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+
+// TOC 显示条件：全局开启 && 文章未禁用 && 标题数 >= 2
+const showToc =
+  SITE.showToc &&
+  !hideToc &&
+  headings.filter(h => h.depth >= 2 && h.depth <= 4).length >= 2;
 
 let ogImageUrl: string | undefined;
 
@@ -85,93 +93,96 @@ const nextPost =
 <Layout {...layoutProps}>
   <Header />
   <BackButton />
-  <main
-    id="main-content"
-    class:list={["app-layout pb-12", { "mt-8": !SITE.showBackButton }]}
-    data-pagefind-body
-  >
-    <h1
-      transition:name={slugifyStr(title.replaceAll(".", "-"))}
-      class="inline-block text-2xl font-bold text-accent sm:text-3xl"
+  <div class="post-container">
+    <main
+      id="main-content"
+      class:list={["app-layout pb-12", { "mt-8": !SITE.showBackButton }]}
+      data-pagefind-body
     >
-      {title}
-    </h1>
-    <div class="my-2 flex items-center gap-2">
-      <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
-      <span
-        aria-hidden="true"
-        class:list={[
-          "max-sm:hidden",
-          { hidden: !SITE.editPost.enabled || hideEditPost },
-        ]}>|</span
+      <h1
+        transition:name={slugifyStr(title.replaceAll(".", "-"))}
+        class="inline-block text-2xl font-bold text-accent sm:text-3xl"
       >
-      <EditPost {hideEditPost} {post} class="max-sm:hidden" />
-    </div>
-    {
-      description && (
-        <div class="relative mt-6 rounded-lg border border-amber-700/50 bg-amber-50 px-6 py-4 dark:border-amber-600/50 dark:bg-amber-950/30">
-          <span class="absolute -top-2.5 left-4 bg-amber-50 px-2 text-xs font-medium text-amber-700 dark:bg-background dark:text-amber-500">
-            导读
-          </span>
-          <p class="text-sm leading-relaxed text-amber-900 dark:text-amber-200">
-            {description}
-          </p>
-        </div>
-      )
-    }
-    <article
-      id="article"
-      class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
-    >
-      <Content />
-    </article>
-
-    <hr class="my-8 border-dashed" />
-
-    <EditPost class="sm:hidden" {hideEditPost} {post} />
-
-    <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
-    </ul>
-
-    <BackToTopButton />
-
-    <ShareLinks />
-
-    <hr class="my-6 border-dashed" />
-
-    <!-- Previous/Next Post Buttons -->
-    <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {title}
+      </h1>
+      <div class="my-2 flex items-center gap-2">
+        <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
+        <span
+          aria-hidden="true"
+          class:list={[
+            "max-sm:hidden",
+            { hidden: !SITE.editPost.enabled || hideEditPost },
+          ]}>|</span
+        >
+        <EditPost {hideEditPost} {post} class="max-sm:hidden" />
+      </div>
       {
-        prevPost && (
-          <a
-            href={getPath(prevPost.id, prevPost.filePath)}
-            class="flex w-full gap-1 hover:opacity-75"
-          >
-            <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
-            <div>
-              <span>上一篇</span>
-              <div class="text-sm text-accent/85">{prevPost.title}</div>
-            </div>
-          </a>
+        description && (
+          <div class="relative mt-6 rounded-lg border border-amber-700/50 bg-amber-50 px-6 py-4 dark:border-amber-600/50 dark:bg-amber-950/30">
+            <span class="absolute -top-2.5 left-4 bg-amber-50 px-2 text-xs font-medium text-amber-700 dark:bg-background dark:text-amber-500">
+              导读
+            </span>
+            <p class="text-sm leading-relaxed text-amber-900 dark:text-amber-200">
+              {description}
+            </p>
+          </div>
         )
       }
-      {
-        nextPost && (
-          <a
-            href={getPath(nextPost.id, nextPost.filePath)}
-            class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
-          >
-            <div>
-              <span>下一篇</span>
-              <div class="text-sm text-accent/85">{nextPost.title}</div>
-            </div>
-            <IconChevronRight class="inline-block flex-none rtl:rotate-180" />
-          </a>
-        )
-      }
-    </div>
-  </main>
+      <article
+        id="article"
+        class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
+      >
+        <Content />
+      </article>
+
+      <hr class="my-8 border-dashed" />
+
+      <EditPost class="sm:hidden" {hideEditPost} {post} />
+
+      <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
+        {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
+      </ul>
+
+      <BackToTopButton />
+
+      <ShareLinks />
+
+      <hr class="my-6 border-dashed" />
+
+      <!-- Previous/Next Post Buttons -->
+      <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {
+          prevPost && (
+            <a
+              href={getPath(prevPost.id, prevPost.filePath)}
+              class="flex w-full gap-1 hover:opacity-75"
+            >
+              <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
+              <div>
+                <span>上一篇</span>
+                <div class="text-sm text-accent/85">{prevPost.title}</div>
+              </div>
+            </a>
+          )
+        }
+        {
+          nextPost && (
+            <a
+              href={getPath(nextPost.id, nextPost.filePath)}
+              class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
+            >
+              <div>
+                <span>下一篇</span>
+                <div class="text-sm text-accent/85">{nextPost.title}</div>
+              </div>
+              <IconChevronRight class="inline-block flex-none rtl:rotate-180" />
+            </a>
+          )
+        }
+      </div>
+    </main>
+    {showToc && <TableOfContents headings={headings} />}
+  </div>
   <Footer />
 </Layout>
 
