@@ -94,8 +94,8 @@ jobs:
 
           echo "📜 证书路径: $CERT_PATH"
 
-          # 读取证书内容
-          CERT_CONTENT=$(cat "$CERT_PATH/${{ env.DOMAIN }}.cer" "$CERT_PATH/ca.cer" 2>/dev/null || cat "$CERT_PATH/fullchain.cer")
+          # 读取证书内容（fullchain = 证书 + CA 链）
+          CERT_CONTENT=$(cat "$CERT_PATH/fullchain.cer")
           KEY_CONTENT=$(cat "$CERT_PATH/${{ env.DOMAIN }}.key")
 
           # 生成证书名称（包含时间戳）
@@ -105,15 +105,14 @@ jobs:
           echo "   证书名称: $CERT_NAME"
           echo "   域名: ${{ env.DOMAIN }}"
 
-          # 使用阿里云 CDN API 设置域名证书
-          aliyun cdn SetDomainServerCertificate \
+          # 使用阿里云 CDN API 设置域名证书（新版 API）
+          aliyun cdn SetCdnDomainSSLCertificate \
             --DomainName ${{ env.DOMAIN }} \
             --CertName "$CERT_NAME" \
             --CertType upload \
-            --ServerCertificateStatus on \
-            --ServerCertificate "$CERT_CONTENT" \
-            --PrivateKey "$KEY_CONTENT" \
-            --ForceSet 1
+            --SSLProtocol on \
+            --SSLPub "$CERT_CONTENT" \
+            --SSLPri "$KEY_CONTENT"
 
           echo "✅ 证书部署成功！"
 
