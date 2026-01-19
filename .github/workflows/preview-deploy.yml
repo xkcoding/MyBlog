@@ -34,12 +34,22 @@ jobs:
         run: pnpm install
 
       - name: Build with Astro
-        uses: withastro/action@v3
+        run: pnpm build
         env:
           # 使用自定义域名后 BASE_PATH 为 /
           BASE_PATH: /
           # 标识为预发环境，显示 Preview 徽标
           IS_PREVIEW: true
+
+      - name: Replace robots.txt for preview (禁止 SEO)
+        run: |
+          cp dist/robots-preview.txt dist/robots.txt
+          echo "✅ 已替换 robots.txt 禁止搜索引擎索引预发环境"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     needs: build
