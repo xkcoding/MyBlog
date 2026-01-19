@@ -29,15 +29,15 @@ jobs:
 
       - name: Configure Aliyun DNS API
         run: |
-          export Ali_Key="${{ secrets.ALI_ACCESS_KEY_ID }}"
-          export Ali_Secret="${{ secrets.ALI_ACCESS_KEY_SECRET }}"
+          export Ali_Key="${{ secrets.ALIYUN_ACCESS_KEY_ID }}"
+          export Ali_Secret="${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}"
 
           # 保存到 acme.sh 账户配置
           ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
           # 写入环境变量供后续步骤使用
-          echo "Ali_Key=${{ secrets.ALI_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-          echo "Ali_Secret=${{ secrets.ALI_ACCESS_KEY_SECRET }}" >> $GITHUB_ENV
+          echo "Ali_Key=${{ secrets.ALIYUN_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+          echo "Ali_Secret=${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}" >> $GITHUB_ENV
 
       - name: Issue/Renew Certificate
         run: |
@@ -73,8 +73,8 @@ jobs:
             --profile default \
             --mode AK \
             --region cn-hangzhou \
-            --access-key-id ${{ secrets.ALI_ACCESS_KEY_ID }} \
-            --access-key-secret ${{ secrets.ALI_ACCESS_KEY_SECRET }}
+            --access-key-id ${{ secrets.ALIYUN_ACCESS_KEY_ID }} \
+            --access-key-secret ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
 
       - name: Deploy Certificate to CDN
         run: |
