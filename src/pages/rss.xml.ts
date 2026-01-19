@@ -1,8 +1,40 @@
 import rss from "@astrojs/rss";
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { getPath } from "@/utils/getPath";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { SITE } from "@/config";
+
+// 解析 ogImage URL
+function getOgImageUrl(
+  ogImage: CollectionEntry<"blog">["data"]["ogImage"],
+  site: string
+): string | undefined {
+  if (!ogImage) return undefined;
+  if (typeof ogImage === "string") {
+    // 远程 URL 直接返回，相对路径拼接 site
+    return ogImage.startsWith("http") ? ogImage : new URL(ogImage, site).href;
+  }
+  if (ogImage.src) {
+    // 本地 asset
+    return new URL(ogImage.src, site).href;
+  }
+  return undefined;
+}
+
+// 根据 URL 获取图片 MIME type
+function getImageMimeType(url: string): string {
+  const ext = url.split("?")[0].split(".").pop()?.toLowerCase();
+  const mimeTypes: Record<string, string> = {
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    png: "image/png",
+    gif: "image/gif",
+    webp: "image/webp",
+    svg: "image/svg+xml",
+  };
+  return mimeTypes[ext || ""] || "image/jpeg";
+}
 
 // 截断文本到指定长度
 function truncate(text: string, maxLength: number): string {
@@ -36,13 +68,24 @@ export async function GET() {
     title: SITE.title,
     description: SITE.desc,
     site: SITE.website,
-    items: sortedPosts.map(({ data, id, filePath, body }) => ({
-      link: getPath(id, filePath),
-      title: data.title,
-      description:
-        truncate(data.description, 350) || getExcerpt(body || "", 350),
-      content: getExcerpt(body || "", 500),
-      pubDate: new Date(data.modDatetime ?? data.pubDatetime),
-    })),
+    items: sortedPosts.map(({ data, id, filePath, body }) => {
+      const ogImageUrl = getOgImageUrl(data.ogImage, SITE.website);
+      return {
+        link: getPath(id, filePath),
+        title: data.title,
+        description:
+          truncate(data.description, 350) || getExcerpt(body || "", 350),
+        content: getExcerpt(body || "", 500),
+        pubDate: new Date(data.modDatetime ?? data.pubDatetime),
+        // 添加头图作为 enclosure
+        ...(ogImageUrl && {
+          enclosure: {
+            url: ogImageUrl,
+            type: getImageMimeType(ogImageUrl),
+            length: 0,
+          },
+        }),
+      };
+    }),
   });
 }

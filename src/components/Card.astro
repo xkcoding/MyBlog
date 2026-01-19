@@ -24,7 +24,15 @@ const {
   section = "",
 } = Astro.props;
 
-const { title, description, featured, ...props } = data;
+const { title, description, featured, ogImage, ...props } = data;
+
+// 解析 ogImage URL
+let ogImageUrl: string | undefined;
+if (typeof ogImage === "string") {
+  ogImageUrl = ogImage;
+} else if (ogImage?.src) {
+  ogImageUrl = ogImage.src;
+}
 
 // 自动生成摘要：如果 description 为空，从文章内容提取
 function getExcerpt(content: string, maxLength: number = 350): string {
@@ -76,5 +84,34 @@ const excerpt = description || (body ? getExcerpt(body) : "");
     }
   </div>
   <Datetime {...props} />
-  {excerpt && <p class="mt-1 line-clamp-3 text-foreground/80">{excerpt}</p>}
+  {
+    excerpt && (
+      <div
+        class:list={[
+          "mt-1 flex gap-4",
+          { "flex-col sm:flex-row sm:items-start": ogImageUrl },
+        ]}
+      >
+        {ogImageUrl && (
+          <div class="group/thumb shrink-0 overflow-hidden rounded-md border border-foreground/10 shadow-sm">
+            <img
+              src={ogImageUrl}
+              alt={title}
+              class="h-24 w-full object-cover transition-transform duration-300 group-hover/thumb:scale-105 sm:h-24 sm:w-40"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        )}
+        <p
+          class:list={[
+            "min-w-0 flex-1 text-foreground/80",
+            ogImageUrl ? "line-clamp-4" : "line-clamp-3",
+          ]}
+        >
+          {excerpt}
+        </p>
+      </div>
+    )
+  }
 </li>
