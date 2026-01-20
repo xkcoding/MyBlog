@@ -30,6 +30,7 @@ const filteredHeadings = headings.filter(h => h.depth >= 2 && h.depth <= 4);
       ))
     }
   </ul>
+  <slot />
 </nav>
 
 <script is:inline data-astro-rerun>

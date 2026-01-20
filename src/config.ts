@@ -17,6 +17,16 @@ export const SITE = {
     text: "内容有误？点此修正",
     url: "https://github.com/xkcoding/MyBlog/edit/master/",
   },
+  viewSource: {
+    enabled: true,
+    text: "查看原文",
+    url: "https://github.com/xkcoding/MyBlog/raw/master/",
+  },
+  license: {
+    enabled: true,
+    type: "CC BY-NC-SA 4.0",
+    url: "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans",
+  },
   dynamicOgImage: true,
   dir: "ltr",
   lang: "zh-CN",

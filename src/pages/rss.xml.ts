@@ -32,6 +32,7 @@ function getImageMimeType(url: string): string {
     gif: "image/gif",
     webp: "image/webp",
     svg: "image/svg+xml",
+    avif: "image/avif",
   };
   return mimeTypes[ext || ""] || "image/jpeg";
 }
@@ -82,7 +83,7 @@ export async function GET() {
           enclosure: {
             url: ogImageUrl,
             type: getImageMimeType(ogImageUrl),
-            length: 0,
+            length: 0, // 构建时无法获取实际文件大小，设为 0 符合 RSS 规范
           },
         }),
       };
