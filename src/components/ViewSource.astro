@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from "astro:content";
+import IconGitHub from "@/assets/icons/IconGitHub.svg";
+import { SITE } from "@/config";
+
+type Props = {
+  class?: string;
+  post: CollectionEntry<"blog">;
+};
+
+const { post, class: className = "" } = Astro.props;
+
+const href = `${SITE.viewSource.url}${post.filePath}`;
+const showViewSource = SITE.viewSource.enabled && href.trim() !== "";
+---
+
+{
+  showViewSource && (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class:list={[
+        "flex items-center gap-1.5 opacity-80 hover:text-accent",
+        className,
+      ]}
+    >
+      <IconGitHub class="inline-block" />
+      <span>{SITE.viewSource.text}</span>
+    </a>
+  )
+}

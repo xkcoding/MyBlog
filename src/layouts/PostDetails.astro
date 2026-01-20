@@ -6,7 +6,8 @@ import Footer from "@/components/Footer.astro";
 import Tag from "@/components/Tag.astro";
 import Datetime from "@/components/Datetime.astro";
 import EditPost from "@/components/EditPost.astro";
-import ShareLinks from "@/components/ShareLinks.astro";
+import ViewSource from "@/components/ViewSource.astro";
+import License from "@/components/License.astro";
 import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
 import TableOfContents from "@/components/TableOfContents.astro";
@@ -128,6 +129,12 @@ const nextPost =
           ]}>|</span
         >
         <EditPost {hideEditPost} {post} class="max-sm:hidden" />
+        <span
+          aria-hidden="true"
+          class:list={["max-sm:hidden", { hidden: !SITE.viewSource.enabled }]}
+          >|</span
+        >
+        <ViewSource {post} class="max-sm:hidden" />
       </div>
       {
         description && (
@@ -150,15 +157,21 @@ const nextPost =
 
       <hr class="my-8 border-dashed" />
 
-      <EditPost class="sm:hidden" {hideEditPost} {post} />
+      <div class="flex flex-wrap gap-4 sm:hidden">
+        <EditPost {hideEditPost} {post} />
+        <ViewSource {post} />
+      </div>
 
-      <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
+      <License
+        class="my-6"
+        postUrl={getPath(post.id, post.filePath) || `/${post.id}`}
+      />
+
+      <hr class="my-6 border-dashed" />
+
+      <ul class="my-6 flex flex-wrap gap-4">
         {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
       </ul>
-
-      <BackToTopButton />
-
-      <ShareLinks />
 
       <hr class="my-6 border-dashed" />
 
@@ -194,7 +207,14 @@ const nextPost =
         }
       </div>
     </main>
-    {showToc && <TableOfContents headings={headings} />}
+    {
+      showToc && (
+        <TableOfContents headings={headings}>
+          <BackToTopButton />
+        </TableOfContents>
+      )
+    }
+    {!showToc && <BackToTopButton />}
   </div>
   <Footer />
 </Layout>
