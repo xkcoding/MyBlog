@@ -46,21 +46,25 @@ const showToc =
   !hideToc &&
   headings.filter(h => h.depth >= 2 && h.depth <= 4).length >= 2;
 
-let ogImageUrl: string | undefined;
+// 用于页面显示的封面图（只有用户明确设置了 ogImage 时才显示）
+let coverImageUrl: string | undefined;
 
-// Determine OG image source
+// Determine cover image source from user-defined ogImage
 if (typeof initOgImage === "string") {
-  ogImageUrl = initOgImage; // Remote OG image (absolute URL)
+  coverImageUrl = initOgImage; // Remote image (absolute URL)
 } else if (initOgImage?.src) {
-  ogImageUrl = initOgImage.src; // Local asset
+  coverImageUrl = initOgImage.src; // Local asset
 }
 
-// Use dynamic OG image if enabled and no remote|local ogImage
+// 用于 meta 标签的 OG 图片（可以是用户设置的或动态生成的）
+let ogImageUrl = coverImageUrl;
+
+// Use dynamic OG image for meta tags if enabled and no user-defined ogImage
 if (!ogImageUrl && SITE.dynamicOgImage) {
   ogImageUrl = `${getPath(post.id, post.filePath)}/index.png`;
 }
 
-// Resolve OG image URL (or fallback to SITE.ogImage / default `og.png`)
+// Resolve OG image URL for meta tags
 const ogImage = ogImageUrl
   ? new URL(ogImageUrl, Astro.url.origin).href
   : undefined;
@@ -101,10 +105,10 @@ const nextPost =
       data-pagefind-body
     >
       {
-        ogImageUrl && (
+        coverImageUrl && (
           <div class="group/cover mb-6 overflow-hidden rounded-xl border border-foreground/10 shadow-lg shadow-foreground/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-foreground/10">
             <img
-              src={ogImageUrl}
+              src={coverImageUrl}
               alt={title}
               class="h-auto max-h-[250px] w-full object-cover transition-transform duration-300 group-hover/cover:scale-[1.02] sm:max-h-[400px]"
               loading="lazy"
