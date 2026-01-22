@@ -43,4 +43,6 @@ scripts/migrate-images/reports/
 # ossutil output
 ossutil_output/
 
+cover-image/
 xhs-images/
+illustrations/

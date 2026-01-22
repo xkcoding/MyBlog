@@ -78,6 +78,71 @@
       @apply border-s-accent/80 wrap-break-word opacity-80;
     }
 
+    /* GitHub Alerts - 使用主题色 */
+    .markdown-alert {
+      @apply relative my-6 rounded-lg border border-accent/50 px-4 pt-5 pb-3;
+      background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+
+      .markdown-alert-title {
+        @apply absolute -top-2.5 left-3 flex items-center gap-1.5 px-1.5 text-sm font-medium text-accent;
+
+        svg {
+          @apply size-3.5;
+          fill: currentColor;
+        }
+      }
+
+      p {
+        @apply mb-0.5 text-sm leading-relaxed;
+        color: var(--foreground);
+      }
+
+      p:last-child {
+        @apply mb-0;
+      }
+    }
+
+    /* WARNING 使用琥珀色 */
+    .markdown-alert-warning {
+      @apply border-amber-500/50;
+      background-color: rgb(255 251 235 / 0.5); /* amber-50/50 */
+
+      .markdown-alert-title {
+        @apply text-amber-600;
+      }
+    }
+
+    /* CAUTION 使用红色 */
+    .markdown-alert-caution {
+      @apply border-red-500/50;
+      background-color: rgb(254 242 242 / 0.5); /* red-50/50 */
+
+      .markdown-alert-title {
+        @apply text-red-600;
+      }
+    }
+  }
+
+  /* GitHub Alerts - 暗色模式 */
+  html[data-theme="dark"] {
+    .markdown-alert-warning {
+      @apply border-amber-400/50;
+      background-color: rgb(69 26 3 / 0.3); /* amber-950/30 */
+
+      .markdown-alert-title {
+        @apply text-amber-400;
+      }
+    }
+
+    .markdown-alert-caution {
+      @apply border-red-400/50;
+      background-color: rgb(69 10 10 / 0.3); /* red-950/30 */
+
+      .markdown-alert-title {
+        @apply text-red-400;
+      }
+    }
+
     details {
       @apply inline-block cursor-pointer text-foreground select-none [&_p]:hidden [&_ul]:my-0!;
     }
