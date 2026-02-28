@@ -27,6 +27,7 @@ export default defineConfig({
     }),
   ],
   markdown: {
+    smartypants: false,
     remarkPlugins: [
       remarkToc,
       [remarkCollapse, { test: "Table of contents" }],
